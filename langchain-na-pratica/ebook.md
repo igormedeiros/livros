@@ -11,6 +11,10 @@ Nenhuma parte desta publicação pode ser reproduzida, distribuída ou transmiti
 Contato: igor@igormedeiros.com.br  
 Website: https://igormedeiros.com.br
 
+## **Aviso Legal (Disclaimer)**
+
+Este livro e seu conteúdo são fornecidos "como estão", sem garantias de qualquer tipo, expressas ou implícitas. O autor e o editor não se responsabilizam por quaisquer erros ou omissões, ou por quaisquer danos resultantes do uso das informações contidas neste livro. Os exemplos de código são fornecidos para fins educacionais e podem exigir modificação para uso em produção. A execução dos códigos e a utilização das chaves de API são de inteira responsabilidade do leitor.
+
 ## **Prefácio**
 
 [Este prefácio será escrito por Felipe Gagliazzo.]
@@ -220,6 +224,12 @@ Essa é a filosofia deste livro. Para você realmente aprender, você precisa *f
 
 Estamos prontos? Então, vamos começar a construir coisas incríveis.
 
+### **Principais Takeaways**
+*   Aprender fazendo é a filosofia central deste livro.
+*   Utilize o repositório de exercícios no GitHub para praticar.
+*   Conecte-se com a comunidade no Telegram para suporte e troca de ideias.
+*   A persistência é fundamental para superar os desafios do aprendizado em IA.
+
 ## **Capítulo 1: Introdução ao LangChain — Fundamentos e Conceitos Essenciais**
 
 **Neste capítulo, você vai aprender:**
@@ -324,6 +334,7 @@ resposta = chain.invoke({"topico": "desenvolvedores Python"})
 print("\nResposta da Chain:")  
 print(resposta)
 ```
+```
 
 
 Comando de Execução:  
@@ -335,10 +346,12 @@ chmod +x execucao_exercicio_1.sh
 
 **Saída Esperada (pode variar):**
 
+```
 Executando a chain...
 
 Resposta da Chain:  
 Um desenvolvedor Python não tem medo de cobras, mas treme na base quando vê um erro de indentação.
+```
 
 Parabéns\! Você acabou de executar sua primeira Chain. Observe a linha chain \= prompt\_template | model | output\_parser. Essa sintaxe elegante, chamada **LangChain Expression Language (LCEL)**, é a representação visual do encadeamento que discutimos. É a base sobre a qual construiremos aplicações muito mais poderosas.
 
@@ -411,6 +424,13 @@ Neste capítulo, demos nossos primeiros passos no universo LangChain. Vimos como
 * **Componentes Fundamentais:** Fomos apresentados aos quatro pilares do LangChain: Models (os cérebros da IA), Prompts (as instruções que damos a eles), Chains (os pipelines que conectam tudo) e Agents (os componentes autônomos que tomam decisões).  
 * **Primeiro Código:** Escrevemos e executamos nosso primeiro script "Hello, LangChain\!", criando uma chain simples com a sintaxe moderna da LCEL para ver os conceitos em ação.
 
+### **Principais Takeaways**
+
+*   LangChain simplifica a orquestração de LLMs, permitindo a construção de aplicações complexas.
+*   O conceito de "Chain" automatiza sequências de chamadas a LLMs, tornando o desenvolvimento mais estruturado.
+*   Os componentes fundamentais (Models, Prompts, Chains, Agents) são blocos de construção modulares.
+*   A LCEL (LangChain Expression Language) é a forma moderna e eficiente de construir pipelines no LangChain.
+
 ### **Teste seu Conhecimento**
 
 1. Qual foi o principal problema que o LangChain buscou resolver em sua criação?  
@@ -475,86 +495,88 @@ Exercício Prático: Instalando pyenv e Python no Kali Linux (WSL)
 Este script automatiza a instalação de todas as dependências necessárias, do pyenv e da versão mais recente do Python no Kali Linux.
 
 * **Objetivo:** Preparar um ambiente Linux robusto com a versão correta do Python gerenciada pelo pyenv.  
-* **Nome do Arquivo:** setup\_python\_kali.sh  
+* **Nome do Arquivo:** `setup_python_kali.sh`  
 * **Dependências:** git, curl, build-essential e outras dependências de compilação.  
-* **Comando de Execução:** bash setup\_python\_kali.sh
+* **Comando de Execução:** `bash setup_python_kali.sh`
 
-#\!/bin/bash
+```sh
+#!/bin/bash
 
 # Script DEFINITIVO para instalar Python 3.12.9 no Kali Linux com pyenv  
 # Versão 3: Lida com a ausência do comando 'gpg'.
 
-# O comando 'set \-e' garante que o script pare se algum comando falhar.  
-set \-e
+# O comando 'set -e' garante que o script pare se algum comando falhar.  
+set -e
 
-echo "--- PASSO 1: Corrigindo o 'apt' (Lidando com a falta de 'gpg') \---"  
+echo "--- PASSO 1: Corrigindo o 'apt' (Lidando com a falta de 'gpg') ---"  
 # Temporariamente, dizemos ao apt para confiar no repositório sem verificar a assinatura.  
 # ISSO É INSEGURO, mas necessário para quebrar o ciclo e poder instalar o gpg.  
-echo "deb \[trusted=yes\] http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee /etc/apt/sources.list
+echo "deb [trusted=yes] http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee /etc/apt/sources.list
 
 echo ""  
-echo "--- PASSO 2: Instalando 'gpg' e 'wget' \---"  
+echo "--- PASSO 2: Instalando 'gpg' e 'wget' ---"  
 sudo apt update  
 # Agora que o apt funciona (de forma insegura), instalamos o gnupg (que contém o gpg) e o wget.  
-sudo apt install \-y gnupg wget
+sudo apt install -y gnupg wget
 
 echo ""  
-echo "--- PASSO 3: Consertando a segurança do 'apt' DE FORMA PERMANENTE \---"  
+echo "--- PASSO 3: Consertando a segurança do 'apt' DE FORMA PERMANENTE ---"  
 # 3.1: Agora que temos o 'gpg', podemos baixar e instalar a chave de segurança oficial.  
-wget \-q \-O \- https://archive.kali.org/archive-key.asc | sudo gpg \--dearmor \-o /usr/share/keyrings/kali-archive-keyring.gpg
+wget -q -O - https://archive.kali.org/archive-key.asc | sudo gpg --dearmor -o /usr/share/keyrings/kali-archive-keyring.gpg
 
 # 3.2: Reescrevemos o arquivo de repositórios para o modo SEGURO, forçando a verificação com a chave que acabamos de baixar.  
-echo "deb \[signed-by=/usr/share/keyrings/kali-archive-keyring.gpg\] http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee /etc/apt/sources.list
+echo "deb [signed-by=/usr/share/keyrings/kali-archive-keyring.gpg] http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee /etc/apt/sources.list
 
 echo "Segurança do APT restaurada."
 
 echo ""  
-echo "--- PASSO 4: Atualizando pacotes (agora de forma segura) e instalando TODAS as dependências \---"  
+echo "--- PASSO 4: Atualizando pacotes (agora de forma segura) e instalando TODAS as dependências ---"  
 sudo apt update  
-sudo apt install \-y build-essential libssl-dev zlib1g-dev \\  
-libbz2-dev libreadline-dev libsqlite3-dev curl llvm \\  
-libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \\  
+sudo apt install -y build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev curl llvm \
+libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
 liblzma-dev python3-openssl git
 
 echo ""  
-echo "--- PASSO 5: Instalando o pyenv (se necessário) \---"  
-if \[ \! \-d "$HOME/.pyenv" \]; then  
+echo "--- PASSO 5: Instalando o pyenv (se necessário) ---"  
+if [ ! -d "$HOME/.pyenv" ]; then  
     curl https://pyenv.run | bash  
 else  
     echo "O pyenv já está instalado. Pulando a instalação."  
 fi
 
 echo ""  
-echo "--- PASSO 6: Configurando o ambiente do pyenv \---"  
-if \! grep \-qF 'PYENV\_ROOT' \~/.zshrc; then  
-  echo \-e '\\n# Configuração do Pyenv' \>\> \~/.zshrc  
-  echo 'export PYENV\_ROOT="$HOME/.pyenv"' \>\> \~/.zshrc  
-  echo 'command \-v pyenv \>/dev/null || export PATH="$PYENV\_ROOT/bin:$PATH"' \>\> \~/.zshrc  
-  echo 'eval "$(pyenv init \-)"' \>\> \~/.zshrc  
+echo "--- PASSO 6: Configurando o ambiente do pyenv ---"  
+if ! grep -qF 'PYENV_ROOT' ~/.zshrc; then  
+  echo -e '\n# Configuração do Pyenv' >> ~/.zshrc  
+  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc  
+  echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc  
+  echo 'eval "$(pyenv init -)"' >> ~/.zshrc  
 fi  
-export PYENV\_ROOT="$HOME/.pyenv"  
-export PATH="$PYENV\_ROOT/bin:$PATH"  
-eval "$(pyenv init \-)"
+export PYENV_ROOT="$HOME/.pyenv"  
+export PATH="$PYENV_ROOT/bin:$PATH"  
+eval "$(pyenv init -)"
 
 echo ""  
-echo "--- PASSO 7: Instalando o Python 3.12.9 (Isso pode levar alguns minutos) \---"  
+echo "--- PASSO 7: Instalando o Python 3.12.9 (Isso pode levar alguns minutos) ---"  
 pyenv install 3.12.9
 
 echo ""  
-echo "--- PASSO 8: Definindo o Python 3.12.9 como padrão global \---"  
+echo "--- PASSO 8: Definindo o Python 3.12.9 como padrão global ---"  
 pyenv global 3.12.9
 
 echo "--- PASSO 9: Atualizando o pip"  
-pip install \--upgrade pip
+pip install --upgrade pip
 
 echo ""  
 echo "-------------------------------------------------------------"  
-echo " SUCESSO\! Ambiente corrigido e Python 3.12.9 instalado."  
+echo " SUCESSO! Ambiente corrigido e Python 3.12.9 instalado."  
 echo "-------------------------------------------------------------"  
 echo ""  
 echo "Feche e reabra seu terminal para que tudo funcione corretamente, então verifique com:"  
-echo "python \--version"  
+echo "python --version"  
 echo ""
+```
 
 ### **Um Terminal com Superpoderes: zsh e Oh My Zsh**
 
@@ -568,39 +590,41 @@ O zsh por si só já é um shell mais poderoso, mas com Oh My Zsh e alguns plugi
 Exercício Prático: Instalando o Terminal Perfeito  
 Este script instala o zsh, o Oh My Zsh e os plugins que eu uso.
 
-* **Objetivo:** Configurar um terminal moderno e produtivo.  
-* **Nome do Arquivo:** setup\_zsh.sh  
+* **Objetivo:** Configurar um terminal moderno e productivo.  
+* **Nome do Arquivo:** `setup_zsh.sh`  
 * **Dependências:** zsh, git, curl  
-* **Comando de Execução:** bash setup\_zsh.sh
+* **Comando de Execução:** `bash setup_zsh.sh`
 
-#\!/bin/bash
+```sh
+#!/bin/bash
 
 # Atualiza os pacotes e instala o Zsh  
 sudo apt update  
-sudo apt install \-y zsh
+sudo apt install -y zsh
 
 # Define o Zsh como o shell padrão para o usuário atual  
 # Pode ser necessário inserir a senha aqui, dependendo das permissões do sudo  
-sudo usermod \-s /usr/bin/zsh $(whoami)
+sudo usermod -s /usr/bin/zsh $(whoami)
 
 # Instala o Oh My Zsh sem iniciar um novo shell  
 export RUNZSH=no  
-sh \-c "$(curl \-fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" \--unattended
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Clona os plugins do zsh-syntax-highlighting e zsh-autosuggestions  
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH\_CUSTOM:-\~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting  
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH\_CUSTOM:-\~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting  
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# Edita a linha de plugins no \~/.zshrc usando sed  
-sed \-i 's/^plugins=(.\*/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' \~/.zshrc
+# Edita a linha de plugins no ~/.zshrc usando sed  
+sed -i 's/^plugins=(.*/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' ~/.zshrc
 
-source \~/.zshrc
+source ~/.zshrc
 
-echo "Instalação e configuração do Zsh e Oh My Zsh concluídas\!"  
+echo "Instalação e configuração do Zsh e Oh My Zsh concluídas!"  
 echo "Por favor, reinicie seu terminal ou faça logout e login para que as alterações entrem em vigor."
 
 # Inicia uma nova sessão Zsh para aplicar as alterações (opcional)  
 exec zsh
+```
 
 ### **Segurança e Conveniência com Git: Chaves SSH**
 
@@ -712,6 +736,34 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 * **Gerenciamento de Dependências com uv:** Exploramos a evolução do gerenciamento de pacotes em Python, desde o setup.py até o moderno pyproject.toml (PEPs 518 e 621), e adotamos o uv como nossa ferramenta principal por sua velocidade e simplicidade.  
 * **Gerenciamento de Segredos:** Vimos a importância de nunca expor chaves de API no código e aprendemos o passo a passo para obter uma chave gratuita do Google AI Studio e configurá-la de forma segura usando um arquivo .env.
 
+### **Principais Takeaways**
+
+*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
+*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
+*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
+*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
+
+### **Principais Takeaways**
+
+*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
+*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
+*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
+*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
+
+### **Principais Takeaways**
+
+*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
+*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
+*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
+*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
+
+### **Principais Takeaways**
+
+*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
+*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
+*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
+*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
+
 ### **Teste seu Conhecimento**
 
 1. Qual é a principal vantagem de usar o WSL (Windows Subsystem for Linux) para desenvolvimento Python?  
@@ -732,7 +784,7 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 4. Por que é recomendado usar chaves SSH em vez de HTTPS para interagir com o GitHub?  
    a) Porque é mais rápido para baixar arquivos grandes.  
    b) Porque é mais seguro e evita a necessidade de digitar a senha a cada interação.  
-   c) Porque o HTTPS não funciona com repositórios privados.  
+   c) Porque o HTTPS não funciona com repositorios privados.  
    d) Porque o SSH permite editar arquivos diretamente no GitHub.  
 5. Qual comando você usaria com uv para adicionar uma nova dependência a um projeto e registrá-la no pyproject.toml?  
    a) uv install \<pacote\>  
@@ -829,6 +881,7 @@ response = chain.invoke({
 
 print(response.content)
 ```
+```
 
 Veja como ficou limpo e legível? prompt\_template | llm cria um pipeline onde a saída do template (o prompt formatado) se torna a entrada para o modelo. A mágica da orquestração do LangChain em ação\!
 
@@ -841,6 +894,7 @@ Vamos solidificar esses conceitos com um exercício prático. Construiremos uma 
 * **Dependências:** langchain, langchain-google-genai, python-dotenv  
 * **Comando de Instalação:** uv add langchain langchain-google-genai python-dotenv
 
+```python
 ```python
 # capitulo_03/tradutor_dinamico.py
 
@@ -945,6 +999,22 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 * **Primeiro Vislumbre da LCEL:** Tivemos uma prévia da LangChain Expression Language (LCEL) e seu operador pipe (|), que cria um pipeline legível e elegante para conectar os componentes.  
 * **Exercício Prático:** Construímos um tradutor multilíngue, solidificando o conhecimento de como usar variáveis dinâmicas em um prompt para criar uma aplicação flexível.
 
+### **Principais Takeaways**
+
+*   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
+*   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
+*   Modelos de linguagem (LLMs) são integrados e orquestrados eficientemente com o LangChain.
+*   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
+*   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
+
+### **Principais Takeaways**
+
+*   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
+*   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
+*   Modelos de linguagem (LLMs) são integrados e orquestrados eficientemente com o LangChain.
+*   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
+*   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
+
 ### **Teste seu Conhecimento**
 
 1. Qual é o principal benefício de usar PromptTemplates em vez de strings formatadas (f-strings)?  
@@ -987,14 +1057,14 @@ Essa percepção deu origem à **LangChain Expression Language (LCEL)**, lançad
 
 Neste capítulo, vamos fazer uma viagem no tempo. Primeiro, vamos construir uma chain "à moda antiga" para entender as dores que a LCEL veio resolver. Depois, vamos mergulhar de cabeça na LCEL e ver como ela torna nossa vida muito mais fácil.
 
-### **O Jeito Clássico: LLMChain e SequentialChain (DEPRECADO)**
+### **O Jeito Clássico: LLMChain e SequentialChain (OBSOLETO)**
 
 Para entendermos o salto que a LCEL representa, vamos primeiro ver como as coisas eram feitas. É importante notar que as classes `LLMChain` e `SequentialChain` são consideradas **legadas** e **deprecadas** na versão 0.2+ do LangChain. Elas são apresentadas aqui apenas para fins de contexto histórico e para ilustrar os problemas que a LCEL veio resolver. **Não as utilize em novos projetos.**
 
 A `LLMChain` era o bloco de construção mais básico: um prompt, um LLM e uma saída.
 
 ```python
-# O jeito antigo com LLMChain (DEPRECADO)
+# O jeito antigo com LLMChain (OBSOLETO)
 from langchain.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -1009,7 +1079,7 @@ chain = LLMChain(llm=llm, prompt=prompt)
 
 Agora, e se quiséssemos fazer aquilo que discutimos no Capítulo 1: gerar uma pergunta e depois respondê-la? Precisávamos da `SequentialChain`.
 
-**Exercício Prático: Chain Sequencial (O Jeito Antigo - DEPRECADO)**
+**Exercício Prático: Chain Sequencial (O Jeito Antigo - OBSOLETO)**
 
 *   **Objetivo:** Demonstrar como as chains eram construídas antes da LCEL usando LLMChain e SequentialChain. Este exemplo é **apenas para fins educacionais** e não deve ser replicado em código de produção.
 *   **Nome do Arquivo:** capitulo_04/chain_sequencial_antiga.py
@@ -1017,7 +1087,7 @@ Agora, e se quiséssemos fazer aquilo que discutimos no Capítulo 1: gerar uma p
 *   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
 
 ```python
-# capitulo_04/chain_sequencial_antiga.py (DEPRECADO)
+# capitulo_04/chain_sequencial_antiga.py (OBSOLETO)
 from dotenv import load_dotenv
 from langchain.chains import LLMChain, SequentialChain
 from langchain_core.prompts import PromptTemplate
@@ -1025,7 +1095,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
 
-llm = ChatGoogleGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
 
 # Chain 1: Gera uma pergunta
 template_pergunta = "Gere uma pergunta criativa sobre o tópico: {topico}"
@@ -1080,21 +1150,23 @@ A melhor forma de entender a LCEL é colocando a mão na massa. Vamos passar por
 
 * **Objetivo:** Criar uma chain básica que gera uma sinopse de filme a partir de um gênero.
 
-# capitulo\_04/exercicio\_01\_lcel\_basica.py  
-from dotenv import load\_dotenv  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_core.output\_parsers import StrOutputParser
+```python
+# capitulo_04/exercicio_01_lcel_basica.py  
+from dotenv import load_dotenv  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_core.output_parsers import StrOutputParser
 
-load\_dotenv()
+load_dotenv()
 
-prompt \= ChatPromptTemplate.from\_template("Crie uma sinopse de filme de uma frase para o gênero: {genero}")  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser \= StrOutputParser()
+prompt = ChatPromptTemplate.from_template("Crie uma sinopse de filme de uma frase para o gênero: {genero}")  
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
+parser = StrOutputParser()
 
-chain \= prompt | model | parser
+chain = prompt | model | parser
 
 print(chain.invoke({"genero": "Comédia de Ficção Científica"}))
+```
 ```
 
 **Comando de Execução:**
@@ -1108,60 +1180,64 @@ chmod +x execucao_exercicio_4_1.sh
 
 * **Objetivo:** Criar uma chain que gera uma pergunta sobre um tópico e depois responde a essa pergunta, usando o tópico original na resposta final.
 
-# capitulo\_04/exercicio\_02\_lcel\_passthrough.py  
-from dotenv import load\_dotenv  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.output\_parsers import StrOutputParser  
-from langchain\_core.runnables import RunnablePassthrough
+```python
+# capitulo_04/exercicio_02_lcel_passthrough.py  
+from dotenv import load_dotenv  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.output_parsers import StrOutputParser  
+from langchain_core.runnables import RunnablePassthrough
 
-load\_dotenv()  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser \= StrOutputParser()
+load_dotenv()  
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
+parser = StrOutputParser()
 
-prompt\_pergunta \= ChatPromptTemplate.from\_template("Gere uma pergunta interessante sobre {topico}.")  
-prompt\_resposta \= ChatPromptTemplate.from\_template(  
+prompt_pergunta = ChatPromptTemplate.from_template("Gere uma pergunta interessante sobre {topico}.")  
+prompt_resposta = ChatPromptTemplate.from_template(  
     "Responda a pergunta: {pergunta}. Contexto original do tópico: {topico}"  
 )
 
-chain\_pergunta \= prompt\_pergunta | model | parser
+chain_pergunta = prompt_pergunta | model | parser
 
-chain\_completa \= (  
-    {"pergunta": chain\_pergunta, "topico": RunnablePassthrough()}  
-    | prompt\_resposta  
+chain_completa = (  
+    {"pergunta": chain_pergunta, "topico": RunnablePassthrough()}  
+    | prompt_resposta  
     | model  
     | parser  
 )
 
-print(chain\_completa.invoke("a filosofia estoica"))
+print(chain_completa.invoke("a filosofia estoica"))
+```
 
 **Exercício 3: Execução Paralela com RunnableParallel**
 
 * **Objetivo:** Para um determinado país, buscar em paralelo sua capital, sua população e uma curiosidade.
 
-# capitulo\_04/exercicio\_03\_lcel\_paralela.py  
-from dotenv import load\_dotenv  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.output\_parsers import StrOutputParser  
-from langchain\_core.runnables import RunnableParallel
+```python
+# capitulo_04/exercicio_03_lcel_paralela.py  
+from dotenv import load_dotenv  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.output_parsers import StrOutputParser  
+from langchain_core.runnables import RunnableParallel
 
-load\_dotenv()  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser \= StrOutputParser()
+load_dotenv()  
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
+parser = StrOutputParser()
 
-chain\_capital \= ChatPromptTemplate.from\_template("Qual é a capital de {pais}?") | model | parser  
-chain\_populacao \= ChatPromptTemplate.from\_template("Qual é a população aproximada de {pais}?") | model | parser  
-chain\_curiosidade \= ChatPromptTemplate.from\_template("Conte uma curiosidade sobre {pais}.") | model | parser
+chain_capital = ChatPromptTemplate.from_template("Qual é a capital de {pais}?") | model | parser  
+chain_populacao = ChatPromptTemplate.from_template("Qual é a população aproximada de {pais}?") | model | parser  
+chain_curiosidade = ChatPromptTemplate.from_template("Conte uma curiosidade sobre {pais}.") | model | parser
 
-mapa\_paralelo \= RunnableParallel(  
-    capital=chain\_capital,  
-    populacao=chain\_populacao,  
-    curiosidade=chain\_curiosidade  
+mapa_paralelo = RunnableParallel(  
+    capital=chain_capital,  
+    populacao=chain_populacao,  
+    curiosidade=chain_curiosidade  
 )
 
-resultado \= mapa\_paralelo.invoke({"pais": "Egito"})  
+resultado = mapa_paralelo.invoke({"pais": "Egito"})  
 print(resultado)
+```
 ```
 
 **Comando de Execução:**
@@ -1175,55 +1251,59 @@ chmod +x execucao_exercicio_4_3.sh
 
 * **Objetivo:** Criar uma chain que recebe uma lista de números, calcula o quadrado de cada um e depois pede ao LLM para descrever o resultado.
 
-# capitulo\_04/exercicio\_04\_lcel\_lambda.py  
-from dotenv import load\_dotenv  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.output\_parsers import StrOutputParser  
-from langchain\_core.runnables import RunnableLambda
+```python
+# capitulo_04/exercicio_04_lcel_lambda.py  
+from dotenv import load_dotenv  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.output_parsers import StrOutputParser  
+from langchain_core.runnables import RunnableLambda
 
-load\_dotenv()
+load_dotenv()
 
-def calcular\_quadrados(numeros: list\[int\]) \-\> list\[int\]:  
+def calcular_quadrados(numeros: list[int]) -> list[int]:  
     print("Executando a função Python para calcular quadrados...")  
-    return \[n*n for n in numeros\]
+    return [n*n for n in numeros]
 
-prompt \= ChatPromptTemplate.from\_template("Descreva esta lista de números de forma poética: {lista\_quadrados}")  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser \= StrOutputParser()
+prompt = ChatPromptTemplate.from_template("Descreva esta lista de números de forma poética: {lista_quadrados}")  
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
+parser = StrOutputParser()
 
-chain \= (  
-    RunnableLambda(calcular\_quadrados)  
-    | (lambda quadrados: {"lista\_quadrados": quadrados})  
+chain = (  
+    RunnableLambda(calcular_quadrados)  
+    | (lambda quadrados: {"lista_quadrados": quadrados})  
     | prompt  
     | model  
     | parser  
 )
 
-print(chain.invoke(\[1, 2, 3, 4, 5\]))
+print(chain.invoke([1, 2, 3, 4, 5]))
+```
 
 **Exercício 5: Streaming de Respostas**
 
 * **Objetivo:** Criar uma chain que faz streaming da resposta do LLM, imprimindo-a token por token.
 
-# capitulo\_04/exercicio\_05\_lcel\_streaming.py  
-from dotenv import load\_dotenv  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_core.output\_parsers import StrOutputParser
+```python
+# capitulo_04/exercicio_05_lcel_streaming.py  
+from dotenv import load_dotenv  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_core.output_parsers import StrOutputParser
 
-load\_dotenv()
+load_dotenv()
 
-prompt \= ChatPromptTemplate.from\_template("Conte uma história curta sobre um robô que aprendeu a sonhar.")  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser \= StrOutputParser()
+prompt = ChatPromptTemplate.from_template("Conte uma história curta sobre um robô que aprendeu a sonhar.")  
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
+parser = StrOutputParser()
 
-chain \= prompt | model | parser
+chain = prompt | model | parser
 
-print("--- Resposta em Streaming \---")  
+print("--- Resposta em Streaming ---")  
 for chunk in chain.stream({}):  
     print(chunk, end="", flush=True)  
-print("\n--- Fim do Streaming \---")
+print("\n--- Fim do Streaming ---")
+```
 
 **Curiosidade do Autor:** Falando em combinar coisas que parecem não combinar, vou contar uma pequena curiosidade sobre mim: eu adoro o ambiente de cafeterias para trabalhar. Aquele burburinho de fundo, a energia das pessoas ao redor... tudo isso me ajuda a focar de uma maneira que o silêncio do escritório em casa não consegue. A ironia? Eu não sou fã de café. Sou o cara estranho em um canto, com uma xícara de chá de camomila, programando freneticamente.
 
