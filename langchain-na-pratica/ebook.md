@@ -214,7 +214,7 @@ Este livro foi projetado para ser uma jornada prática e interativa. Lembro-me v
 Essa é a filosofia deste livro. Para você realmente aprender, você precisa *fazer*.
 
 * **Mão na Massa:** Não apenas leia. Abra seu editor de código, crie o ambiente virtual (como veremos no Capítulo 2\) e execute cada exemplo. Modifique os exercícios, quebre o código e tente consertá-lo. É na prática que o conhecimento se solidifica.  
-* **Use o Repositório de Exercícios:** Todos os códigos práticos deste livro estão disponíveis em um repositório no GitHub. Use-o como ponto de partida e como referência. Você pode encontrá-lo em: https://github.com/igormedeiros/ebook-exercicios-ia-agents.  
+* **Use o Repositório de Exercícios:** Todos os códigos práticos deste livro estão disponíveis em um repositório no GitHub. Use-o como ponto de partida e como referência. Você pode encontrá-lo em: https://github.com/igormedeiros/livros/blob/main/langchain-na-pratica/.  
 * **Conecte-se com a Comunidade:** Aprender junto é sempre mais poderoso. Criei uma comunidade no Telegram para que possamos trocar ideias, tirar dúvidas e compartilhar nossos projetos. A jornada continua lá: https://t.me/igormedeiros\_comunidade.  
 * **Abrace os Desafios:** Haverá momentos em que um conceito parecerá abstrato ou um código não funcionará de primeira. Isso é normal, e faz parte do processo de crescimento. Lembre-se: 'A persistência é o caminho do êxito.' As "Notas de Acolhimento" e as histórias pessoais que compartilho ao longo do livro estão aqui para te lembrar que a jornada de aprendizado tem seus altos e baixos, e que a perseverança é a chave para superar qualquer obstáculo. Não hesite em buscar ajuda na comunidade ou revisitar os conceitos. Estamos aqui para apoiar você em cada passo.
 
@@ -282,46 +282,49 @@ Vamos colocar a mão na massa com o nosso primeiro código. Este será o "Hello,
 * Comando de Instalação: uv add langchain langchain-google-genai python-dotenv  
   (Nota: A configuração completa do ambiente, incluindo a chave de API, será detalhada no Capítulo 2.)
 
-# capitulo\_01/hello\_langchain.py
+```python
+# capitulo_01/hello_langchain.py
 
 import os  
-from dotenv import load\_dotenv  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_core.output\_parsers import StrOutputParser
+from dotenv import load_dotenv  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_core.output_parsers import StrOutputParser
 
 # Carrega as variáveis de ambiente (necessário para a chave do Google)  
 # Certifique-se de ter um arquivo .env como explicado no Capítulo 2  
-load\_dotenv()
+load_dotenv()
 
-# 1\. Crie um template de prompt.  
+# 1. Crie um template de prompt.  
 #    Pense nisso como o "molde" para a sua pergunta.  
 #    A variável {topico} será preenchida dinamicamente.  
-prompt\_template \= ChatPromptTemplate.from\_template(  
+prompt_template = ChatPromptTemplate.from_template(  
     "Escreva uma única frase engraçada sobre o tópico: {topico}"  
 )
 
-# 2\. Inicialize o modelo de linguagem.  
+# 2. Inicialize o modelo de linguagem.  
 #    Este é o "cérebro" que vai gerar a resposta. Usaremos o Gemini Flash.  
-model \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
-# 3\. Crie um parser de saída.  
+# 3. Crie um parser de saída.  
 #    Ele vai extrair apenas o texto da resposta do modelo.  
-output\_parser \= StrOutputParser()
+output_parser = StrOutputParser()
 
-# 4\. Crie a "Chain" usando o operador pipe (|).  
-#    Esta é a mágica da LangChain Expression Language (LCEL)\!  
-#    O fluxo é: prompt \-\> modelo \-\> parser  
-chain \= prompt\_template | model | output\_parser
+# 4. Crie a "Chain" usando o operador pipe (|).  
+#    Esta é a mágica da LangChain Expression Language (LCEL)!
+#    O fluxo é: prompt -> modelo -> parser  
+chain = prompt_template | model | output_parser
 
-# 5\. Invoque a chain com um tópico.  
+# 5. Invoque a chain com um tópico.  
 #    O LangChain cuida de passar o resultado de um passo para o outro.  
 print("Executando a chain...")  
-resposta \= chain.invoke({"topico": "desenvolvedores Python"})
+resposta = chain.invoke({"topico": "desenvolvedores Python"})
 
 # Imprime o resultado final  
 print("\nResposta da Chain:")  
 print(resposta)
+```
+
 
 Comando de Execução:  
 Para rodar este script, você precisará ter sua chave de API do Google configurada em um arquivo .env (veremos isso em detalhes no próximo capítulo). Com tudo pronto, execute no terminal:  
@@ -751,9 +754,11 @@ Não se trata de "adivinhar" as palavras mágicas. É uma disciplina que mistura
 
 Imagine que você está construindo um assistente que resume artigos. Uma abordagem ingênua seria escrever o prompt toda vez no código:
 
-# Abordagem ingênua (não faça isso\!)  
-artigo \= "..." # texto longo do artigo  
-prompt\_texto \= f"Resuma o seguinte artigo em três pontos principais: {artigo}"
+```python
+# Abordagem ingênua (não faça isso!)
+artigo = "..." # texto longo do artigo
+prompt_texto = f"Resuma o seguinte artigo em três pontos principais: {artigo}"
+```
 
 Isso funciona, mas é inflexível e ruim de manter. E se você quiser mudar o estilo do resumo? Ou o número de pontos? Você teria que caçar e alterar essa string em todo o seu código.
 
@@ -761,27 +766,29 @@ Isso funciona, mas é inflexível e ruim de manter. E se você quiser mudar o es
 
 Vamos ver como funciona. A classe principal para isso é a ChatPromptTemplate, projetada para os modernos modelos de chat.
 
-from langchain\_core.prompts import ChatPromptTemplate
+```python
+from langchain_core.prompts import ChatPromptTemplate
 
-# Criando um template para um sistema de resumo  
-template\_string \= """Você é um assistente especialista em resumir textos.  
-Resuma o texto a seguir em {numero\_de\_pontos} pontos principais, em um tom {tom}.
+# Criando um template para um sistema de resumo
+template_string = """Você é um assistente especialista em resumir textos.
+Resuma o texto a seguir em {numero_de_pontos} pontos principais, em um tom {tom}.
 
-Texto:  
-{texto\_do\_artigo}  
+Texto:
+{texto_do_artigo}
 """
 
-prompt\_template \= ChatPromptTemplate.from\_template(template\_string)
+prompt_template = ChatPromptTemplate.from_template(template_string)
 
-# Agora, podemos usar o template para formatar um prompt dinamicamente  
-artigo\_exemplo \= "A inteligência artificial está transformando indústrias, desde a saúde até as finanças, automatizando tarefas e gerando novos insights."  
-prompt\_formatado \= prompt\_template.format(  
-    numero\_de\_pontos="dois",  
-    tom="profissional",  
-    texto\_do\_artigo=artigo\_exemplo  
+# Agora, podemos usar o template para formatar um prompt dinamicamente
+artigo_exemplo = "A inteligência artificial está transformando indústrias, desde a saúde até as finanças, automatizando tarefas e gerando novos insights."
+prompt_formatado = prompt_template.format(
+    numero_de_pontos="dois",
+    tom="profissional",
+    texto_do_artigo=artigo_exemplo
 )
 
-print(prompt\_formatado)
+print(prompt_formatado)
+```
 
 A saída será o prompt completo, pronto para ser enviado ao modelo:
 
@@ -799,27 +806,29 @@ Neste capítulo, vamos aprender a ser os guitarristas dos nossos LLMs. Vamos afi
 
 Um prompt, por si só, é apenas texto. Ele precisa ser enviado a um modelo para ganhar vida. Como vimos, vamos usar o Gemini do Google.
 
-# Supondo que você já configurou seu ambiente como no Capítulo 2  
-from langchain\_google\_genai import ChatGoogleGenerativeAI
+```python
+# Supondo que você já configurou seu ambiente como no Capítulo 2
+from langchain_google_genai import ChatGoogleGenerativeAI
 
-# Inicializa o modelo  
-llm \= ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)  
-# 'temperature' é um parâmetro que controla a criatividade da resposta.  
+# Inicializa o modelo
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
+# 'temperature' é um parâmetro que controla a criatividade da resposta.
 # 0 é mais determinístico, 1 é mais criativo.
 
-Agora, como conectamos nosso prompt\_template com nosso llm? A maneira moderna de fazer isso no LangChain é usando a **LangChain Expression Language (LCEL)**, que utiliza o operador pipe (|). Vamos ter um capítulo inteiro sobre isso (Capítulo 4), mas já vou te dar um gostinho.
+Agora, como conectamos nosso prompt_template com nosso llm? A maneira moderna de fazer isso no LangChain é usando a **LangChain Expression Language (LCEL)**, que utiliza o operador pipe (|). Vamos ter um capítulo inteiro sobre isso (Capítulo 4), mas já vou te dar um gostinho.
 
-# Conectando o prompt ao modelo usando LCEL  
-chain \= prompt\_template | llm
+# Conectando o prompt ao modelo usando LCEL
+chain = prompt_template | llm
 
-# Agora, podemos invocar a "chain" diretamente com as variáveis  
-response \= chain.invoke({
-    "numero\_de\_pontos": "três",  
-    "tom": "entusiasmado",  
-    "texto\_do\_artigo": "O LangChain permite construir aplicações de IA complexas de forma modular e eficiente, abrindo um novo mundo de possibilidades para desenvolvedores Python."  
+# Agora, podemos invocar a "chain" diretamente com as variáveis
+response = chain.invoke({
+    "numero_de_pontos": "três",
+    "tom": "entusiasmado",
+    "texto_do_artigo": "O LangChain permite construir aplicações de IA complexas de forma modular e eficiente, abrindo um novo mundo de possibilidades para desenvolvedores Python."
 })
 
 print(response.content)
+```
 
 Veja como ficou limpo e legível? prompt\_template | llm cria um pipeline onde a saída do template (o prompt formatado) se torna a entrada para o modelo. A mágica da orquestração do LangChain em ação\!
 
@@ -832,32 +841,33 @@ Vamos solidificar esses conceitos com um exercício prático. Construiremos uma 
 * **Dependências:** langchain, langchain-google-genai, python-dotenv  
 * **Comando de Instalação:** uv add langchain langchain-google-genai python-dotenv
 
-# capitulo\_03/tradutor\_dinamico.py
+```python
+# capitulo_03/tradutor_dinamico.py
 
 import os  
-from dotenv import load\_dotenv  
-from langchain\_core.prompts import ChatPromptTemplate  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_core.output\_parsers import StrOutputParser
+from dotenv import load_dotenv  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_core.output_parsers import StrOutputParser
 
 # Carregar variáveis de ambiente do arquivo .env  
-load\_dotenv()
+load_dotenv()
 
-def traduzir\_texto(texto\_original: str, idioma\_destino: str) \-\> str:  
+def traduzir_texto(texto_original: str, idioma_destino: str) -> str:  
     """  
     Traduz um texto para o idioma de destino usando LangChain e Google Gemini.
 
     Args:  
-        texto\_original: O texto a ser traduzido.  
-        idioma\_destino: O idioma para o qual o texto será traduzido.
+        texto_original: O texto a ser traduzido.  
+        idioma_destino: O idioma para o qual o texto será traduzido.
 
     Returns:  
         O texto traduzido.  
     """  
-    print(f"Traduzindo '{texto\_original}' para {idioma\_destino}...")
+    print(f"Traduzindo '{texto_original}' para {idioma_destino}...")
 
-    # 1\. Definir o template do prompt  
-    template \= """  
+    # 1. Definir o template do prompt  
+    template = """  
     Sua tarefa é ser um tradutor expert.  
     Traduza o seguinte texto para o idioma '{idioma}':  
       
@@ -865,44 +875,45 @@ def traduzir\_texto(texto\_original: str, idioma\_destino: str) \-\> str:
       
     Tradução:  
     """  
-    prompt \= ChatPromptTemplate.from\_template(template)
+    prompt = ChatPromptTemplate.from_template(template)
 
-    # 2\. Inicializar o modelo  
+    # 2. Inicializar o modelo  
     # A temperatura 0 torna a tradução mais literal e menos "criativa"  
-    modelo \= ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+    modelo = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
-    # 3\. Inicializar o parser de saída para obter uma string como resultado  
-    output\_parser \= StrOutputParser()
+    # 3. Inicializar o parser de saída para obter uma string como resultado  
+    output_parser = StrOutputParser()
 
-    # 4\. Criar a chain usando LangChain Expression Language (LCEL)  
-    chain \= prompt | modelo | output\_parser
+    # 4. Criar a chain usando LangChain Expression Language (LCEL)  
+    chain = prompt | modelo | output_parser
 
-    # 5\. Invocar a chain com os parâmetros necessários  
+    # 5. Invocar a chain com os parâmetros necessários  
     try:  
-        resultado \= chain.invoke({
-            "idioma": idioma\_destino,  
-            "texto": texto\_original  
+        resultado = chain.invoke({
+            "idioma": idioma_destino,  
+            "texto": texto_original  
         })  
         return resultado  
     except Exception as e:  
         return f"Ocorreu um erro durante a tradução: {e}"
 
-# \--- Execução do Exemplo \---
-if \_\_name\_\_ \== "\_\_main\_\_":  
+# --- Execução do Exemplo ---
+if __name__ == "__main__":  
     # Exemplo 1: Traduzindo para o Francês  
-    frase\_pt \= "A inteligência artificial está mudando o mundo."  
-    traducao\_fr \= traduzir\_texto(frase\_pt, "Francês")  
-    print(f"Resultado: {traducao\_fr}\\n")
+    frase_pt = "A inteligência artificial está mudando o mundo."  
+    traducao_fr = traduzir_texto(frase_pt, "Francês")  
+    print(f"Resultado: {traducao_fr}\n")
 
     # Exemplo 2: Traduzindo para o Japonês  
-    frase\_en \= "Python is a powerful programming language."  
-    traducao\_jp \= traduzir\_texto(frase\_en, "Japonês")  
-    print(f"Resultado: {traducao\_jp}\\n")  
+    frase_en = "Python is a powerful programming language."  
+    traducao_jp = traduzir_texto(frase_en, "Japonês")  
+    print(f"Resultado: {traducao_jp}\n")  
       
     # Exemplo 3: Traduzindo para o Klingon (para testar a criatividade do modelo)  
-    frase\_nerd \= "Hello, world\!"  
-    traducao\_klingon \= traduzir\_texto(frase\_nerd, "Klingon")  
-    print(f"Resultado: {traducao\_klingon}\\n")
+    frase_nerd = "Hello, world!"  
+    traducao_klingon = traduzir_texto(frase_nerd, "Klingon")  
+    print(f"Resultado: {traducao_klingon}\n")
+```
 
 **Comando de Execução:**
 
@@ -1482,7 +1493,7 @@ Além de seu trabalho corporativo, Igor é um líder de comunidade nato, que acr
 A jornada do aprendizado não termina aqui. Na verdade, ela está apenas começando.
 
 * Código Fonte: Todo o código deste livro está disponível para você clonar, modificar e experimentar. Acesse o repositório em:  
-  https://github.com/igormedeiros/ebook-exercicios-ia-agents  
+  https://github.com/igormedeiros/livros/blob/main/langchain-na-pratica/  
 * Comunidade no Telegram: Junte-se a outros desenvolvedores, tire dúvidas, compartilhe seus projetos e continue a conversa em nossa comunidade:  
   https://t.me/igormedeiros\_comunidade  
 * Feedback e Contato: Sua opinião é incrivelmente valiosa. Se você gostou deste livro, por favor, considere deixar uma avaliação na Amazon. Isso ajuda outros leitores como você a encontrar este material e me dá o feedback necessário para continuar melhorando. Para outras dúvidas, sugestões ou para saber mais sobre meu trabalho, visite meu site:  
