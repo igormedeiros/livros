@@ -6,7 +6,13 @@
 
 © 2025 Igor Medeiros. Todos os direitos reservados.
 
+Este livro faz parte da série "IA na Prática".
+Lançamento: Julho de 2025.
+
 Nenhuma parte desta publicação pode ser reproduzida, distribuída ou transmitida por qualquer forma ou meio, incluindo fotocópia, gravação ou outros métodos eletrônicos ou mecânicos, sem a permissão prévia por escrito do autor, exceto no caso de breves citações incorporadas em resenhas críticas e outros usos não comerciais permitidos pela lei de direitos autorais.
+
+ISBN: [A SER DEFINIDO]
+Créditos de Design e Edição: [A SER DEFINIDO]
 
 Contato: igor@igormedeiros.com.br  
 Website: https://igormedeiros.com.br
@@ -53,6 +59,8 @@ Ao **Fernando Lopes Jr.**, por ser um amigo e um incentivador, sempre me apoiand
 
 Ao **Eduardo Bregaida**, que confiou em mim e me apresentou uma possibilidade de recomeço quando eu mais precisei, enquanto enfrentava uma terrível fase de problemas de saúde mental e buscava um caminho de volta ao mercado de TI. Sua confiança foi um ponto de virada.
 
+À vasta e vibrante comunidade open source do LangChain e de todas as bibliotecas e ferramentas que tornaram este livro possível. Seu trabalho incansável e colaboração são a verdadeira força motriz por trás da inovação em IA.
+
 A cada um de vocês, meu mais profundo e sincero obrigado.
 
 ## **Índice Detalhado**
@@ -92,7 +100,7 @@ A cada um de vocês, meu mais profundo e sincero obrigado.
 * **Capítulo 3: Manipulação de Prompts e Modelos de Linguagem com LangChain**  
   * A Arte e a Ciência da Engenharia de Prompts  
   * Templates de Prompt: Reutilização e Dinamismo  
-  * Integrando Modelos de Linguagem (LLMs)  
+  * Integrando LLMs  
   * Exercício Prático: Um Tradutor Multilíngue Dinâmico  
   * Resumo do Capítulo  
   * Teste seu Conhecimento  
@@ -141,12 +149,12 @@ O LangChain oferece ferramentas para interagir com bancos de dados SQL, permitin
 Vamos construir um agente que pode responder a perguntas sobre dados de vendas armazenados em um banco de dados SQLite. O agente usará uma ferramenta customizada para executar consultas SQL.
 
 *   **Objetivo:** Criar um agente que interage com um banco de dados SQL para responder a perguntas sobre vendas.
-*   **Nome do Arquivo:** `capitulo_06/agente_analise_vendas_sql.py`
+*   **Nome do Arquivo:** `exercicios/capitulo_06/exercicio_1/main.py`
 *   **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`
 *   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
 
 ```python
-# capitulo_06/agente_analise_vendas_sql.py
+# exercicios/capitulo_06/exercicio_1/main.py
 
 import os
 import sqlite3
@@ -206,7 +214,7 @@ def execute_sql_query(query: str) -> str:
         return f"Erro ao executar a consulta SQL: {e}"
 
 # 3. Escolher o LLM que será o cérebro do nosso agente
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 # 4. Definir as ferramentas que o agente pode usar
 tools = [execute_sql_query]
@@ -242,11 +250,22 @@ if __name__ == "__main__":
         print(f"\n< Resposta Final: {response['output']}")
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x capitulo_06/execucao_exercicio_6_1.sh
-./capitulo_06/execucao_exercicio_6_1.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_06/exercicio_1/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_06/exercicio_1/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_06\exercicio_1\run.bat
+```
 ```
 
 **Saída Esperada (pode variar ligeiramente):**
@@ -282,35 +301,8 @@ Agente de Análise de Vendas pronto! Faça sua pergunta.
 *   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 *   **Agente não usando a ferramenta SQL:** Se o agente não estiver chamando a ferramenta `execute_sql_query` quando esperado, revise a `description` da ferramenta. Ela deve ser clara e concisa, indicando exatamente o que a ferramenta faz e quando deve ser usada. O LLM usa essa descrição para decidir se a ferramenta é relevante para a tarefa.
 *   **Erros de SQL:** Se o agente gerar consultas SQL inválidas, revise o `system prompt` para fornecer instruções mais claras sobre o schema do banco de dados e os tipos de consultas esperadas. O `temperature=0` no modelo ajuda a torná-lo mais determinístico na geração de SQL.  
-* **Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo**  
-    
-  * Dando Memória aos Agentes  
-  * Tabela 2: Tipos de Memória no LangChain  
-  * Exercício Prático: Chatbot com Memória  
-  * Feedback e Aprendizado Contínuo: O Agente que Evolui  
-  * Resumo do Capítulo  
-  * Teste seu Conhecimento  
-* **Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain**  
-  * Da Prototipagem à Produção: O Trabalho Duro  
-  * Testando Aplicações com LLMs: Um Novo Desafio  
-  * Debugging com LangSmith: O Raio-X do seu Agente  
-  * Otimização de Performance e Custo  
-  * Resumo do Capítulo  
-  * Teste seu Conhecimento  
-* **Capítulo 9: Casos de Uso Reais e Projetos Práticos**  
-  * Colocando Tudo em Prática  
-  * RAG (Retrieval-Augmented Generation): O Padrão Ouro para Aplicações Corporativas  
-  * Projeto Prático: Construindo um Pipeline de RAG Avançado  
-  * Caso de Uso com Alma: Saúde e Neurologia  
-  * Caso de Uso: Análise de Dados no Mercado Financeiro  
-  * Próximos Passos na sua Jornada  
-  * Resumo do Capítulo  
-  * Teste seu Conhecimento  
-* **Referências Bibliográficas e Próximos Passos**  
-* **Glossário**  
-* **Apêndice: Checklists Consolidados**  
-* **Sobre o Autor**  
-* **Comunidade e Contato**
+* **Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo** (Conteúdo a ser expandido)
+* **Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain** (Conteúdo a ser expandido)
 
 ## **Introdução**
 
@@ -341,6 +333,8 @@ Estamos saindo de uma era puramente imperativa, onde dizemos à máquina *como* 
 *   **Gerenciar memória e contexto:** Como dar-lhes memória para que possam manter uma conversa coerente e contextualizada ao longo do tempo, sem "esquecer" o que foi dito anteriormente?
 *   **Orquestrar tarefas complexas:** Como encadear múltiplos passos e decisões para resolver problemas que exigem mais do que uma única interação?
 
+É crucial, no entanto, manter uma perspectiva crítica. Como o renomado filósofo Luciano Floridi adverte, a inteligência artificial, se mal compreendida ou aplicada sem ética, pode levar à "idiotice artificial" – a automação de processos sem discernimento ou sabedoria. Nosso objetivo com este livro é ir além da mera automação, buscando a amplificação da inteligência humana, não sua substituição cega.
+
 É exatamente aqui que a nossa história começa, e onde o LangChain se torna uma ferramenta indispensável.
 
 ### **Por que LangChain? O Poder da Orquestração**
@@ -369,6 +363,8 @@ Eu, por exemplo, aprendi sobre visão computacional e frameworks como o YOLO nã
 
 Mantenha essa abordagem em mente enquanto avança pelos capítulos. Tente conectar cada conceito — Chains, Agents, RAG — a uma possível solução para um problema que importa para você. Essa abordagem transforma o aprendizado passivo em uma busca ativa por soluções, tornando a jornada muito mais significativa e eficaz.
 
+No fundo, a programação e a filosofia compartilham um terreno comum: ambas buscam entender e moldar a realidade através da lógica e da abstração. Assim como um filósofo constrói argumentos para desvendar verdades, um programador constrói algoritmos para resolver problemas. A IA, nesse sentido, é a materialização de um pensamento filosófico antigo: a busca por inteligência e autonomia. Ao programar com IA, estamos não apenas escrevendo código, mas participando de um diálogo contínuo com a natureza da inteligência e da criação.
+
 ### **Como Aproveitar ao Máximo Este Livro**
 
 Este livro foi projetado para ser uma jornada prática e interativa. Lembro-me vividamente de uma aula no meu primeiro ano de Ciência da Computação. A sala estava barulhenta, a turma dispersa, e o professor, Kao Jin Kan, um mestre sábio, parou de escrever na lousa, virou-se para nós e disse um provérbio chinês que nunca mais esqueci:
@@ -384,11 +380,7 @@ Essa é a filosofia deste livro. Para você realmente aprender, você precisa *f
 
 Estamos prontos? Então, vamos começar a construir coisas incríveis.
 
-### **Principais Takeaways**
-*   Aprender fazendo é a filosofia central deste livro.
-*   Utilize o repositório de exercícios no GitHub para praticar.
-*   Conecte-se com a comunidade no Telegram para suporte e troca de ideias.
-*   A persistência é fundamental para superar os desafios do aprendizado em IA.
+
 
 ## **Capítulo 1: Introdução ao LangChain — Fundamentos e Conceitos Essenciais**
 
@@ -432,7 +424,7 @@ Imagine que você quer um poema. Sua conversa pode ser algo assim:
 
 O que você acabou de fazer foi um **refinamento iterativo**. Você "encadeou" seus pensamentos, usando a saída de um passo como entrada para o próximo, para guiar o modelo até o resultado desejado. Esse processo é poderoso, mas é manual.
 
-É exatamente aqui que a genialidade do LangChain se revela. O nome **LangChain** significa literalmente "Language Chain" (Corrente de Linguagem). A ideia central do framework é permitir que nós, desenvolvedores, automatizemos esse processo de encadeamento.
+É exatamente aqui que a genialidade do LangChain se revela. O nome **LangChain** significa literalmente "Language Chain" (Chain de Linguagem). A ideia central do framework é permitir que nós, desenvolvedores, automatizemos esse processo de encadeamento.
 
 Em vez de você refinar manualmente o poema, você poderia construir uma "Chain" no LangChain que faz isso programaticamente:
 
@@ -444,16 +436,15 @@ Isso é uma **Chain**: uma sequência de operações ou chamadas a modelos de li
 
 ### **Exercício Prático: Hello, LangChain\!**
 
-Vamos colocar a mão na massa com o nosso primeiro código. Este será o "Hello, World\!" do LangChain. Ele vai demonstrar, da forma mais simples possível, o conceito de chain que acabamos de discutir. Para este e os demais exemplos do livro, usaremos os modelos Gemini do Google, especificamente o gemini-2.5-flash, que é incrivelmente rápido e oferece uma camada gratuita generosa para desenvolvedores.
+Vamos colocar a mão na massa com o nosso primeiro código. Este será o "Hello, World\!" do LangChain. Ele vai demonstrar, da forma mais simples possível, o conceito de chain que acabamos de discutir. Para este e os demais exemplos do livro, usaremos os modelos Gemini do Google, especificamente o gemini-1.5-flash, que é incrivelmente rápido e oferece uma camada gratuita generosa para desenvolvedores.
 
 * **Objetivo:** Fazer a primeira chamada a um LLM usando a sintaxe de chain do LangChain para ver o conceito em ação.  
-* **Nome do Arquivo:** capitulo\_01/hello\_langchain.py  
-* **Dependências:** langchain, langchain-google-genai, python-dotenv  
-* Comando de Instalação: uv add langchain langchain-google-genai python-dotenv  
-  (Nota: A configuração completa do ambiente, incluindo a chave de API, será detalhada no Capítulo 2.)
+* **Nome do Arquivo:** `exercicios/capitulo_01/exercicio_1/main.py`  
+* **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`  
+* **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`  
 
 ```python
-# capitulo_01/hello_langchain.py
+# exercicios/capitulo_01/exercicio_1/main.py
 
 import os  
 from dotenv import load_dotenv  
@@ -472,9 +463,9 @@ prompt_template = ChatPromptTemplate.from_template(
     "Escreva uma única frase engraçada sobre o tópico: {topico}"  
 )
 
-# 2. Inicialize o modelo de linguagem.  
+# 2. Inicialize o LLM.  
 #    Este é o "cérebro" que vai gerar a resposta. Usaremos o Gemini Flash.  
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+model = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 # 3. Crie um parser de saída.  
 #    Ele vai extrair apenas o texto da resposta do modelo.  
@@ -497,11 +488,21 @@ print(resposta)
 ```
 
 
-Comando de Execução:  
-Para rodar este script, você precisará ter sua chave de API do Google configurada em um arquivo .env (veremos isso em detalhes no próximo capítulo). Com tudo pronto, execute no terminal:  
+**Comando de Execução (Linux/macOS):**
+
 ```sh
-chmod +x execucao_exercicio_1.sh
-./execucao_exercicio_1.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_01/exercicio_1/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_01/exercicio_1/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_01\exercicio_1\run.bat
 ```
 
 **Saída Esperada (pode variar):**
@@ -582,14 +583,7 @@ Para situar o LangChain no cenário atual, é útil compará-lo com outras ferra
 
 O LangChain se posiciona como uma ferramenta modular de propósito geral, permitindo a construção de uma vasta gama de aplicações de IA. A escolha entre esses frameworks envolve um trade-off entre flexibilidade, facilidade de uso e especialização. Enquanto frameworks como CrewAI e AutoGen oferecem soluções mais prontas para orquestração multiagente e colaboração, o LangChain fornece os blocos de construção fundamentais para criar soluções altamente customizadas e complexas, sendo a base para muitos desses outros frameworks. Compreender esses trade-offs é fundamental para escolher a ferramenta certa para o trabalho.
 
-### **Resumo do Capítulo**
 
-Neste capítulo, demos nossos primeiros passos no universo LangChain. Vimos como o framework surgiu em um momento crucial da evolução da IA, logo antes da explosão do ChatGPT, com o objetivo de orquestrar interações com LLMs.
-
-* **O Problema Central:** Entendemos que interagir com LLMs muitas vezes requer um processo manual e iterativo de refinamento de prompts.  
-* **A Solução LangChain:** Descobrimos que o conceito de "Chain" (Corrente) foi criado para automatizar essa sequência de chamadas, tornando o desenvolvimento de aplicações complexas mais estruturado e programático.  
-* **Componentes Fundamentais:** Fomos apresentados aos quatro pilares do LangChain: Models (os cérebros da IA), Prompts (as instruções que damos a eles), Chains (os pipelines que conectam tudo) e Agents (os componentes autônomos que tomam decisões).  
-* **Primeiro Código:** Escrevemos e executamos nosso primeiro script "Hello, LangChain\!", criando uma chain simples com a sintaxe moderna da LCEL para ver os conceitos em ação.
 
 ### **Principais Takeaways**
 
@@ -598,11 +592,7 @@ Neste capítulo, demos nossos primeiros passos no universo LangChain. Vimos como
 *   Os componentes fundamentais (Models, Prompts, Chains, Agents) são blocos de construção modulares.
 *   A LCEL (LangChain Expression Language) é a forma moderna e eficiente de construir pipelines no LangChain.
 
-### **Principais Takeaways**
-*   LangChain simplifica a orquestração de LLMs, permitindo a construção de aplicações complexas.
-*   O conceito de "Chain" automatiza sequências de chamadas a LLMs, tornando o desenvolvimento mais estruturado.
-*   Os componentes fundamentais (Models, Prompts, Chains, Agents) são blocos de construção modulares.
-*   A LCEL (LangChain Expression Language) é a forma moderna e eficiente de construir pipelines no LangChain.
+
 
 ### **Teste seu Conhecimento**
 
@@ -612,7 +602,7 @@ Neste capítulo, demos nossos primeiros passos no universo LangChain. Vimos como
    c) A necessidade de automatizar e estruturar sequências de chamadas para LLMs.  
    d) A ausência de interfaces de chat como o ChatGPT.  
 2. O que é uma "Chain" no contexto do LangChain?  
-   a) Um tipo específico de modelo de linguagem.  
+   a) Um tipo específico de LLM.  
    b) Uma sequência de componentes (prompts, modelos, etc.) conectados para executar uma tarefa complexa.  
    c) Uma ferramenta para buscar informações na internet.  
    d) A interface de usuário de uma aplicação de IA.  
@@ -640,14 +630,14 @@ Neste projeto, você vai integrar tudo o que aprendeu no Capítulo 1 para constr
 
 **Objetivo:** Criar um chatbot que interage com o usuário, mantendo um histórico de conversas e respondendo a perguntas gerais.
 
-**Nome do Arquivo:** `capitulo_01/chatbot_simples.py`
+**Nome do Arquivo:** `exercicios/capitulo_01/exercicio_2/main.py`
 
 **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`, `langchain-community`
 
 **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv langchain-community`
 
 ```python
-# capitulo_01/chatbot_simples.py
+# exercicios/capitulo_01/exercicio_2/main.py
 
 import os
 from dotenv import load_dotenv
@@ -659,8 +649,8 @@ from langchain_core.messages import HumanMessage, AIMessage
 # Carrega as variáveis de ambiente
 load_dotenv()
 
-# Inicializa o modelo de linguagem
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
+# Inicializa o LLM
+model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
 
 # Cria um template de prompt com um placeholder para o histórico de chat
 prompt = ChatPromptTemplate.from_messages([
@@ -700,24 +690,23 @@ while True:
 print("Chatbot encerrado.")
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x capitulo_01/execucao_chatbot_simples.sh
-./capitulo_01/execucao_chatbot_simples.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_01/exercicio_2/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_01/exercicio_2/run.sh
 ```
 
-**Conteúdo de `capitulo_01/execucao_chatbot_simples.sh`:**
+**Comando de Execução (Windows):**
 
-```sh
-#!/bin/bash
-
-# Navega para o diretório do capítulo
-cd "$(dirname "$0")"
-
-# Executa o script Python
-python chatbot_simples.py
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_01\exercicio_2\run.bat
 ```
+
 
 **Troubleshooting Comum:**
 
@@ -983,7 +972,7 @@ O Google oferece uma camada gratuita muito generosa para desenvolvedores que que
    # Cache do Python  
    \_\_pycache\_\_/
 
-É fundamental ir além de apenas esconder as chaves. Adote o **princípio do menor privilégio**: suas chaves de API devem ter apenas as permissões mínimas necessárias para a tarefa que irão executar. Por exemplo, se uma chave só precisa ler dados, ela não deve ter permissão para escrever ou deletar. Além disso, a **rotação periódica de chaves** é uma boa prática de segurança. Defina um cronograma para gerar novas chaves e invalidar as antigas, minimizando o risco em caso de vazamento.
+É fundamental ir além de apenas esconder as chaves. Adote o **princípio do menor privilégio**: suas chaves de API devem ter apenas as permissões mínimas necessárias para a tarefa que irão executar. Por exemplo, se uma chave só precisa ler dados, ela não deve ter permissão para escrever ou deletar. Para ambientes de produção, considere o uso de serviços de gerenciamento de segredos como Azure KeyVault ou AWS Secret Manager. É crucial entender que o ambiente de estudos e prototipagem, onde a conveniência é prioridade, difere significativamente de um ambiente de produção, que exige rigorosas práticas de segurança corporativa, como auditorias regulares, controle de acesso baseado em função (RBAC) e monitoramento contínuo. Além disso, a **rotação periódica de chaves** é uma boa prática de segurança. Defina um cronograma para gerar novas chaves e invalidar as antigas, minimizando o risco em caso de vazamento.
 
 ### **Considerações sobre Hardware**
 
@@ -1170,12 +1159,12 @@ Veja como ficou limpo e legível? prompt\_template | llm cria um pipeline onde a
 Vamos solidificar esses conceitos com um exercício prático. Construiremos uma pequena aplicação que traduz uma frase para um idioma de destino especificado pelo usuário.
 
 * **Objetivo:** Criar uma chain que usa um ChatPromptTemplate dinâmico para instruir um LLM a realizar traduções.  
-* **Nome do Arquivo:** capitulo\_03/tradutor\_dinamico.py  
-* **Dependências:** langchain, langchain-google-genai, python-dotenv  
-* **Comando de Instalação:** uv add langchain langchain-google-genai python-dotenv
+* **Nome do Arquivo:** `exercicios/capitulo_03/exercicio_1/main.py`  
+* **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`  
+* **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
 
 ```python
-# capitulo_03/tradutor_dinamico.py
+# exercicios/capitulo_03/exercicio_1/main.py
 
 import os  
 from dotenv import load_dotenv  
@@ -1212,7 +1201,7 @@ def traduzir_texto(texto_original: str, idioma_destino: str) -> str:
 
     # 2. Inicializar o modelo  
     # A temperatura 0 torna a tradução mais literal e menos "criativa"  
-    modelo = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+    modelo = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
     # 3. Inicializar o parser de saída para obter uma string como resultado  
     output_parser = StrOutputParser()
@@ -1249,11 +1238,21 @@ if __name__ == "__main__":
 ```
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x execucao_exercicio_3.sh
-./execucao_exercicio_3.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_03/exercicio_1/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_03/exercicio_1/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capulo_03\exercicio_1\run.bat
 ```
 
 **Saída Esperada (pode variar ligeiramente):**
@@ -1281,7 +1280,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 * **Engenharia de Prompts:** Entendemos que a qualidade da nossa interação com um LLM depende diretamente da clareza e estrutura das nossas instruções (prompts).  
 * **Templates de Prompt:** Vimos como os PromptTemplates do LangChain nos permitem criar prompts dinâmicos e reutilizáveis, evitando código repetitivo e tornando nossas aplicações mais modulares.  
-* **Integração de Modelos:** Aprendemos a inicializar um modelo de linguagem (especificamente o gemini-2.5-flash do Google) e a conectá-lo a um prompt template.  
+* **Integração de LLMs:** Aprendemos a inicializar um LLM (especificamente o gemini-1.5-flash do Google) e a conectá-lo a um prompt template.  
 * **Primeiro Vislumbre da LCEL:** Tivemos uma prévia da LangChain Expression Language (LCEL) e seu operador pipe (|), que cria um pipeline legível e elegante para conectar os componentes.  
 * **Exercício Prático:** Construímos um tradutor multilíngue, solidificando o conhecimento de como usar variáveis dinâmicas em um prompt para criar uma aplicação flexível.
 
@@ -1289,7 +1288,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 *   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
 *   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
-*   Modelos de linguagem (LLMs) são integrados e orquestrados eficientemente com o LangChain.
+*   LLMs são integrados e orquestrados eficientemente com o LangChain.
 *   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
 *   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
 
@@ -1297,7 +1296,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 *   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
 *   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
-*   Modelos de linguagem (LLMs) são integrados e orquestrados eficientemente com o LangChain.
+*   LLMs são integrados e orquestrados eficientemente com o LangChain.
 *   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
 *   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
 
@@ -1305,7 +1304,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 *   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
 *   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
-*   Modelos de linguagem (LLMs) são integrados e orquestrados eficientemente com o LangChain.
+*   LLMs são integrados e orquestrados eficientemente com o LangChain.
 *   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
 *   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
 
@@ -1321,7 +1320,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
    b) ChatPromptTemplate  
    c) StrOutputParser  
    d) load\_dotenv  
-3. O que o parâmetro temperature em um modelo de linguagem geralmente controla?  
+3. O que o parâmetro temperature em um LLM geralmente controla?  
    a) A velocidade da resposta.  
    b) O custo da chamada de API.  
    c) O quão criativa ou determinística é a resposta (aleatoriedade).  
@@ -1363,7 +1362,7 @@ from langchain.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 prompt = PromptTemplate.from_template("Qual a capital de {pais}?")
 
 # Criando a LLMChain
@@ -1376,12 +1375,12 @@ Agora, e se quiséssemos fazer aquilo que discutimos no Capítulo 1: gerar uma p
 **Exercício Prático: Chain Sequencial (O Jeito Antigo - OBSOLETO)**
 
 *   **Objetivo:** Demonstrar como as chains eram construídas antes da LCEL usando LLMChain e SequentialChain. Este exemplo é **apenas para fins educacionais** e não deve ser replicado em código de produção.
-*   **Nome do Arquivo:** capitulo_04/chain_sequencial_antiga.py
-*   **Dependências:** langchain, langchain-google-genai, python-dotenv
+*   **Nome do Arquivo:** `exercicios/capitulo_04/exercicio_1/main.py`
+*   **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`
 *   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
 
 ```python
-# capitulo_04/chain_sequencial_antiga.py (OBSOLETO)
+# exercicios/capitulo_04/exercicio_1/main.py (OBSOLETO)
 from dotenv import load_dotenv
 from langchain.chains import LLMChain, SequentialChain
 from langchain_core.prompts import PromptTemplate
@@ -1412,16 +1411,25 @@ overall_chain = SequentialChain(
 
 # Executando a chain
 resultado = overall_chain({"topico": "a relatividade de Einstein"})
-print("
---- RESULTADO FINAL ---")
+print("\n--- RESULTADO FINAL ---")
 print(resultado)
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x execucao_exercicio_4_0.sh
-./execucao_exercicio_4_0.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_1/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_1/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_1\run.bat
 ```
 
 Isso funciona, mas note a verbosidade. Precisamos definir `output_key` para cada `LLMChain` e depois listar todas as `input_variables` e `output_variables` na `SequentialChain`. Fica complexo rapidamente. A LCEL resolve isso de forma muito mais elegante e eficiente.
@@ -1452,7 +1460,7 @@ A melhor forma de entender a LCEL é colocando a mão na massa. Vamos passar por
 * **Objetivo:** Criar uma chain básica que gera uma sinopse de filme a partir de um gênero.
 
 ```python
-# capitulo_04/exercicio_01_lcel_basica.py  
+# exercicios/capitulo_04/exercicio_2/main.py  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
 from langchain_core.prompts import ChatPromptTemplate  
@@ -1469,12 +1477,23 @@ chain = prompt | model | parser
 print(chain.invoke({"genero": "Comédia de Ficção Científica"}))
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x execucao_exercicio_4_1.sh
-./execucao_exercicio_4_1.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_2/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_2/run.sh
 ```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_2\run.bat
+```
+
 
 **Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
 
@@ -1499,7 +1518,7 @@ chmod +x execucao_exercicio_4_1.sh
 * **Objetivo:** Criar uma chain que gera uma pergunta sobre um tópico e depois responde a essa pergunta, usando o tópico original na resposta final.
 
 ```python
-# capitulo_04/exercicio_02_lcel_passthrough.py  
+# exercicios/capitulo_04/exercicio_3/main.py  
 from dotenv import load_dotenv  
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain_google_genai import ChatGoogleGenerativeAI  
@@ -1527,6 +1546,23 @@ chain_completa = (
 print(chain_completa.invoke("a filosofia estoica"))
 ```
 
+**Comando de Execução (Linux/macOS):**
+
+```sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_3/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_3/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_3\run.bat
+```
+
 **Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
 
 *   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
@@ -1549,7 +1585,7 @@ print(chain_completa.invoke("a filosofia estoica"))
 * **Objetivo:** Para um determinado país, buscar em paralelo sua capital, sua população e uma curiosidade.
 
 ```python
-# capitulo_04/exercicio_03_lcel_paralela.py  
+# exercicios/capitulo_04/exercicio_4/main.py  
 from dotenv import load_dotenv  
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain_google_genai import ChatGoogleGenerativeAI  
@@ -1574,11 +1610,21 @@ resultado = mapa_paralelo.invoke({"pais": "Egito"})
 print(resultado)
 ```
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
 ```sh
-chmod +x execucao_exercicio_4_3.sh
-./execucao_exercicio_4_3.sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_4/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_4/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_4\run.bat
 ```
 
 **Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
@@ -1594,7 +1640,7 @@ chmod +x execucao_exercicio_4_3.sh
 * **Objetivo:** Criar uma chain que recebe uma lista de números, calcula o quadrado de cada um e depois pede ao LLM para descrever o resultado.
 
 ```python
-# capitulo_04/exercicio_04_lcel_lambda.py  
+# exercicios/capitulo_04/exercicio_5/main.py  
 from dotenv import load_dotenv  
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain_google_genai import ChatGoogleGenerativeAI  
@@ -1622,6 +1668,23 @@ chain = (
 print(chain.invoke([1, 2, 3, 4, 5]))
 ```
 
+**Comando de Execução (Linux/macOS):**
+
+```sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_5/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_5/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_5\run.bat
+```
+
 **Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
 
 *   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
@@ -1637,7 +1700,7 @@ print(chain.invoke([1, 2, 3, 4, 5]))
 * **Objetivo:** Criar uma chain que faz streaming da resposta do LLM, imprimindo-a token por token.
 
 ```python
-# capitulo_04/exercicio_05_lcel_streaming.py  
+# exercicios/capitulo_04/exercicio_6/main.py  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
 from langchain_core.prompts import ChatPromptTemplate  
@@ -1664,8 +1727,24 @@ print("\n--- Fim do Streaming ---")
 *   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
 *   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
 *   **Problemas com `RunnableLambda`:** Certifique-se de que a função Python que você está passando para `RunnableLambda` está retornando o tipo de dado esperado pela próxima etapa da chain. Erros de tipo ou formato de dados são comuns aqui.
-*   **Streaming não funciona:** Verifique se você está usando o método `.stream()` corretamente e se o modelo de linguagem que você está utilizando suporta streaming. Nem todos os modelos ou APIs oferecem streaming de forma nativa.
+*   **Streaming não funciona:** Verifique se você está usando o método `.stream()` corretamente e se o LLM que você está utilizando suporta streaming. Nem todos os LLMs ou APIs oferecem streaming de forma nativa.
 
+**Comando de Execução (Linux/macOS):**
+
+```sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_04/exercicio_6/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_04/exercicio_6/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_04\exercicio_6\run.bat
+```
 ```
 
 **Curiosidade do Autor:** Falando em combinar coisas que parecem não combinar, vou contar uma pequena curiosidade sobre mim: eu adoro o ambiente de cafeterias para trabalhar. Aquele burburinho de fundo, a energia das pessoas ao redor... tudo isso me ajuda a focar de uma maneira que o silêncio do escritório em casa não consegue. A ironia? Eu não sou fã de café. Sou o cara estranho em um canto, com uma xícara de chá de camomila, programando freneticamente.
@@ -1818,25 +1897,26 @@ Para construir um agente, precisamos de dois componentes principais:
 Vamos construir nosso primeiro agente. Ele terá uma única ferramenta: a capacidade de pesquisar na internet para responder a perguntas sobre eventos atuais ou informações que não estavam nos dados de treinamento do LLM. Usaremos a API da Tavily, que é otimizada para casos de uso de IA.
 
 * **Objetivo:** Construir um agente simples que pode usar uma ferramenta de busca para responder a perguntas factuais.  
-* **Nome do Arquivo:** capitulo\_05/agente\_pesquisa.py  
-* **Dependências:** langchain, langchain-google-genai, langchain-tavily, python-dotenv  
-* **Comando de Instalação:** uv add langchain langchain-google-genai langchain-tavily python-dotenv  
-* **Configuração Adicional:** Você precisará de uma chave de API da Tavily. Você pode obter uma gratuitamente em tavily.com. Adicione-a ao seu arquivo .env como TAVILY\_API\_KEY.
+* **Nome do Arquivo:** `exercicios/capitulo_05/exercicio_1/main.py`  
+* **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`  
+* **Comando de Instalação:** `uv add langchain langchain-google-genai langchain-tavily python-dotenv`  
+* **Configuração Adicional:** Você precisará de uma chave de API da Tavily. Você pode obter uma gratuitamente em tavily.com. Adicione-a ao seu arquivo .env como `TAVILY_API_KEY`.
 
-# capitulo\_05/agente\_pesquisa.py
+```python
+# exercicios/capitulo_05/exercicio_1/main.py
 
 import os  
-from dotenv import load\_dotenv  
-from langchain\_google\_genai import ChatGoogleGenerativeAI  
-from langchain\_tavily\_search import TavilySearchResults  
-from langchain.agents import AgentExecutor, create\_tool\_calling\_agent  
-from langchain\_core.prompts import ChatPromptTemplate
+from dotenv import load_dotenv  
+from langchain_google_genai import ChatGoogleGenerativeAI  
+from langchain_tavily_search import TavilySearchResults  
+from langchain.agents import AgentExecutor, create_tool_calling_agent  
+from langchain_core.prompts import ChatPromptTemplate
 
 # Carregar variáveis de ambiente  
-load\_dotenv()
+load_dotenv()
 
-# 1\. Escolher o LLM que será o cérebro do nosso agente  
-llm \= ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+# 1. Escolher o LLM que será o cérebro do nosso agente  
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 2\. Definir as ferramentas que o agente pode usar  
 search\_tool \= TavilySearchResults(  
@@ -1879,9 +1959,23 @@ if \_\_name\_\_ \== "\_\_main\_\_":
     response2 \= agent\_executor.invoke({"input": pergunta2})  
     print(f"\\n\< Resposta Final: {response2\['output'\]}")
 
-**Comando de Execução:**
+**Comando de Execução (Linux/macOS):**
 
-python capitulo\_05/agente\_pesquisa.py
+```sh
+# Dê permissão de execução ao script
+chmod +x exercicios/capitulo_05/exercicio_1/run.sh
+
+# Execute o exercício
+./exercicios/capitulo_05/exercicio_1/run.sh
+```
+
+**Comando de Execução (Windows):**
+
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_05\exercicio_1\run.bat
+```
+
 
 Ao executar, observe a saída com verbose=True. Você verá o LLM raciocinando, decidindo chamar a ferramenta tavily\_search\_results\_json, os resultados que a ferramenta retorna e, finalmente, a formulação da resposta final. Para a segunda pergunta, você verá que o LLM decide que não precisa de uma ferramenta e responde diretamente. Isso é autonomia em ação\!
 
@@ -1913,25 +2007,9 @@ Gerenciar esses fluxos complexos, que podem ter ciclos e condicionais, é um des
 
 O LangGraph é o estado da arte para construir sistemas multiagentes robustos e é um tópico avançado que exploraremos em projetos futuros, mas é fundamental que você saiba que ele existe e qual problema ele resolve.
 
-### **Resumo do Capítulo**
 
-Neste capítulo, demos um salto conceitual para o mundo dos agentes autônomos, o coração pulsante das aplicações de IA modernas.
 
-* **Agentes vs. Chains:** Entendemos a diferença fundamental: Chains seguem um caminho fixo, enquanto Agentes usam um LLM como cérebro para decidir dinamicamente qual caminho seguir.  
-* **Engenharia de Contexto:** Vimos que, em sistemas agênticos, a engenharia de prompts evolui para a engenharia de contexto, que é a arte de gerenciar o fluxo de informações para os agentes.  
-* **Componentes de um Agente:** Aprendemos sobre os dois pilares de um agente: as **Ferramentas (Tools)**, que são as ações que ele pode executar, e o **Executor do Agente (Agent Executor)**, que orquestra o loop de raciocínio e ação (ReAct).  
-* **Primeiro Agente:** Construímos nosso primeiro agente funcional, um pesquisador da web que usa a API da Tavily para responder a perguntas sobre eventos atuais, demonstrando a autonomia do LLM em decidir quando usar ou não uma ferramenta.  
-* **Sistemas Multiagentes:** Fomos introduzidos ao conceito de equipes de agentes especializados e ao **LangGraph**, a ferramenta avançada para orquestrar esses fluxos de trabalho complexos como grafos.
 
-### **Resumo do Capítulo**
-
-Neste capítulo, demos um salto conceitual para o mundo dos agentes autônomos, o coração pulsante das aplicações de IA modernas.
-
-* **Agentes vs. Chains:** Entendemos a diferença fundamental: Chains seguem um caminho fixo, enquanto Agentes usam um LLM como cérebro para decidir dinamicamente qual caminho seguir.  
-* **Engenharia de Contexto:** Vimos que, em sistemas agênticos, a engenharia de prompts evolui para a engenharia de contexto, que é a arte de gerenciar o fluxo de informações para os agentes.  
-* **Componentes de um Agente:** Aprendemos sobre os dois pilares de um agente: as **Ferramentas (Tools)**, que são as ações que ele pode executar, e o **Executor do Agente (Agent Executor)**, que orquestra o loop de raciocínio e ação (ReAct).  
-* **Primeiro Agente:** Construímos nosso primeiro agente funcional, um pesquisador da web que usa a API da Tavily para responder a perguntas sobre eventos atuais, demonstrando a autonomia do LLM em decidir quando usar ou não uma ferramenta.  
-* **Sistemas Multiagentes:** Fomos introduzidos ao conceito de equipes de agentes especializados e ao **LangGraph**, a ferramenta avançada para orquestrar esses fluxos de trabalho complexos como grafos.
 
 ### **Principais Takeaways**
 *   Agentes usam LLMs como "cérebros" para tomar decisões dinâmicas, diferentemente das Chains com fluxo fixo.
@@ -1984,7 +2062,7 @@ O Assistente de Viagem será um agente que utiliza:
 ### **Exercício Prático: Assistente de Viagem Inteligente**
 
 *   **Objetivo:** Desenvolver um agente completo que auxilia no planejamento de viagens, combinando pesquisa e gerenciamento de orçamento.
-*   **Nome do Arquivo:** `capitulo_09/assistente_viagem.py`
+*   **Nome do Arquivo:** `exercicios/capitulo_09/exercicio_1/main.py`
 *   **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`
 *   **Comando de Instalação:** `uv add langchain langchain-google-genai langchain-tavily python-dotenv`
 *   **Configuração Adicional:** Você precisará de uma chave de API da Tavily. Você pode obter uma gratuitamente em [tavily.com](https://tavily.com/). Adicione-a ao seu arquivo `.env` como `TAVILY_API_KEY`.
@@ -2041,7 +2119,7 @@ orcamento_viagem = OrcamentoViagem()
 tools = [search_tool, orcamento_viagem.adicionar_item_orcamento, orcamento_viagem.ver_orcamento_total]
 
 # --- LLM ---
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
 
 # --- Prompt do Agente ---
 prompt = ChatPromptTemplate.from_messages([
@@ -2194,6 +2272,8 @@ Este projeto é um exemplo claro do poder do LangChain para construir aplicaçõ
 *   **"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020):** O artigo original que introduziu o padrão RAG.
 *   **"ReAct: Synergizing Reasoning and Acting in Language Models" (Yao et al., 2022):** O artigo original que introduziu o padrão ReAct, fundamental para entender o raciocínio dos agentes: [https://react-lm.github.io/](https://react-lm.github.io/)
 
+*   **Créditos de Tutoriais e Recursos:** Reconhecimento a todos os tutoriais, artigos de blog, vídeos e cursos online que serviram de inspiração e fonte de aprendizado para a criação deste conteúdo. A comunidade de IA é vasta e generosa, e este livro é um reflexo do conhecimento compartilhado por muitos.
+
 ### **Próximos Passos na sua Jornada**
 
 Parabéns! Você chegou ao final deste livro e, mais importante, deu um passo gigantesco na sua jornada com a Inteligência Artificial e o LangChain. Mas lembre-se, o aprendizado é contínuo. Aqui estão algumas sugestões para seus próximos passos:
@@ -2213,7 +2293,7 @@ Parabéns! Você chegou ao final deste livro e, mais importante, deu um passo gi
 *   **Executor do Agente (Agent Executor):** O runtime que orquestra o loop de raciocínio (ReAct) de um agente, invocando ferramentas e processando observações.
 *   **LangChain Expression Language (LCEL):** Uma linguagem declarativa para compor Runnables no LangChain, permitindo a criação de pipelines flexíveis e eficientes.
 *   **LLM (Large Language Model):** Um modelo de linguagem de grande escala, como Gemini, GPT-4, Claude, capaz de entender e gerar texto.
-*   **Prompt:** A instrução ou entrada de texto fornecida a um modelo de linguagem para gerar uma resposta.
+*   **Prompt:** A instrução ou entrada de texto fornecida a um LLM para gerar uma resposta.
 *   **RAG (Retrieval-Augmented Generation):** Um padrão arquitetural que permite aos LLMs acessar e utilizar informações externas e atualizadas antes de gerar uma resposta.
 *   **ReAct (Thought + Action + Observation):** Um padrão de raciocínio para agentes onde o LLM pensa (Thought), executa uma ação (Action) e observa o resultado (Observation) em um ciclo iterativo.
 *   **Runnable:** Uma interface padronizada no LangChain que permite que componentes sejam encadeados usando o operador pipe (|).
@@ -2274,27 +2354,3 @@ A jornada do aprendizado não termina aqui. Na verdade, ela está apenas começa
 
 Obrigado por me acompanhar nesta jornada. Agora, vá e construa algo incrível!
 
-## **Sobre o Autor**
-
-A jornada de Igor Medeiros é movida por um propósito forjado no amor, na dor e na superação. Filho de um herói que, em suas palavras, “samba todo dia na cara do Alzheimer”, e pai da Melissa, “a luz de sua jornada”, ele carrega em sua história a força desses dois pilares. Sua trajetória profissional de mais de duas décadas foi profundamente ressignificada após um grave desafio de saúde em 2012, que incluiu um tumor gigante na cabeça e uma embolia pulmonar no pós-operatório. **A batalha pela vida deixou marcas permanentes: a paralisia facial e a surdez unilateral total, ambas do lado direito do rosto.**
-
-A experiência de quase morte e a reabilitação que se seguiu não foram uma pausa, mas o ponto de ignição para uma nova missão. Nesse período, sua jornada incluiu um corajoso pivô de carreira, no qual atuou como executivo de marketing e vendas. Essa imersão no lado do negócio ensinou-lhe lições valiosas sobre a importância da qualidade da entrega final e a perspectiva do cliente, visão que hoje integra a todos os seus projetos tecnológicos: usar a tecnologia para honrar a vida e gerar um impacto que realmente importe.
-
-Como Engenheiro de Software Sênior e especialista em Java para smart cards, sua carreira o levou a palestrar por todo o Brasil e até no Japão. Ao longo de mais de 20 anos, liderou a criação de soluções robustas para diversos setores da indústria. Essa base sólida, que vai desde a homologação de sistemas criptográficos para a Casa Civil até a liderança técnica em projetos de inovação, construiu o alicerce para sua atuação atual.
-
-Hoje, como especialista de IA Agents e evangelista de Inteligência Artificial, Igor está na vanguarda da tecnologia, liderando questões técnicas de projetos e definindo padrões para gigantes atuais dos setores financeiro e de telecomunicações, como Santander, Bradesco, Pernambucanas, TIM e o grupo Telefônica. É nesse cenário de ponta que ele desenvolve e coloca em produção sistemas complexos com agentes de IA. Ele direciona essa expertise para sua grande paixão: o setor da saúde, buscando ativamente criar soluções em neurologia que possam, um dia, reescrever histórias como a sua e de seu pai.
-
-Além de seu trabalho corporativo, Igor é um líder de comunidade nato, que acredita que o conhecimento só tem valor quando é compartilhado. Essa vocação para o humanismo tem raízes profundas: por 14 anos, dedicou-se como voluntário em uma ONG com a missão de resgatar pessoas em situação de rua. Em um marcante contraste com seu trabalho de ponta em Inteligência Artificial, essa experiência solidificou sua crença de que a tecnologia mais avançada deve sempre servir à empatia e à conexão humana. Seja em palestras, artigos ou como mentor, ele se dedica a capacitar outros desenvolvedores, fechando o ciclo de uma jornada extraordinária que transforma gratidão em legado. Este livro é mais um passo nesse caminho.
-
-## **Comunidade e Contato**
-
-A jornada do aprendizado não termina aqui. Na verdade, ela está apenas começando.
-
-* Código Fonte: Todo o código deste livro está disponível para você clonar, modificar e experimentar. Acesse o repositório em:  
-  https://github.com/igormedeiros/livros/blob/main/langchain-na-pratica/  
-* Comunidade no Telegram: Junte-se a outros desenvolvedores, tire dúvidas, compartilhe seus projetos e continue a conversa em nossa comunidade:  
-  https://t.me/igormedeiros\_comunidade  
-* Feedback e Contato: Sua opinião é incrivelmente valiosa. Se você gostou deste livro, por favor, considere deixar uma avaliação na Amazon. Isso ajuda outros leitores como você a encontrar este material e me dá o feedback necessário para continuar melhorando. Para outras dúvidas, sugestões ou para saber mais sobre meu trabalho, visite meu site:  
-  https://igormedeiros.com.br
-
-Obrigado por me acompanhar nesta jornada. Agora, vá e construa algo incrível\!

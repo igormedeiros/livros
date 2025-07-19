@@ -1,6 +1,3 @@
-# LangChain na Prática: O primeiro passo com Agentes de IA
-# Autor: Igor Medeiros
-
 from dotenv import load_dotenv
 from langchain.chains import LLMChain, SequentialChain
 from langchain_core.prompts import PromptTemplate

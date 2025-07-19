@@ -1,0 +1,21 @@
+[project]
+name = "langchain-na-pratica"
+version = "0.1.0"
+description = "Ebook exercises for LangChain na Prática"
+dependencies = [
+    "langchain",
+    "langchain-google-genai",
+    "python-dotenv",
+    "langchain-community", # Added for chatbot_simples.py
+    "langchain-tavily", # Added for agente_pesquisa.py and assistente_viagem.py
+    "requests", # Added for agente_cotacao_moedas.py
+]
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["capitulo_*"]
