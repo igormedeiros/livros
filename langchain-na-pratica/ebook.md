@@ -12,7 +12,6 @@ Lançamento: 19 de Julho de 2025.
 Nenhuma parte desta publicação pode ser reproduzida, distribuída ou transmitida por qualquer forma ou meio, incluindo fotocópia, gravação ou outros métodos eletrônicos ou mecânicos, sem a permissão prévia por escrito do autor, exceto no caso de breves citações incorporadas em resenhas críticas e outros usos não comerciais permitidos pela lei de direitos autorais.
 
 ISBN: [A SER DEFINIDO]
-Créditos de Design e Edição: [A SER DEFINIDO]
 
 Contato: igor@igormedeiros.com.br  
 Website: https://igormedeiros.com.br
@@ -69,7 +68,7 @@ Ao **Marcello Manzan**, um irmão de alma que a faculdade me deu e que hoje é c
 
 A cada um de vocês, meu mais profundo e sincero obrigado.
 
-## **Índice Detalhado**
+## **Sumário**
 
 * **Página de Rosto**  
 * **Informações de Copyright**  
@@ -89,10 +88,9 @@ A cada um de vocês, meu mais profundo e sincero obrigado.
   * A Arquitetura Central: Os Componentes Essenciais  
   * O Ecossistema LangChain: Mais que uma Biblioteca  
   * Tabela 1: LangChain vs. Frameworks Concorrentes  
+  * Pontos Chave  
   * Resumo do Capítulo  
-  * Teste seu Conhecimento  
 * **Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain**  
-    
   * Meu Ambiente de Batalha: Por que Linux e Ferramentas de Linha de Comando  
   * Gerenciando Versões do Python como um Profissional: pyenv  
   * Um Terminal com Superpoderes: zsh e Oh My Zsh  
@@ -100,218 +98,58 @@ A cada um de vocês, meu mais profundo e sincero obrigado.
   * Minhas Ferramentas de Batalha: VS Code  
   * Gerenciando Dependências: A Revolução do uv e pyproject.toml  
   * Gerenciando Segredos: Chaves de API e Variáveis de Ambiente  
-  * Checklist de Configuração do Ambiente  
+  * Considerações sobre Hardware  
+  * Troubleshooting Comum  
+  * Pontos Chave  
   * Resumo do Capítulo  
   * Teste seu Conhecimento  
 * **Capítulo 3: Manipulação de Prompts e Modelos de Linguagem com LangChain**  
   * A Arte e a Ciência da Engenharia de Prompts  
   * Templates de Prompt: Reutilização e Dinamismo  
-  * Integrando LLMs  
+  * Integrando Modelos de Linguagem (LLMs)  
   * Exercício Prático: Um Tradutor Multilíngue Dinâmico  
   * Resumo do Capítulo  
+  * Pontos Chave  
   * Teste seu Conhecimento  
 * **Capítulo 4: Construção de Pipelines: Da SequentialChain à LCEL**  
   * A Evolução das Chains: Do Imperativo ao Declarativo  
-  * O Jeito Clássico: LLMChain e SequentialChain  
+  * O Jeito Clássico: LLMChain e SequentialChain (OBSOLETO)  
   * A Revolução da LCEL: Por que Devemos Usá-la?  
   * LCEL na Prática: Exercícios Essenciais  
   * Checklist de Construção de Pipelines  
-  * Resumo do Capítulo  
+  * Pontos Chave  
   * Teste seu Conhecimento  
 * **Capítulo 5: Desenvolvimento de Agentes Autônomos e Multiagentes**  
-    
   * O que é um Agente? O LLM como Cérebro  
   * Engenharia de Contexto: A Evolução do Prompt  
+  * RAG (Retrieval-Augmented Generation): Ampliando o Conhecimento do LLM  
   * Componentes de um Agente: Ferramentas e o Executor  
   * Exercício Prático: Agente de Pesquisa Simples  
   * Sistemas Multiagentes e a Magia do LangGraph  
+  * Pontos Chave  
   * Resumo do Capítulo  
   * Teste seu Conhecimento  
-* **Capítulo 6: Integração com Bases de Dados e Sistemas Externos**  
-  * Trazendo o Mundo Real para a IA  
-  * Conectando a Bancos de Dados SQL  
-  * Exercício Prático: Agente de Análise de Vendas SQL
-  * Integração com APIs REST
-  * Exercício Prático: Ferramenta de Cotação de Moedas
-  * Checklist de Integração com Sistemas Externos
-  * Resumo do Capítulo
-  * Teste seu Conhecimento
-* **Capítulo 6: Integração com Bases de Dados e Sistemas Externos**
-
-### **Trazendo o Mundo Real para a IA**
-
-Até agora, nossos agentes e chains operaram principalmente com informações que já estavam em seu "conhecimento" ou que podiam ser inferidas. Mas o verdadeiro poder dos agentes de IA se manifesta quando eles podem interagir com o mundo real, acessando e manipulando dados de sistemas externos. Isso inclui bancos de dados, APIs REST, serviços de nuvem, e muito mais.
-
-Neste capítulo, vamos explorar como o LangChain facilita essa integração, transformando seus LLMs em verdadeiros "operadores" de sistemas, capazes de buscar informações, executar ações e automatizar fluxos de trabalho complexos.
-
-### **Conectando a Bancos de Dados SQL**
-
-Muitas empresas possuem uma vasta quantidade de informações armazenadas em bancos de dados relacionais. Capacitar um LLM a interagir com esses bancos de dados, traduzindo perguntas em linguagem natural para consultas SQL e interpretando os resultados, é um caso de uso extremamente poderoso.
-
-O LangChain oferece ferramentas para interagir com bancos de dados SQL, permitindo que o agente construa e execute consultas de forma autônoma.
-
-**Exercício Prático: Agente de Análise de Vendas SQL**
-
-Vamos construir um agente que pode responder a perguntas sobre dados de vendas armazenados em um banco de dados SQLite. O agente usará uma ferramenta customizada para executar consultas SQL.
-
-*   **Objetivo:** Criar um agente que interage com um banco de dados SQL para responder a perguntas sobre vendas.
-*   **Nome do Arquivo:** `exercicios/capitulo_06/exercicio_1/main.py`
-*   **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`
-*   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
-
-```python
-# exercicios/capitulo_06/exercicio_1/main.py
-
-import os
-import sqlite3
-from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import ChatPromptTemplate
-from langchain.tools import tool
-
-# Carregar variáveis de ambiente
-load_dotenv()
-
-# 1. Configurar o banco de dados SQLite em memória
-def setup_database():
-    conn = sqlite3.connect(':memory:')
-    cursor = conn.cursor()
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS vendas (
-            id INTEGER PRIMARY KEY,
-            produto TEXT,
-            quantidade INTEGER,
-            preco REAL,
-            data TEXT
-        )
-    ''')
-    vendas_data = [
-        ('Laptop', 2, 1200.00, '2024-01-15'),
-        ('Mouse', 5, 25.00, '2024-01-15'),
-        ('Teclado', 3, 75.00, '2024-01-16'),
-        ('Monitor', 1, 300.00, '2024-01-17'),
-        ('Laptop', 1, 1200.00, '2024-01-18'),
-        ('Webcam', 4, 50.00, '2024-01-18'),
-    ]
-    cursor.executemany('INSERT INTO vendas (produto, quantidade, preco, data) VALUES (?, ?, ?, ?)', vendas_data)
-    conn.commit()
-    return conn
-
-# 2. Definir a ferramenta SQL para o agente
-@tool
-def execute_sql_query(query: str) -> str:
-    """
-    Executa uma consulta SQL no banco de dados de vendas e retorna o resultado.
-    Use esta ferramenta para responder a perguntas sobre dados de vendas.
-    O banco de dados contém uma tabela 'vendas' com as colunas:
-    'id', 'produto', 'quantidade', 'preco', 'data'.
-    Exemplo de uso: SELECT SUM(quantidade) FROM vendas WHERE produto = 'Laptop';
-    """
-    conn = setup_database()
-    cursor = conn.cursor()
-    try:
-        cursor.execute(query)
-        results = cursor.fetchall()
-        conn.close()
-        return str(results)
-    except sqlite3.Error as e:
-        conn.close()
-        return f"Erro ao executar a consulta SQL: {e}"
-
-# 3. Escolher o LLM que será o cérebro do nosso agente
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
-
-# 4. Definir as ferramentas que o agente pode usar
-tools = [execute_sql_query]
-
-# 5. Criar o Prompt do Agente
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "Você é um assistente especializado em analisar dados de vendas. Use a ferramenta 'execute_sql_query' para responder a perguntas sobre vendas. Se a pergunta não puder ser respondida com os dados de vendas, diga que não tem informações."),
-    ("human", "{input}"),
-    ("placeholder", "{agent_scratchpad}"),
-])
-
-# 6. Criar o Agente
-agent = create_tool_calling_agent(llm, tools, prompt)
-
-# 7. Criar o Executor do Agente
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-# --- Execução ---
-if __name__ == "__main__":
-    print("Agente de Análise de Vendas pronto! Faça sua pergunta.")
-
-    perguntas = [
-        "Qual a quantidade total de Laptops vendidos?",
-        "Qual o produto mais vendido em termos de quantidade?",
-        "Qual o valor total de vendas?",
-        "Quantos itens foram vendidos em 2024-01-18?",
-        "Qual o nome do meu cachorro?"
-    ]
-
-    for pergunta in perguntas:
-        print(f"\n> Pergunta: {pergunta}")
-        response = agent_executor.invoke({"input": pergunta})
-        print(f"\n< Resposta Final: {response['output']}")
-```
-
-**Comando de Execução (Linux/macOS):**
-
-```sh
-# Dê permissão de execução ao script
-```sh
-# Dê permissão de execução ao script
-chmod +x exercicios/capitulo_06/exercicio_1/run.sh
-
-# Execute o exercício
-./exercicios/capitulo_06/exercicio_1/run.sh
-```
-```
-
-**Comando de Execução (Windows):**
-
-```bat
-REM Execute o exercício no Windows
-exercicios\capitulo_06\exercicio_1\run.bat
-```
-```
-
-**Saída Esperada (pode variar ligeiramente):**
-
-```text
-Agente de Análise de Vendas pronto! Faça sua pergunta.
-
-> Pergunta: Qual a quantidade total de Laptops vendidos?
-... (saída verbose do agente) ...
-< Resposta Final: 3
-
-> Pergunta: Qual o produto mais vendido em termos de quantidade?
-... (saída verbose do agente) ...
-< Resposta Final: Mouse
-
-> Pergunta: Qual o valor total de vendas?
-... (saída verbose do agente) ...
-< Resposta Final: 1850.0
-
-> Pergunta: Quantos itens foram vendidos em 2024-01-18?
-... (saída verbose do agente) ...
-< Resposta Final: 5
-
-> Pergunta: Qual o nome do meu cachorro?
-... (saída verbose do agente) ...
-< Resposta Final: Não tenho informações sobre o nome do seu cachorro, pois minha base de dados contém apenas informações de vendas.
-```
-
-**Troubleshooting Comum:**
-
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Certifique-se de que sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env` na raiz do projeto.
-*   **`ModuleNotFoundError`:** Verifique se todas as dependências (`langchain`, `langchain-google-genai`, `python-dotenv`) foram instaladas corretamente usando `uv add` ou `pip install`.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Agente não usando a ferramenta SQL:** Se o agente não estiver chamando a ferramenta `execute_sql_query` quando esperado, revise a `description` da ferramenta. Ela deve ser clara e concisa, indicando exatamente o que a ferramenta faz e quando deve ser usada. O LLM usa essa descrição para decidir se a ferramenta é relevante para a tarefa.
-*   **Erros de SQL:** Se o agente gerar consultas SQL inválidas, revise o `system prompt` para fornecer instruções mais claras sobre o schema do banco de dados e os tipos de consultas esperadas. O `temperature=0` no modelo ajuda a torná-lo mais determinístico na geração de SQL.  
-* **Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo** (Conteúdo a ser expandido)
-* **Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain** (Conteúdo a ser expandido)
+* **Capítulo 6: Ferramentas e Agentes: Capacitando LLMs com Ações**  
+  * O que são Ferramentas (Tools)?  
+  * Agentes (Agents): O Cérebro por Trás das Ações  
+  * Exercício 1: Agente de Análise de Vendas com Ferramenta SQL  
+  * Resumo do Capítulo  
+  * Pontos Chave  
+  * Teste seu Conhecimento  
+## Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo**
+## Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain**
+* **Capítulo 9: LangChain na Produção: Escalabilidade, Observabilidade e Segurança**  
+  * Pontos Chave  
+  * Resumo do Capítulo  
+  * Teste seu Conhecimento    
+  * Pontos Chave  
+  * Resumo do Capítulo  
+  * Teste seu Conhecimento  
+* Próximos passos
+* Mensagem final
+* Sobre o autor
+* Referências
+* Apêndice: Glossário de Termos
 
 ## **Introdução**
 
@@ -366,6 +204,18 @@ Antes de escrever a primeira linha de código com LangChain, quero te propor uma
 
 Antes de codificar, é preciso ter uma visão de resolvedor de problemas.
 
+### **Como Aproveitar ao Máximo Este Livro**
+
+Este livro foi desenhado para ser mais do que uma leitura passiva; é um convite à ação. Para extrair o máximo valor desta jornada, sugiro as seguintes abordagens:
+
+1.  **Mão na Massa:** A teoria é importante, mas a prática é onde o aprendizado se solidifica. Execute todos os exemplos de código. Altere-os, quebre-os e conserte-os. A experimentação é a chave para a maestria.
+2.  **Não Pule Capítulos:** Os conceitos são construídos de forma progressiva. Cada capítulo se baseia no anterior. Se algo parecer complexo, revise os capítulos anteriores antes de seguir em frente.
+3.  **Use o Gêmeo Digital:** Lembre-se do assistente de IA que mencionei na introdução? Ele é seu companheiro de estudo. Use-o para tirar dúvidas, explorar conceitos e até mesmo para debater ideias. Ele foi treinado com o conteúdo deste livro e pode oferecer insights adicionais.
+4.  **Participe da Comunidade:** O aprendizado é uma via de mão dupla. Compartilhe suas descobertas, faça perguntas e ajude outros. A comunidade LangChain é vibrante e acolhedora. Juntos, somos mais fortes.
+5.  **Adapte e Inove:** Os exemplos fornecidos são pontos de partida. Pense em como você pode adaptar as técnicas e os conceitos para seus próprios projetos e desafios. A inovação começa com a adaptação criativa.
+
+Estou animado para ver o que você vai construir. Vamos começar?
+
 Cada novo conhecimento que você adquirir neste livro não é apenas um conceito teórico; é uma nova ferramenta na sua caixa. Pense em um problema que te incomoda. Um processo manual e repetitivo no seu trabalho? A dificuldade de encontrar informações em uma base de dados interna gigante? A vontade de criar um assistente pessoal que realmente te entenda?
 
 Eu, por exemplo, aprendi sobre visão computacional e frameworks como o YOLO não por um interesse puramente acadêmico, mas porque queria resolver um problema que me toca profundamente. Vendo a luta diária do meu pai com o Alzheimer, comecei a desenvolver um projeto para usar câmeras de segurança internas para monitorar idosos com demência, alertando familiares ou cuidadores sobre quedas ou situações de risco diretamente em seus celulares. O problema real me deu a motivação e o contexto para aprender a ferramenta.
@@ -374,24 +224,11 @@ Mantenha essa abordagem em mente enquanto avança pelos capítulos. Tente conect
 
 No fundo, a programação e a filosofia compartilham um terreno comum: ambas buscam entender e moldar a realidade através da lógica e da abstração. Assim como um filósofo constrói argumentos para desvendar verdades, um programador constrói algoritmos para resolver problemas. A IA, nesse sentido, é a materialização de um pensamento filosófico antigo: a busca por inteligência e autonomia. Ao programar com IA, estamos não apenas escrevendo código, mas participando de um diálogo contínuo com a natureza da inteligência e da criação.
 
-### **Como Aproveitar ao Máximo Este Livro**
-
-Este livro foi projetado para ser uma jornada prática e interativa. Lembro-me vividamente de uma aula no meu primeiro ano de Ciência da Computação. A sala estava barulhenta, a turma dispersa, e o professor, Kao Jin Kan, um mestre sábio, parou de escrever na lousa, virou-se para nós e disse um provérbio chinês que nunca mais esqueci:
-
-*Eu ouço, e eu esqueço. Eu vejo, e eu me lembro. Eu faço, e eu aprendo.*
-
-Essa é a filosofia deste livro. Para você realmente aprender, você precisa *fazer*.
-
-* **Mão na Massa:** Não apenas leia. Abra seu editor de código, crie o ambiente virtual (como veremos no Capítulo 2\) e execute cada exemplo. Modifique os exercícios, quebre o código e tente consertá-lo. É na prática que o conhecimento se solidifica.  
-* **Use o Repositório de Exercícios:** Todos os códigos práticos deste livro estão disponíveis em um repositório no GitHub. Use-o como ponto de partida e como referência. Você pode encontrá-lo em: https://github.com/igormedeiros/livros/blob/main/langchain-na-pratica/.  
-* **Conecte-se com a Comunidade:** Aprender junto é sempre mais poderoso. Criei uma comunidade no Telegram para que possamos trocar ideias, tirar dúvidas e compartilhar nossos projetos. A jornada continua lá: https://t.me/igormedeiros\_comunidade.  
-* **Abrace os Desafios:** Haverá momentos em que um conceito parecerá abstrato ou um código não funcionará de primeira. Isso é normal, e faz parte do processo de crescimento. Lembre-se: 'A persistência é o caminho do êxito.' As "Notas de Acolhimento" e as histórias pessoais que compartilho ao longo do livro estão aqui para te lembrar que a jornada de aprendizado tem seus altos e baixos, e que a perseverança é a chave para superar qualquer obstáculo. Não hesite em buscar ajuda na comunidade ou revisitar os conceitos. Estamos aqui para apoiar você em cada passo.
-
-Estamos prontos? Então, vamos começar a construir coisas incríveis.
 
 
 
-## **Capítulo 1: Introdução ao LangChain — Fundamentos e Conceitos Essenciais**
+
+## Capítulo 1: Introdução ao LangChain — Fundamentos e Conceitos Essenciais
 
 **Neste capítulo, você vai aprender:**
 
@@ -402,7 +239,7 @@ Estamos prontos? Então, vamos começar a construir coisas incríveis.
 
 **Resumo Executivo:** Este capítulo serve como a porta de entrada para o universo LangChain. Abordaremos a história e a motivação por trás do framework, seus componentes essenciais e como ele se encaixa no cenário atual da inteligência artificial. Ao final, você terá uma compreensão sólida dos pilares do LangChain e estará pronto para construir suas primeiras aplicações.
 
-### **O que é LangChain? Uma Breve História em Meio à Tempestade da IA**
+### O que é LangChain? Uma Breve História em Meio à Tempestade da IA
 
 Antes de mergulharmos, quero que saiba: é normal se sentir um pouco sobrecarregado no início. O mundo da IA avança a passos largos, e o LangChain, como uma ferramenta poderosa, pode parecer complexo. Mas lembre-se, cada grande jornada começa com um primeiro passo. E você já deu o seu ao abrir este livro. Vamos desmistificar cada conceito, juntos. Respire fundo, e vamos nessa!
 
@@ -418,7 +255,7 @@ O LangChain foi a resposta para essas perguntas. Ele se tornou incrivelmente pop
 
 Em resumo, o LangChain é a ferramenta que nos permite construir aplicações de IA que vão muito além de uma simples conversa, conectando os LLMs a dados e ferramentas para resolver problemas do dia a dia.
 
-### **O Problema da Conversa Iterativa e o Nascimento das "Chains"**
+### O Problema da Conversa Iterativa e o Nascimento das "Chains"
 
 Se você já usou o ChatGPT, provavelmente já passou por este processo: você tem uma ideia, mas a primeira resposta do modelo não é exatamente o que você queria. Então, você começa um diálogo para refinar o resultado.
 
@@ -443,7 +280,7 @@ Em vez de você refinar manualmente o poema, você poderia construir uma "Chain"
 
 Isso é uma **Chain**: uma sequência de operações ou chamadas a modelos de linguagem para formar um pipeline inteligente. É o conceito fundamental que nos permite construir aplicações complexas que vão muito além de uma única pergunta e resposta.
 
-### **Exercício Prático: Hello, LangChain\!**
+### Exercício Prático: Hello, LangChain!
 
 Vamos colocar a mão na massa com o nosso primeiro código. Este será o "Hello, World\!" do LangChain. Ele vai demonstrar, da forma mais simples possível, o conceito de chain que acabamos de discutir. Para este e os demais exemplos do livro, usaremos os modelos Gemini do Google, especificamente o gemini-1.5-flash, que é incrivelmente rápido e oferece uma camada gratuita generosa para desenvolvedores.
 
@@ -533,7 +370,7 @@ Parabéns\! Você acabou de executar sua primeira Chain. Observe a linha chain \
 *   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 
 
-### **A Arquitetura Central: Os Componentes Essenciais**
+### A Arquitetura Central: Os Componentes Essenciais
 
 Agora que você já viu uma chain em ação, vamos formalizar os blocos de construção fundamentais. Pense neles como peças de Lego que podemos combinar de infinitas maneiras.
 
@@ -564,7 +401,7 @@ Se as Chains são como roteiros de filme, onde cada passo é predefinido, os Age
 
 Assim como precisei me adaptar a limitações permanentes e encontrar novas formas de seguir em frente, nesta jornada com LangChain, encontraremos obstáculos. Haverá bugs, conceitos que parecem abstratos e momentos de frustração. Esta é a natureza do aprendizado, especialmente em um campo que muda semanalmente. A resiliência que desenvolvemos ao superar esses pequenos desafios técnicos é a mesma força que nos impulsiona na vida. Cada erro corrigido, cada conceito compreendido, é uma pequena vitória que nos fortalece para o próximo passo. Lembre-se disso quando as coisas parecerem difíceis.
 
-### **O Ecossistema LangChain: Mais que uma Biblioteca**
+### O Ecossistema LangChain: Mais que uma Biblioteca
 
 É importante entender que o LangChain evoluiu para ser mais do que apenas a biblioteca principal. O ecossistema hoje é composto por várias partes:
 
@@ -574,7 +411,7 @@ Assim como precisei me adaptar a limitações permanentes e encontrar novas form
 * **LangGraph:** Uma extensão do LangChain para construir agentes *stateful* e sistemas multiagentes complexos, representando os fluxos como grafos. É a ferramenta de ponta para os casos de uso mais avançados.  
 * **LangSmith:** Uma plataforma de observabilidade, depuração e avaliação. Se você está levando o desenvolvimento com LangChain a sério, o LangSmith não é opcional, é essencial. Ele te dá uma visão de raio-x de tudo o que acontece dentro de suas chains e agentes, tornando o debugging de sistemas não-determinísticos muito mais gerenciável.
 
-### **Tabela 1: LangChain vs. Frameworks Concorrentes**
+### Tabela 1: LangChain vs. Frameworks Concorrentes
 
 Para situar o LangChain no cenário atual, é útil compará-lo com outras ferramentas populares.
 
@@ -595,16 +432,18 @@ O LangChain se posiciona como uma ferramenta modular de propósito geral, permit
 
 
 
-### **Pontos Chave**
+### Pontos Chave
 
 *   LangChain simplifica a orquestração de LLMs, permitindo a construção de aplicações complexas.
 *   O conceito de "Chain" automatiza sequências de chamadas a LLMs, tornando o desenvolvimento mais estruturado.
 *   Os componentes fundamentais (Models, Prompts, Chains, Agents) são blocos de construção modulares.
 *   A LCEL (LangChain Expression Language) é a forma moderna e eficiente de construir pipelines no LangChain.
 
+### Resumo do Capítulo
 
+Este capítulo serve como a porta de entrada para o universo LangChain. Abordaremos a história e a motivação por trás do framework, seus componentes essenciais e como ele se encaixa no cenário atual da inteligência artificial. Ao final, você terá uma compreensão sólida dos pilares do LangChain e estará pronto para construir suas primeiras aplicações.
 
-### **Teste seu Conhecimento**
+### Teste seu Conhecimento
 
 1. Qual foi o principal problema que o LangChain buscou resolver em sua criação?  
    a) A falta de modelos de linguagem poderosos.  
@@ -621,9 +460,9 @@ O LangChain se posiciona como uma ferramenta modular de propósito geral, permit
    b) Prompts  
    c) Agents  
    d) Database  
-4. No exercício "Hello, LangChain\!", qual operador foi usado para conectar o prompt, o modelo e o parser?  
-   a) \+ (adição)  
-   b) \-\> (seta)  
+4. No exercício "Hello, LangChain!", qual operador foi usado para conectar o prompt, o modelo e o parser?  
+   a) + (adição)  
+   b) -> (seta)  
    c) | (pipe)  
    d) & (e comercial)  
 5. Qual a principal diferença entre uma Chain e um Agent?  
@@ -634,7 +473,7 @@ O LangChain se posiciona como uma ferramenta modular de propósito geral, permit
 
 *(Respostas: 1-c, 2-b, 3-d, 4-c, 5-c)*
 
-## **Projeto Hands-on: Construindo um Chatbot Simples**
+### Projeto Hands-on: Construindo um Chatbot Simples
 
 Neste projeto, você vai integrar tudo o que aprendeu no Capítulo 1 para construir um chatbot simples que pode responder a perguntas básicas. Este será o seu primeiro passo para criar aplicações mais complexas com LangChain.
 
@@ -726,7 +565,7 @@ exercicios\capitulo_01\exercicio_2\run.bat
 *   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 *   **Comportamento Inesperado do Chatbot:** Se o chatbot não estiver mantendo o contexto ou respondendo de forma estranha, revise o `system prompt` e a forma como o `chat_history` está sendo passado para a chain. A clareza das instruções no prompt é fundamental.
 
-## **Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain**
+## Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain
 
 
 
@@ -1005,7 +844,7 @@ Eu, por exemplo, tenho um PC servidor de LLM em casa. É uma máquina modesta, c
 *   **Variáveis de Ambiente não Carregadas:** Se seu código Python não conseguir encontrar a `GOOGLE_API_KEY` ou outras variáveis de ambiente, verifique se o arquivo `.env` está na raiz do seu projeto ou no diretório do capítulo. Certifique-se de que o nome da variável no `.env` corresponde exatamente ao que você está tentando acessar no código (ex: `GOOGLE_API_KEY`).
 *   **Permissões de Execução em Scripts Shell:** Lembre-se de dar permissão de execução aos scripts `.sh` com `chmod +x nome_do_script.sh` antes de executá-los.
 
-### **Resumo do Capítulo**
+### Resumo do Capítulo
 
 Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, robusto e seguro, preparando o terreno para construir aplicações de IA de alta qualidade.
 
@@ -1017,14 +856,14 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 
 
 
-### **Pontos Chave**
+### Pontos Chave
 
 *   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
 *   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
 *   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
 *   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
 
-### **Teste seu Conhecimento**
+### Teste seu Conhecimento
 
 1. Qual é a principal vantagem de usar o WSL (Windows Subsystem for Linux) para desenvolvimento Python?  
    a) Ele permite rodar jogos de Windows no Linux.  
@@ -1054,15 +893,15 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 
 *(Respostas: 1-b, 2-c, 3-d, 4-b, 5-c)*
 
-## **Capítulo 3: Manipulação de Prompts e Modelos de Linguagem com LangChain**
+## Capítulo 3: Manipulação de Prompts e Modelos de Linguagem com LangChain
 
-### **A Arte e a Ciência da Engenharia de Prompts**
+### A Arte e a Ciência da Engenharia de Prompts
 
 Se os modelos de linguagem são como gênios poderosos, os prompts são os nossos pedidos. A forma como fazemos o pedido — as palavras que usamos, a estrutura que damos, o contexto que fornecemos — determina drasticamente a qualidade da resposta que recebemos. Isso é o que chamamos de **Engenharia de Prompts**: a disciplina de projetar e otimizar as instruções dadas aos modelos de linguagem para obter os resultados desejados.
 
 Não se trata de "adivinhar" as palavras mágicas. É uma disciplina que mistura criatividade, lógica e experimentação. Um bom prompt é claro, conciso e específico. Ele guia o modelo, em vez de deixá-lo vagando. O LangChain nos oferece ferramentas fantásticas para elevar nossa engenharia de prompts de simples strings para templates dinâmicos e reutilizáveis.
 
-### **Templates de Prompt: Reutilização e Dinamismo**
+### Templates de Prompt: Reutilização e Dinamismo
 
 Imagine que você está construindo um assistente que resume artigos. Uma abordagem ingênua seria escrever o prompt toda vez no código:
 
@@ -1114,7 +953,7 @@ A engenharia de prompts é exatamente assim. Não é apenas sobre a técnica de 
 
 Neste capítulo, vamos aprender a ser os guitarristas dos nossos LLMs. Vamos afinar nossos instrumentos (os templates) e aprender as escalas (as técnicas de prompt) para criar solos de informação que sejam precisos, criativos e impactantes.
 
-### **Integrando Modelos de Linguagem (LLMs)**
+### Integrando Modelos de Linguagem (LLMs)
 
 Um prompt, por si só, é apenas texto. Ele precisa ser enviado a um modelo para ganhar vida. Como vimos, vamos usar o Gemini do Google.
 
@@ -1145,7 +984,7 @@ print(response.content)
 
 Veja como ficou limpo e legível? prompt\_template | llm cria um pipeline onde a saída do template (o prompt formatado) se torna a entrada para o modelo. A mágica da orquestração do LangChain em ação\!
 
-### **Exercício Prático: Um Tradutor Multilíngue Dinâmico**
+### Exercício Prático: Um Tradutor Multilíngue Dinâmico
 
 Vamos solidificar esses conceitos com um exercício prático. Construiremos uma pequena aplicação que traduz uma frase para um idioma de destino especificado pelo usuário.
 
@@ -1266,7 +1105,7 @@ Este simples exercício demonstra o poder da combinação de prompts dinâmicos 
 *   **Respostas Inesperadas/"Alucinações":** Se o modelo não traduzir corretamente ou "inventar" algo, verifique a clareza do seu `prompt_template`. Para tarefas de tradução, uma `temperature=0` (como usado no exemplo) ajuda a tornar a resposta mais literal e menos criativa. Se o problema persistir, o modelo pode não ter sido treinado para o idioma específico (como Klingon, que é um teste de criatividade).
 *   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 
-### **Resumo do Capítulo**
+### Resumo do Capítulo
 
 Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como o LangChain nos ajuda a dominar essa habilidade.
 
@@ -1278,7 +1117,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 
 
-### **Pontos Chave**
+### Pontos Chave
 
 *   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
 *   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
@@ -1286,7 +1125,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 *   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
 *   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
 
-### **Teste seu Conhecimento**
+### Teste seu Conhecimento
 
 1. Qual é o principal benefício de usar PromptTemplates em vez de strings formatadas (f-strings)?  
    a) PromptTemplates são mais rápidos de executar.  
@@ -1297,7 +1136,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
    a) ChatGoogleGenerativeAI  
    b) ChatPromptTemplate  
    c) StrOutputParser  
-   d) load\_dotenv  
+   d) load_dotenv  
 3. O que o parâmetro temperature em um LLM geralmente controla?  
    a) A velocidade da resposta.  
    b) O custo da chamada de API.  
@@ -1316,9 +1155,9 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 *(Respostas: 1-b, 2-c, 3-c, 4-b, 5-d)*
 
-## **Capítulo 4: Construção de Pipelines: Da SequentialChain à LCEL**
+## Capítulo 4: Construção de Pipelines: Da SequentialChain à LCEL
 
-### **A Evolução das Chains: Do Imperativo ao Declarativo**
+### A Evolução das Chains: Do Imperativo ao Declarativo
 
 Nos primeiros dias do LangChain, a forma de construir fluxos de trabalho era através de classes como LLMChain e SequentialChain. Essa abordagem, embora funcional, era o que chamamos de **imperativa**: você instanciava objetos e os conectava de forma mais verbosa, o que tornava o código mais difícil de ler e manter. Era como dar instruções passo a passo para montar um móvel, detalhando cada parafuso.
 
@@ -1328,7 +1167,7 @@ Essa percepção deu origem à **LangChain Expression Language (LCEL)**, lançad
 
 Neste capítulo, vamos fazer uma viagem no tempo. Primeiro, vamos construir uma chain "à moda antiga" para entender as dores que a LCEL veio resolver. Depois, vamos mergulhar de cabeça na LCEL e ver como ela torna nossa vida muito mais fácil.
 
-### **O Jeito Clássico: LLMChain e SequentialChain (OBSOLETO)**
+### O Jeito Clássico: LLMChain e SequentialChain (OBSOLETO)
 
 Para entendermos o salto que a LCEL representa, vamos primeiro ver como as coisas eram feitas. É importante notar que as classes `LLMChain` e `SequentialChain` são consideradas **legadas** e **deprecadas** na versão 0.2+ do LangChain. Elas são apresentadas aqui apenas para fins de contexto histórico e para ilustrar os problemas que a LCEL veio resolver. **Não as utilize em novos projetos.**
 
@@ -1420,7 +1259,7 @@ Isso funciona, mas note a verbosidade. Precisamos definir `output_key` para cada
 *   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 
 
-### **A Revolução da LCEL: Por que Devemos Usá-la?**
+### A Revolução da LCEL: Por que Devemos Usá-la?
 
 A LCEL não é apenas uma "sintaxe mais bonita"; ela é uma **linguagem declarativa para compor Runnables**, destravando funcionalidades cruciais de forma quase automática e transformando o LangChain de uma ferramenta de prototipagem para uma ferramenta pronta para produção.
 
@@ -1430,7 +1269,7 @@ A LCEL não é apenas uma "sintaxe mais bonita"; ela é uma **linguagem declarat
 * **Integração Total com LangSmith:** Tenha rastreabilidade completa de cada passo do seu pipeline, facilitando o debug e a observabilidade, algo que era muito mais complexo com as chains antigas.  
 * **Interface Unificada (Runnable):** Quase tudo no LangChain moderno implementa a interface Runnable. Isso significa que prompts, modelos, parsers e até funções Python podem ser encadeados da mesma forma, usando o operador pipe (|), tornando o código mais limpo, legível e modular.
 
-### **LCEL na Prática: Exercícios Essenciais**
+### LCEL na Prática: Exercícios Essenciais
 
 A melhor forma de entender a LCEL é colocando a mão na massa. Vamos passar por uma série de exercícios que demonstram seus principais recursos.
 
@@ -1738,9 +1577,9 @@ Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas
 
 Às vezes, em LangChain, vamos combinar componentes de maneiras inesperadas, como fizemos com a RunnableParallel. Podemos achar que executar tarefas em paralelo pode criar confusão, mas, na verdade, quando orquestrado corretamente, o resultado é surpreendentemente eficiente e harmonioso. É como a minha produtividade movida a chá em meio a um mar de expressos: funciona, e funciona muito bem.
 
-### **Checklist de Construção de Pipelines**
+### Checklist de Construção de Pipelines
 
-* \[ \] Definir claramente o objetivo do pipeline e as etapas necessárias para alcançá-lo.  
+* [ ] Definir claramente o objetivo do pipeline e as etapas necessárias para alcançá-lo.  
 * \[ \] Usar a sintaxe LCEL (|) para compor Runnables (prompts, modelos, parsers, funções).  
 * \[ \] Garantir a passagem correta de dados entre as etapas, usando dicionários e RunnablePassthrough quando necessário.  
 * \[ \] Utilizar RunnableParallel para otimizar a latência executando tarefas independentes ao mesmo tempo.  
@@ -1754,23 +1593,23 @@ Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas
 
 
 
-### **Pontos Chave**
+### Pontos Chave
 *   A LCEL é a forma moderna e recomendada de construir pipelines no LangChain, oferecendo streaming, suporte assíncrono e execução paralela nativamente.
 *   `RunnablePassthrough`, `RunnableParallel`, e `RunnableLambda` são componentes chave para construir pipelines flexíveis e eficientes.
 *   A transição de abordagens imperativas para declarativas (LCEL) simplifica o código e melhora a performance.
 
-### **Teste seu Conhecimento**
+### Teste seu Conhecimento
 
 1. Qual era a principal desvantagem da abordagem clássica com SequentialChain?  
    a) Não era possível conectar mais de duas chains.  
-   b) Era verbosa e exigia a definição manual de input\_variables e output\_variables.  
+   b) Era verbosa e exigia a definição manual de input_variables e output_variables.  
    c) Não funcionava com modelos de chat.  
    d) Era mais rápida que a LCEL.  
 2. Qual dos seguintes é um benefício fundamental da LCEL que não estava facilmente disponível nas chains clássicas?  
    a) A capacidade de usar prompts.  
    b) Suporte nativo para streaming, batch e execução assíncrona.  
    c) A capacidade de usar modelos do Google.  
-   d) A necessidade de definir output\_key.  
+   d) A necessidade de definir output_key.  
 3. No contexto da LCEL, o que o RunnablePassthrough faz?  
    a) Ignora completamente a entrada e passa um valor fixo.  
    b) Passa a entrada original de uma chain para uma etapa posterior, sem modificá-la.  
@@ -1789,7 +1628,7 @@ Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas
 
 *(Respostas: 1-b, 2-b, 3-b, 4-c, 5-d)*
 
-## **Capítulo 5: Desenvolvimento de Agentes Autônomos e Multiagentes**
+## Capítulo 5: Desenvolvimento de Agentes Autônomos e Multiagentes
 
 
 
@@ -2000,9 +1839,307 @@ O LangGraph é o estado da arte para construir sistemas multiagentes robustos e 
 
 *(Respostas: 1-b, 2-c, 3-b, 4-b, 5-c)*
 
-## **Capítulo 9: Projeto Final Integrador: Assistente de Viagem Inteligente**
+## Capítulo 6: Ferramentas e Agentes: Capacitando LLMs com Ações
 
-Neste capítulo final, vamos consolidar todo o conhecimento adquirido ao longo do livro, construindo um projeto prático e funcional: um Assistente de Viagem Inteligente. Este agente será capaz de interagir com o usuário para planejar viagens, pesquisar informações em tempo real e gerenciar um orçamento, demonstrando a sinergia entre LLMs, ferramentas e a LangChain Expression Language (LCEL).
+Neste capítulo, exploraremos um dos conceitos mais poderosos do LangChain: a capacidade de equipar Large Language Models (LLMs) com ferramentas externas, transformando-os em agentes autônomos capazes de interagir com o mundo real. Veremos como os agentes podem raciocinar sobre qual ferramenta usar, executar ações e observar os resultados para alcançar seus objetivos.
+
+### **6.1. O que são Ferramentas (Tools)?**
+
+No contexto do LangChain, uma **Ferramenta (Tool)** é uma função que um agente pode invocar para interagir com o mundo exterior. Isso pode incluir:
+
+*   **APIs externas:** Buscar informações na web, enviar e-mails, acessar bancos de dados, etc.
+*   **Funções customizadas:** Realizar cálculos complexos, manipular dados, interagir com sistemas internos.
+*   **Outros modelos de IA:** Chamar modelos de visão computacional, processamento de fala, etc.
+
+As ferramentas são essenciais porque os LLMs, por si só, têm limitações. Eles podem gerar texto, mas não podem, por exemplo, buscar informações em tempo real na internet ou executar código. Ao fornecer ferramentas, capacitamos o LLM a superar essas limitações e a realizar tarefas que exigem interação com sistemas externos.
+
+### **6.2. Agentes (Agents): O Cérebro por Trás das Ações**
+
+Um **Agente (Agent)** é um sistema que utiliza um LLM como seu "cérebro" para decidir qual ação tomar, observar o resultado dessa ação e repetir o processo até que a tarefa seja concluída. O processo geralmente segue o padrão **ReAct (Reason + Act)**:
+
+1.  **Reason (Raciocinar):** O LLM analisa a entrada do usuário e o estado atual para determinar qual ferramenta (se houver) deve ser usada e com quais argumentos.
+2.  **Act (Agir):** A ferramenta selecionada é executada, e o resultado é observado.
+3.  **Observe (Observar):** O LLM recebe o resultado da execução da ferramenta e o utiliza para refinar seu raciocínio ou gerar a resposta final.
+
+O LangChain oferece diversas implementações de agentes, mas a abordagem moderna e recomendada é o `create_tool_calling_agent`, que se beneficia das capacidades de *tool calling* nativas dos LLMs mais recentes, como o Gemini.
+
+### **Exercício 1: Agente de Análise de Vendas com Ferramenta SQL**
+
+Neste exercício, construiremos um agente capaz de interagir com um banco de dados SQLite em memória para responder a perguntas sobre dados de vendas. O agente usará uma ferramenta customizada para executar consultas SQL.
+
+*   **Objetivo:** Criar um agente que utilize uma ferramenta SQL para consultar dados de vendas e responder a perguntas complexas.
+*   **Nome do Arquivo:** `exercicios/capitulo_06/exercicio_1/main.py`
+*   **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`
+*   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv`
+
+```python
+# exercicios/capitulo_06/exercicio_1/main.py
+import sqlite3
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.tools import tool
+
+# Carregar variáveis de ambiente
+load_dotenv()
+
+# 1. Configurar o banco de dados SQLite em memória
+def setup_database():
+    conn = sqlite3.connect(':memory:')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS vendas (
+            id INTEGER PRIMARY KEY,
+            produto TEXT,
+            quantidade INTEGER,
+            preco REAL,
+            data TEXT
+        )
+    ''')
+    vendas_data = [
+        ('Laptop', 2, 1200.00, '2024-01-15'),
+        ('Mouse', 5, 25.00, '2024-01-15'),
+        ('Teclado', 3, 75.00, '2024-01-16'),
+        ('Monitor', 1, 300.00, '2024-01-17'),
+        ('Laptop', 1, 1200.00, '2024-01-18'),
+        ('Webcam', 4, 50.00, '2024-01-18'),
+    ]
+    cursor.executemany('INSERT INTO vendas (produto, quantidade, preco, data) VALUES (?, ?, ?, ?)', vendas_data)
+    conn.commit()
+    return conn
+
+# 2. Definir a ferramenta SQL para o agente
+@tool
+def execute_sql_query(query: str) -> str:
+    """
+    Executa uma consulta SQL no banco de dados de vendas e retorna o resultado.
+    Use esta ferramenta para responder a perguntas sobre dados de vendas.
+    O banco de dados contém uma tabela 'vendas' com as colunas:
+    'id', 'produto', 'quantidade', 'preco', 'data'.
+    Exemplo de uso: SELECT SUM(quantidade) FROM vendas WHERE produto = 'Laptop';
+    """
+    conn = setup_database()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(query)
+        results = cursor.fetchall()
+        conn.close()
+        return str(results)
+    except sqlite3.Error as e:
+        conn.close()
+        return f"Erro ao executar a consulta SQL: {e}"
+
+# 3. Escolher o LLM que será o cérebro do nosso agente
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
+
+# 4. Definir as ferramentas que o agente pode usar
+tools = [execute_sql_query]
+
+# 5. Criar o Prompt do Agente
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Você é um assistente especializado em analisar dados de vendas. Use a ferramenta 'execute_sql_query' para responder a perguntas sobre vendas. Se a pergunta não puder ser respondida com os dados de vendas, diga que não tem informações."),
+    ("human", "{input}"),
+    ("placeholder", "{agent_scratchpad}"),
+])
+
+# 6. Criar o Agente
+agent = create_tool_calling_agent(llm, tools, prompt)
+
+# 7. Criar o Executor do Agente
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# --- Execução ---
+if __name__ == "__main__":
+    print("Agente de Análise de Vendas pronto! Faça sua pergunta.")
+
+    perguntas = [
+        "Qual a quantidade total de Laptops vendidos?",
+        "Qual o produto mais vendido em termos de quantidade?",
+        "Qual o valor total de vendas?",
+        "Quantos itens foram vendidos em 2024-01-18?",
+        "Qual o nome do meu cachorro?"
+    ]
+
+    for pergunta in perguntas:
+        print(f"\n> Pergunta: {pergunta}")
+        response = agent_executor.invoke({"input": pergunta})
+        print(f"\n< Resposta Final: {response['output']}")
+```
+
+**Comandos de Execução (Linux/macOS):**
+
+```sh
+# Navegue até o diretório do exercício
+cd exercicios/capitulo_06/exercicio_1
+
+# Dê permissão de execução ao script
+chmod +x run.sh
+
+# Execute o exercício
+./run.sh
+```
+
+**Comandos de Execução (Windows):**
+
+```bat
+REM Navegue até o diretório do exercício
+cd exercicios\capitulo_06\exercicio_1
+
+REM Execute o exercício
+call run.bat
+```
+
+**Saída Esperada:**
+
+```text
+Agente de Análise de Vendas pronto! Faça sua pergunta.
+
+> Pergunta: Qual a quantidade total de Laptops vendidos?
+
+> Pergunta: Qual o produto mais vendido em termos de quantidade?
+
+> Pergunta: Qual o valor total de vendas?
+
+> Pergunta: Quantos itens foram vendidos em 2024-01-18?
+
+> Pergunta: Qual o nome do meu cachorro?
+```
+
+**Troubleshooting Comum:**
+
+*   **`sqlite3.OperationalError: no such table: vendas`**: Verifique se a função `setup_database()` está sendo chamada corretamente e se a tabela `vendas` está sendo criada antes das consultas.
+*   **`AuthenticationError`**: Certifique-se de que sua chave de API do Google Gemini (`GOOGLE_API_KEY`) está configurada corretamente no seu arquivo `.env`.
+*   **`ModuleNotFoundError`**: Verifique se todas as dependências (`langchain`, `langchain-google-genai`, `python-dotenv`) foram instaladas usando `uv add`.
+
+### **Exercício 2: Agente de Cotação de Moedas com Ferramenta de API Externa**
+
+Neste exercício, construiremos um agente capaz de obter taxas de câmbio de moedas usando uma API externa. Isso demonstra como os agentes podem interagir com serviços web para obter informações em tempo real.
+
+*   **Objetivo:** Criar um agente que utilize uma ferramenta para consultar taxas de câmbio de moedas via API externa.
+*   **Nome do Arquivo:** `exercicios/capitulo_06/exercicio_2/main.py`
+*   **Dependências:** `langchain`, `langchain-google-genai`, `python-dotenv`, `requests`
+*   **Comando de Instalação:** `uv add langchain langchain-google-genai python-dotenv requests`
+*   **Configuração Adicional:** Para este exemplo, a API `ExchangeRate-API` é usada. Embora o exemplo não exija uma chave, APIs de cotação de moedas reais geralmente exigem. Se você usar uma API que precise de chave, adicione-a ao seu arquivo `.env` (ex: `EXCHANGE_RATE_API_KEY`).
+
+```python
+# exercicios/capitulo_06/exercicio_2/main.py
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.tools import tool
+import requests
+import os
+
+# Carregar variáveis de ambiente
+load_dotenv()
+
+# 1. Definir a ferramenta de cotação de moedas
+@tool
+def get_exchange_rate(base_currency: str, target_currency: str) -> str:
+    """
+    Obtém a taxa de câmbio atual entre duas moedas.
+    Use esta ferramenta para converter valores entre moedas.
+    Exemplo: get_exchange_rate("USD", "BRL")
+    """
+    try:
+        # Usando uma API de cotação de moedas gratuita (ex: ExchangeRate-API)
+        # Você pode precisar se registrar para obter uma chave de API real
+        # Para fins de demonstração, usaremos um endpoint público ou simulado
+        api_key = os.getenv("EXCHANGE_RATE_API_KEY") # Se necessário
+        url = f"https://api.exchangerate-api.com/v4/latest/{base_currency}"
+        response = requests.get(url)
+        data = response.json()
+        
+        if data and data["rates"] and target_currency in data["rates"]:
+            rate = data["rates"][target_currency]
+            return f"A taxa de câmbio de {base_currency} para {target_currency} é {rate}"
+        else:
+            return f"Não foi possível obter a taxa de câmbio para {base_currency}/{target_currency}"
+    except Exception as e:
+        return f"Erro ao obter a taxa de câmbio: {e}"
+
+# 2. Escolher o LLM que será o cérebro do nosso agente
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
+
+# 3. Definir as ferramentas que o agente pode usar
+tools = [get_exchange_rate]
+
+# 4. Criar o Prompt do Agente
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Você é um assistente especializado em cotação de moedas. Use a ferramenta 'get_exchange_rate' para responder a perguntas sobre taxas de câmbio."),
+    ("human", "{input}"),
+    ("placeholder", "{agent_scratchpad}"),
+])
+
+# 5. Criar o Agente
+agent = create_tool_calling_agent(llm, tools, prompt)
+
+# 6. Criar o Executor do Agente
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# --- Execução ---
+if __name__ == "__main__":
+    print("Agente de Cotação de Moedas pronto! Faça sua pergunta.")
+
+    perguntas = [
+        "Qual a taxa de câmbio de USD para BRL?",
+        "Quanto é 100 EUR em JPY?",
+        "Qual o valor do dólar hoje?",
+        "Qual o nome do meu gato?"
+    ]
+
+    for pergunta in perguntas:
+        print(f"\n> Pergunta: {pergunta}")
+        response = agent_executor.invoke({"input": pergunta})
+        print(f"\n< Resposta Final: {response['output']}")
+```
+
+**Comandos de Execução (Linux/macOS):**
+
+```sh
+# Navegue até o diretório do exercício
+cd exercicios/capitulo_06/exercicio_2
+
+# Dê permissão de execução ao script
+chmod +x run.sh
+
+# Execute o exercício
+./run.sh
+```
+
+**Comandos de Execução (Windows):**
+
+```bat
+REM Navegue até o diretório do exercício
+cd exercicios\capitulo_06\exercicio_2
+
+REM Execute o exercício
+call run.bat
+```
+
+**Saída Esperada:**
+
+```text
+Agente de Cotação de Moedas pronto! Faça sua pergunta.
+
+> Pergunta: Qual a taxa de câmbio de USD para BRL?
+
+> Pergunta: Quanto é 100 EUR em JPY?
+
+> Pergunta: Qual o valor do dólar hoje?
+
+> Pergunta: Qual o nome do meu gato?
+```
+
+**Troubleshooting Comum:**
+
+*   **`requests.exceptions.ConnectionError`**: Verifique sua conexão com a internet. A API de cotação de moedas requer acesso à internet.
+*   **`AuthenticationError`**: Certifique-se de que sua chave de API do Google Gemini (`GOOGLE_API_KEY`) está configurada corretamente no seu arquivo `.env`.
+*   **`ModuleNotFoundError`**: Verifique se todas as dependências (`langchain`, `langchain-google-genai`, `python-dotenv`, `requests`) foram instaladas usando `uv add`.
+
+## **Capítulo 9: Projeto Final Integrador: Assistente de Viagem Inteligente**
 
 ### **Visão Geral do Projeto**
 
@@ -2208,6 +2345,136 @@ Este projeto é um exemplo claro do poder do LangChain para construir aplicaçõ
    d) Streaming de respostas.
 
 *(Respostas: 1-b, 2-c, 3-c, 4-b, 5-c)*
+
+## Capítulo 9: LangChain na Produção: Escalabilidade, Observabilidade e Segurança
+
+### **Introdução**
+
+Este capítulo abordará os desafios e as melhores práticas para levar aplicações LangChain da fase de desenvolvimento para a produção. Cobriremos tópicos essenciais como escalabilidade, observabilidade, segurança e otimização de custos, garantindo que suas soluções baseadas em LLMs sejam robustas, eficientes e prontas para o ambiente real.
+
+Construir protótipos com LangChain é relativamente simples e rápido, mas a transição para um ambiente de produção exige uma abordagem mais rigorosa. Em produção, as aplicações precisam ser confiáveis, performáticas, seguras e, acima de tudo, sustentáveis. Ignorar esses aspectos pode levar a falhas catastróficas, custos inesperados e uma experiência de usuário insatisfatória.
+
+Ao longo deste capítulo, exploraremos cada um desses pilares, fornecendo insights práticos e exemplos de como aplicar as melhores práticas do LangChain e do desenvolvimento de software em geral para construir sistemas de IA que não apenas funcionem, mas que prosperem em ambientes reais. Prepare-se para mergulhar nos detalhes que transformam um bom protótipo em uma excelente solução de produção.
+
+### **9.1. Escalabilidade de Aplicações LangChain**
+
+#### **9.1.1. Gerenciamento de Conexões e Limites de Taxa (Rate Limiting)**
+
+Ao construir aplicações LangChain em produção, um dos primeiros desafios de escalabilidade que você enfrentará é o gerenciamento eficiente das conexões com os LLMs e outras APIs externas. Modelos de linguagem, especialmente os de grande escala, geralmente impõem limites de taxa (rate limits) para controlar o número de requisições que um usuário ou aplicação pode fazer em um determinado período. Exceder esses limites pode resultar em erros, latência elevada e até mesmo no bloqueio temporário do seu acesso à API.
+
+**Estratégias para Gerenciamento de Conexões e Rate Limiting:**
+
+1.  **Reutilização de Conexões (Connection Pooling):** Sempre que possível, utilize bibliotecas HTTP que suportem *connection pooling*. Isso evita a sobrecarga de estabelecer e fechar uma nova conexão TCP para cada requisição, reduzindo a latência e o consumo de recursos. O LangChain, por baixo dos panos, geralmente lida com isso de forma eficiente ao interagir com os provedores de LLMs, mas é uma boa prática estar ciente.
+
+2.  **Retry Logic (Lógica de Retentativa):** As APIs de LLMs podem retornar erros transitórios (como `429 Too Many Requests` ou `503 Service Unavailable`). Implementar uma lógica de retentativa com *backoff exponencial* é crucial. Isso significa que, se uma requisição falhar, você deve tentar novamente após um pequeno atraso, aumentando esse atraso exponencialmente a cada nova tentativa. O LangChain e as bibliotecas subjacentes (como `openai` ou `google-generativeai`) frequentemente já incluem essa funcionalidade, mas é importante configurá-la adequadamente. A LangChain oferece mecanismos para gerenciar esses aspectos diretamente em seus componentes, como `RateLimiters` <mcreference link="https://python.langchain.com/docs/how_to/chat_model_rate_limiting/" index="3"></mcreference> e o método `.with_retry()` <mcreference link="https://api.python.langchain.com/en/latest/runnables/langchain_core.runnables.retry.RunnableRetry.html" index="5"></mcreference> para lidar com limites de taxa e lógica de retentativa.
+
+    ```python:/home/igormedeiros/projects/livros/langchain-na-pratica/exemplo_retry.py
+    from langchain_openai import ChatOpenAI
+    from openai import RateLimitError
+    import time
+
+    llm = ChatOpenAI(model="gpt-4o", temperature=0)
+
+    def call_llm_with_retry(prompt, max_retries=5, initial_delay=1):
+        for i in range(max_retries):
+            try:
+                response = llm.invoke(prompt)
+                return response
+            except RateLimitError as e:
+                delay = initial_delay * (2 ** i)  # Exponential backoff
+                print(f"Rate limit exceeded. Retrying in {delay} seconds...")
+                time.sleep(delay)
+            except Exception as e:
+                print(f"An unexpected error occurred: {e}")
+                raise
+        raise Exception(f"Failed after {max_retries} retries due to rate limits.")
+
+    # Exemplo de uso:
+    # try:
+    #     result = call_llm_with_retry("Qual é a capital da França?")
+    #     print(result.content)
+    # except Exception as e:
+    #     print(e)
+    ```
+
+3.  **Limitação de Taxa no Lado da Aplicação (Client-Side Rate Limiting):** Para ter um controle mais granular e evitar bater nos limites da API, você pode implementar sua própria limitação de taxa no lado da sua aplicação. Bibliotecas como `ratelimit` ou `tenacity` em Python podem ajudar a decorar suas funções de chamada de LLM para garantir que você não exceda um certo número de chamadas por segundo/minuto.
+
+    ```python:/home/igormedeiros/projects/livros/langchain-na-pratica/exemplo_ratelimit.py
+    from langchain_openai import ChatOpenAI
+    from ratelimit import limits, RateLimitException
+    from backoff import on_exception, expo
+    import time
+
+    llm = ChatOpenAI(model="gpt-4o", temperature=0)
+
+    # Limita a 10 chamadas por minuto (60 segundos)
+    @on_exception(expo, RateLimitException, max_tries=8)
+    @limits(calls=10, period=60)
+    def call_llm_limited(prompt):
+        print(f"Calling LLM at {time.time()}")
+        return llm.invoke(prompt)
+
+    # Exemplo de uso:
+    # for i in range(15):
+    #     try:
+    #         result = call_llm_limited(f"Diga olá {i+1} vezes.")
+    #         print(result.content)
+    #     except RateLimitException:
+    #         print("Rate limit hit, waiting...")
+    #         time.sleep(5) # Espera um pouco antes de tentar novamente
+    ```
+
+4.  **Filas de Mensagens (Message Queues):** Para aplicações com alto volume de requisições assíncronas, considere usar filas de mensagens (como RabbitMQ, Kafka ou AWS SQS). Isso permite que você enfileire as requisições para o LLM e as processe em um ritmo controlado, desacoplando a ingestão de requisições do processamento do LLM. Isso é especialmente útil para tarefas em *batch* ou quando a latência em tempo real não é crítica.
+
+5.  **Balanceamento de Carga e Múltiplas Chaves/Contas:** Se você estiver operando em uma escala muito grande, pode ser necessário distribuir a carga entre múltiplas chaves de API ou até mesmo múltiplas contas de provedores de LLM. Um balanceador de carga pode rotear as requisições para a chave/conta menos utilizada ou para aquela que ainda não atingiu seu limite de taxa.
+
+Gerenciar conexões e limites de taxa é fundamental para a estabilidade e a eficiência de suas aplicações LangChain em produção. Ao implementar essas estratégias, você garante que sua aplicação possa lidar com picos de demanda e manter um desempenho consistente.
+
+#### **9.1.2. Cache e Persistência**
+
+#### **9.1.3. Processamento Assíncrono e Paralelismo**
+
+### **9.2. Observabilidade: Monitorando Suas Aplicações LangChain**
+
+#### **9.2.1. Logging e Rastreamento (Tracing) com LangSmith**
+
+#### **9.2.2. Métricas e Alertas**
+
+#### **9.2.3. Debugging e Análise de Erros em Produção**
+
+### **9.3. Segurança em Aplicações LangChain**
+
+#### **9.3.1. Gerenciamento Seguro de Chaves de API e Credenciais**
+
+#### **9.3.2. Validação de Entradas e Saídas (Input/Output Sanitization)**
+
+#### **9.3.3. Prevenção de Ataques de Injeção de Prompt**
+
+### **9.4. Otimização de Custos e Desempenho**
+
+#### **9.4.1. Seleção de Modelos e Otimização de Tokens**
+
+#### **9.4.2. Estratégias de Cache Avançadas**
+
+#### **9.4.3. Monitoramento de Custos e Orçamento**
+
+### **9.5. Estratégias de Deploy e CI/CD**
+
+#### **9.5.1. Contêineres (Docker) e Orquestração (Kubernetes)**
+
+#### **9.5.2. Integração Contínua e Deploy Contínuo (CI/CD)**
+
+#### **9.5.3. Testes em Produção e Rollbacks**
+
+### **9.6. Manutenção e Atualização Contínua**
+
+#### **9.6.1. Gerenciamento de Versões de Modelos e Dependências**
+
+#### **9.6.2. Feedback Loop e Melhoria Contínua**
+
+#### **9.6.3. Acompanhamento de Novas Funcionalidades do LangChain**
+
+### **Conclusão do Capítulo**
 
 ## **Referências Bibliográficas e Próximos Passos**
 
