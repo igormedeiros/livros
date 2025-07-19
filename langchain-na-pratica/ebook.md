@@ -7,7 +7,7 @@
 © 2025 Igor Medeiros. Todos os direitos reservados.
 
 Este livro faz parte da série "IA na Prática".
-Lançamento: Julho de 2025.
+Lançamento: 19 de Julho de 2025.
 
 Nenhuma parte desta publicação pode ser reproduzida, distribuída ou transmitida por qualquer forma ou meio, incluindo fotocópia, gravação ou outros métodos eletrônicos ou mecânicos, sem a permissão prévia por escrito do autor, exceto no caso de breves citações incorporadas em resenhas críticas e outros usos não comerciais permitidos pela lei de direitos autorais.
 
@@ -53,15 +53,19 @@ Ao **Fernando Fish**, por ser um exemplo tão forte de rigor técnico e científ
 
 À **Patricia Baena**, por acreditar em mim desde o início, por confiar no meu trabalho e por ter a generosidade de sempre buscar me apresentar portas que só eu poderia abrir. Sua mentoria e visão de futuro foram cruciais em minha trajetória.
 
-À **Giselle Arruma**, por segurar minha mão em momentos difíceis, quando precisei de ajuda para me reerguer profissionalmente. Você foi a pessoa que me aparou e me guiou com uma força e uma empatia que jamais esquecerei.
+À **Giselle Arruda**, por segurar minha mão em momentos difíceis, quando precisei de ajuda para me reerguer profissionalmente. Você foi a pessoa que me aparou e me guiou com uma força e uma empatia que jamais esquecerei.
 
 Ao **Fernando Lopes Jr.**, por ser um amigo e um incentivador, sempre me apoiando nos momentos mais difíceis.
 
 Ao **Eduardo Bregaida**, que confiou em mim e me apresentou uma possibilidade de recomeço quando eu mais precisei, enquanto enfrentava uma terrível fase de problemas de saúde mental e buscava um caminho de volta ao mercado de TI. Sua confiança foi um ponto de virada.
 
+À **Marina**, **Adriana** e **Julio**, por confiarem sempre em mim para voltar ao cenário das palestras técnicas pelo Brasil e outros países, ainda que de forma online, no contexto interno corporativo. Sua crença no meu potencial foi fundamental para essa retomada.
+
 À **Cristiane Tokarski**, por ter surgido como um anjo que agiu corrigindo o curso que a vida havia me conduzido, onde eu não me sentia "encaixado" na trilha do meu proposito profissional. Sua orientação foi um farol que me ajudou a reencontrar meu caminho e propósito.
 
-À vasta e vibrante comunidade open source do LangChain e de todas as bibliotecas e ferramentas que tornaram este livro possível. Seu trabalho incansável e colaboração são a verdadeira força motriz por trás da inovação em IA.
+Ao **Marcello Manzan**, um irmão de alma que a faculdade me deu e que hoje é como se fosse da minha família. Sua busca incansável pela excelência profissional é uma inspiração diária, um farol que me guia. Mais do que isso, sou grato pela sua amizade inabalável e pelas risadas que, ao longo dos anos, transformaram desafios em memórias preciosas.
+
+À vasta e vibrante comunidade open source do LangChain e de todas as bibliotecas e ferramentas que tornaram este livro possível. Seu trabalho incansável e colaboração são a verdadeira força motriz por trás da inovação em IA. Reconhecemos e agradecemos a todos os projetos de código aberto e seus contribuidores, cujas licenças e termos de uso foram respeitados na criação deste material.
 
 A cada um de vocês, meu mais profundo e sincero obrigado.
 
