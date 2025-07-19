@@ -254,10 +254,13 @@ if __name__ == "__main__":
 
 ```sh
 # Dê permissão de execução ao script
+```sh
+# Dê permissão de execução ao script
 chmod +x exercicios/capitulo_06/exercicio_1/run.sh
 
 # Execute o exercício
 ./exercicios/capitulo_06/exercicio_1/run.sh
+```
 ```
 
 **Comando de Execução (Windows):**
@@ -497,6 +500,7 @@ chmod +x exercicios/capitulo_01/exercicio_1/run.sh
 # Execute o exercício
 ./exercicios/capitulo_01/exercicio_1/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -585,7 +589,7 @@ O LangChain se posiciona como uma ferramenta modular de propósito geral, permit
 
 
 
-### **Principais Takeaways**
+### **Pontos Chave**
 
 *   LangChain simplifica a orquestração de LLMs, permitindo a construção de aplicações complexas.
 *   O conceito de "Chain" automatiza sequências de chamadas a LLMs, tornando o desenvolvimento mais estruturado.
@@ -699,6 +703,7 @@ chmod +x exercicios/capitulo_01/exercicio_2/run.sh
 # Execute o exercício
 ./exercicios/capitulo_01/exercicio_2/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -717,9 +722,7 @@ exercicios\capitulo_01\exercicio_2\run.bat
 
 ## **Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain**
 
-Se você já se sentiu travado, frustrado ou simplesmente perdido ao tentar configurar um ambiente de desenvolvimento Python, saiba que você não está sozinho. Erros de dependência, conflitos de versão, variáveis de ambiente que teimam em não funcionar... tudo isso faz parte do ritual de passagem de todo dev. É quase um rito de iniciação.
 
-Se você já se sentiu travado, frustrado ou simplesmente perdido ao tentar configurar um ambiente de desenvolvimento Python, saiba que você não está sozinho. Erros de dependência, conflitos de versão, variáveis de ambiente que teimam em não funcionar... tudo isso faz parte do ritual de passagem de todo dev. É quase um rito de iniciação.
 
 Então, antes de começarmos, respire fundo. Pegue um café (ou um chá, no meu caso, já que ironicamente não sou fã de café) e vamos passar por isso juntos, passo a passo. Lembro-me de um colega que passou horas depurando um erro complexo, apenas para descobrir que era um ponto e vírgula faltando. Ou, pior, um espaço a mais na indentação em Python. A máquina é implacável com a sintaxe, mas a satisfação de encontrar o erro é indescritível! A paciência que você exercita aqui será sua maior aliada em toda a jornada com IA. Prometo que, ao final deste capítulo, você terá uma base sólida e organizada para construir todos os projetos incríveis que virão.
 
@@ -751,7 +754,9 @@ Este script automatiza a instalação de todas as dependências necessárias, do
 * **Objetivo:** Preparar um ambiente Linux robusto com a versão correta do Python gerenciada pelo pyenv.  
 * **Nome do Arquivo:** `setup_python_kali.sh`  
 * **Dependências:** git, curl, build-essential e outras dependências de compilação.  
-* **Comando de Execução:** `bash setup_python_kali.sh`
+* **Comando de Execução:** ````sh
+bash setup_python_kali.sh
+````
 
 ```sh
 #!/bin/bash
@@ -847,7 +852,9 @@ Este script instala o zsh, o Oh My Zsh e os plugins que eu uso.
 * **Objetivo:** Configurar um terminal moderno e productivo.  
 * **Nome do Arquivo:** `setup_zsh.sh`  
 * **Dependências:** zsh, git, curl  
-* **Comando de Execução:** `bash setup_zsh.sh`
+* **Comando de Execução:** ````sh
+bash setup_zsh.sh
+````
 
 ```sh
 #!/bin/bash
@@ -897,21 +904,25 @@ Uma forma muito mais segura e conveniente é usar **chaves SSH**. Você gera um 
 * **Objetivo:** Criar um par de chaves SSH e exibi-lo para que possa ser adicionado ao GitHub.  
 * **Nome do Arquivo:** generate\_ssh\_key.sh  
 * **Dependências:** openssh-client  
-* **Comando de Execução:** bash generate\_ssh\_key.sh
+* **Comando de Execução:** ```sh
+bash generate_ssh_key.sh
+```
 
-#\!/bin/bash  
+```sh
+#!/bin/bash  
 # Substitua o email pelo seu email do GitHub  
-ssh-keygen \-t rsa \-b 4096 \-C "igor@igormedeiros.com.br"
+ssh-keygen -t rsa -b 4096 -C "igor@igormedeiros.com.br"
 
 # Inicia o ssh-agent em background  
-eval "$(ssh-agent \-s)"
+eval "$(ssh-agent -s)"
 
 # Adiciona sua chave SSH privada ao ssh-agent  
-ssh-add \~/.ssh/id\_rsa
+ssh-add ~/.ssh/id_rsa
 
 # Exibe a chave pública para que você possa copiá-la  
 echo "Copie a chave pública abaixo e cole nas configurações do seu GitHub:"  
-cat \~/.ssh/id\_rsa.pub
+cat ~/.ssh/id_rsa.pub
+```
 
 Depois de executar o script, copie a saída (que começa com ssh-rsa...) e cole-a na seção "SSH and GPG keys" das configurações da sua conta no GitHub. A partir de agora, ao clonar repositórios, use a URL SSH em vez da HTTPS.
 
@@ -998,35 +1009,9 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 * **Gerenciamento de Dependências com uv:** Exploramos a evolução do gerenciamento de pacotes em Python, desde o setup.py até o moderno pyproject.toml (PEPs 518 e 621), e adotamos o uv como nossa ferramenta principal por sua velocidade e simplicidade.  
 * **Gerenciamento de Segredos:** Vimos a importância de nunca expor chaves de API no código e aprendemos o passo a passo para obter uma chave gratuita do Google AI Studio e configurá-la de forma segura usando um arquivo .env.
 
-### **Principais Takeaways**
 
-*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
-*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
-*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
-*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
 
-### **Principais Takeaways**
-
-*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
-*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
-*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
-*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
-
-### **Principais Takeaways**
-
-*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
-*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
-*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
-*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
-
-### **Principais Takeaways**
-
-*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
-*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
-*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
-*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
-
-### **Principais Takeaways**
+### **Pontos Chave**
 
 *   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
 *   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
@@ -1247,6 +1232,7 @@ chmod +x exercicios/capitulo_03/exercicio_1/run.sh
 # Execute o exercício
 ./exercicios/capitulo_03/exercicio_1/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -1284,23 +1270,9 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 * **Primeiro Vislumbre da LCEL:** Tivemos uma prévia da LangChain Expression Language (LCEL) e seu operador pipe (|), que cria um pipeline legível e elegante para conectar os componentes.  
 * **Exercício Prático:** Construímos um tradutor multilíngue, solidificando o conhecimento de como usar variáveis dinâmicas em um prompt para criar uma aplicação flexível.
 
-### **Principais Takeaways**
 
-*   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
-*   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
-*   LLMs são integrados e orquestrados eficientemente com o LangChain.
-*   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
-*   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
 
-### **Principais Takeaways**
-
-*   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
-*   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
-*   LLMs são integrados e orquestrados eficientemente com o LangChain.
-*   A LCEL simplifica a construção de pipelines, tornando-os mais legíveis e eficientes.
-*   A prática com exercícios como o tradutor multilíngue solidifica o aprendizado dos conceitos de prompts e modelos.
-
-### **Principais Takeaways**
+### **Pontos Chave**
 
 *   A Engenharia de Prompts é crucial para obter respostas de qualidade dos LLMs.
 *   `PromptTemplates` no LangChain permitem prompts dinâmicos e reutilizáveis.
@@ -1424,6 +1396,7 @@ chmod +x exercicios/capitulo_04/exercicio_1/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_1/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -1486,6 +1459,7 @@ chmod +x exercicios/capitulo_04/exercicio_2/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_2/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -1512,6 +1486,7 @@ exercicios\capitulo_04\exercicio_2\run.bat
 chmod +x execucao_exercicio_4_1.sh
 ./execucao_exercicio_4_1.sh
 ```
+
 
 **Exercício 2: Passando Dados com RunnablePassthrough**
 
@@ -1554,6 +1529,7 @@ chmod +x exercicios/capitulo_04/exercicio_3/run.sh
 
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_3/run.sh
+```
 ```
 
 **Comando de Execução (Windows):**
@@ -1619,6 +1595,7 @@ chmod +x exercicios/capitulo_04/exercicio_4/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_4/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -1676,6 +1653,7 @@ chmod +x exercicios/capitulo_04/exercicio_5/run.sh
 
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_5/run.sh
+```
 ```
 
 **Comando de Execução (Windows):**
@@ -1738,6 +1716,7 @@ chmod +x exercicios/capitulo_04/exercicio_6/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_6/run.sh
 ```
+```
 
 **Comando de Execução (Windows):**
 
@@ -1747,7 +1726,7 @@ exercicios\capitulo_04\exercicio_6\run.bat
 ```
 ```
 
-**Curiosidade do Autor:** Falando em combinar coisas que parecem não combinar, vou contar uma pequena curiosidade sobre mim: eu adoro o ambiente de cafeterias para trabalhar. Aquele burburinho de fundo, a energia das pessoas ao redor... tudo isso me ajuda a focar de uma maneira que o silêncio do escritório em casa não consegue. A ironia? Eu não sou fã de café. Sou o cara estranho em um canto, com uma xícara de chá de camomila, programando freneticamente.
+Falando em combinar coisas que parecem não combinar, vou contar uma pequena curiosidade sobre mim: eu adoro o ambiente de cafeterias para trabalhar. Aquele burburinho de fundo, a energia das pessoas ao redor... tudo isso me ajuda a focar de uma maneira que o silêncio do escritório em casa não consegue. A ironia? Eu não sou fã de café. Sou o cara estranho em um canto, com uma xícara de chá de camomila, programando freneticamente.
 
 Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas cafeterias. Mas, assim como a LCEL nos mostra que a combinação de elementos aparentemente díspares pode gerar resultados poderosos e harmoniosos, minha xícara de chá em meio a um mar de expressos é a prova de que a produtividade pode vir de onde menos se espera.
 
@@ -1765,33 +1744,11 @@ Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas
 * \[ \] Testar o pipeline com diferentes entradas para validar a robustez e a eficiência.  
 * \[ \] Documentar o fluxo e as dependências para facilitar a manutenção futura.
 
-### **Resumo do Capítulo**
 
-Neste capítulo, exploramos a evolução da construção de pipelines no LangChain, contrastando a abordagem clássica com a moderna e poderosa LangChain Expression Language (LCEL).
 
-* **O Jeito Antigo:** Vimos como as LLMChain e SequentialChain funcionavam. Embora funcionais, elas exigiam uma configuração mais verbosa e manual, definindo explicitamente as chaves de entrada e saída.  
-* **A Revolução da LCEL:** Entendemos por que a LCEL é um divisor de águas. Ela oferece uma sintaxe declarativa e elegante com o operador pipe (|), além de trazer benefícios cruciais "de graça", como streaming, execução assíncrona e paralela, e integração nativa com o LangSmith.  
-* **LCEL na Prática:** Através de uma série de exercícios práticos, aprendemos a:  
-  * Construir chains sequenciais simples.  
-  * Passar dados entre etapas usando RunnablePassthrough.  
-  * Executar tarefas em paralelo com RunnableParallel.  
-  * Integrar funções Python customizadas com RunnableLambda.  
-  * Fazer streaming de respostas para uma melhor experiência do usuário.
 
-### **Resumo do Capítulo**
 
-Neste capítulo, exploramos a evolução da construção de pipelines no LangChain, contrastando a abordagem clássica com a moderna e poderosa LangChain Expression Language (LCEL).
-
-* **O Jeito Antigo:** Vimos como as LLMChain e SequentialChain funcionavam. Embora funcionais, elas exigiam uma configuração mais verbosa e manual, definindo explicitamente as chaves de entrada e saída.  
-* **A Revolução da LCEL:** Entendemos por que a LCEL é um divisor de águas. Ela oferece uma sintaxe declarativa e elegante com o operador pipe (|), além de trazer benefícios cruciais "de graça", como streaming, execução assínrona e paralela, e integração nativa com o LangSmith.  
-* **LCEL na Prática:** Através de uma série de exercícios práticos, aprendemos a:  
-  * Construir chains sequenciais simples.  
-  * Passar dados entre etapas usando RunnablePassthrough.  
-  * Executar tarefas em paralelo com RunnableParallel.  
-  * Integrar funções Python customizadas com RunnableLambda.  
-  * Fazer streaming de respostas para uma melhor experiência do usuário.
-
-### **Principais Takeaways**
+### **Pontos Chave**
 *   A LCEL é a forma moderna e recomendada de construir pipelines no LangChain, oferecendo streaming, suporte assíncrono e execução paralela nativamente.
 *   `RunnablePassthrough`, `RunnableParallel`, e `RunnableLambda` são componentes chave para construir pipelines flexíveis e eficientes.
 *   A transição de abordagens imperativas para declarativas (LCEL) simplifica o código e melhora a performance.
@@ -1963,10 +1920,12 @@ if \_\_name\_\_ \== "\_\_main\_\_":
 
 ```sh
 # Dê permissão de execução ao script
+```sh
 chmod +x exercicios/capitulo_05/exercicio_1/run.sh
 
 # Execute o exercício
 ./exercicios/capitulo_05/exercicio_1/run.sh
+```
 ```
 
 **Comando de Execução (Windows):**
@@ -1979,22 +1938,10 @@ exercicios\capitulo_05\exercicio_1\run.bat
 
 Ao executar, observe a saída com verbose=True. Você verá o LLM raciocinando, decidindo chamar a ferramenta tavily\_search\_results\_json, os resultados que a ferramenta retorna e, finalmente, a formulação da resposta final. Para a segunda pergunta, você verá que o LLM decide que não precisa de uma ferramenta e responde diretamente. Isso é autonomia em ação\!
 
-**Troubleshooting Comum:**
-
-*   **`AuthenticationError` ou `TAVILY_API_KEY` não configurada:** Certifique-se de que você obteve sua `TAVILY_API_KEY` do Tavily e a adicionou corretamente ao seu arquivo `.env` na raiz do projeto.
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API (Tavily ou Google Gemini) podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Agente não usando a ferramenta:** Se o agente não estiver chamando a ferramenta de busca quando esperado, revise a `description` da ferramenta. Ela deve ser clara e concisa, indicando exatamente o que a ferramenta faz e quando deve ser usada. O LLM usa essa descrição para decidir se a ferramenta é relevante para a tarefa.
-*   **Saída Inesperada do Agente:** Se a resposta final do agente não for a esperada, ative `verbose=True` no `AgentExecutor` para inspecionar o processo de raciocínio do LLM e as chamadas de ferramentas. Isso ajudará a identificar onde o fluxo está se desviando.
 
 
-**Troubleshooting Comum:**
 
-*   **`AuthenticationError` ou `TAVILY_API_KEY` não configurada:** Certifique-se de que você obteve sua `TAVILY_API_KEY` do Tavily e a adicionou corretamente ao seu arquivo `.env` na raiz do projeto.
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API (Tavily ou Google Gemini) podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Agente não usando a ferramenta:** Se o agente não estiver chamando a ferramenta de busca quando esperado, revise a `description` da ferramenta. Ela deve ser clara e concisa, indicando exatamente o que a ferramenta faz e quando deve ser usada. O LLM usa essa descrição para decidir se a ferramenta é relevante para a tarefa.
-*   **Saída Inesperada do Agente:** Se a resposta final do agente não for a esperada, ative `verbose=True` no `AgentExecutor` para inspecionar o processo de raciocínio do LLM e as chamadas de ferramentas. Isso ajudará a identificar onde o fluxo está se desviando.
+
 
 
 ### **Sistemas Multiagentes e a Magia do LangGraph**
@@ -2011,7 +1958,7 @@ O LangGraph é o estado da arte para construir sistemas multiagentes robustos e 
 
 
 
-### **Principais Takeaways**
+### **Pontos Chave**
 *   Agentes usam LLMs como "cérebros" para tomar decisões dinâmicas, diferentemente das Chains com fluxo fixo.
 *   A Engenharia de Contexto é crucial para gerenciar informações em sistemas agênticos.
 *   Ferramentas (Tools) e o Executor do Agente (Agent Executor) são componentes essenciais para a funcionalidade do agente.
@@ -2156,8 +2103,10 @@ if __name__ == "__main__":
 **Comando de Execução:**
 
 ```sh
+```sh
 chmod +x capitulo_09/execucao_exercicio_9_1.sh
 ./capitulo_09/execucao_exercicio_9_1.sh
+```
 ```
 
 **Saída Esperada (pode variar ligeiramente):**
@@ -2218,7 +2167,7 @@ Neste capítulo, você aplicou todos os conceitos aprendidos ao longo do livro p
 
 Este projeto é um exemplo claro do poder do LangChain para construir aplicações de IA que resolvem problemas reais, combinando diferentes capacidades para criar soluções inteligentes e autônomas.
 
-### **Principais Takeaways**
+### **Pontos Chave**
 *   Projetos integradores são a melhor forma de consolidar o aprendizado de múltiplos conceitos.
 *   Agentes com ferramentas são poderosos para interagir com o mundo real e dados externos.
 *   A LCEL facilita a construção de pipelines complexos e legíveis.
