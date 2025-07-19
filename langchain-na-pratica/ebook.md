@@ -59,6 +59,8 @@ Ao **Fernando Lopes Jr.**, por ser um amigo e um incentivador, sempre me apoiand
 
 Ao **Eduardo Bregaida**, que confiou em mim e me apresentou uma possibilidade de recomeço quando eu mais precisei, enquanto enfrentava uma terrível fase de problemas de saúde mental e buscava um caminho de volta ao mercado de TI. Sua confiança foi um ponto de virada.
 
+À **Cristiane Tokarski**, por ter surgido como um anjo que agiu corrigindo o curso que a vida havia me conduzido, onde eu não me sentia "encaixado" na trilha do meu proposito profissional. Sua orientação foi um farol que me ajudou a reencontrar meu caminho e propósito.
+
 À vasta e vibrante comunidade open source do LangChain e de todas as bibliotecas e ferramentas que tornaram este livro possível. Seu trabalho incansável e colaboração são a verdadeira força motriz por trás da inovação em IA.
 
 A cada um de vocês, meu mais profundo e sincero obrigado.
