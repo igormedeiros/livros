@@ -1,6 +1,6 @@
 #!/bin/bash  
 # Substitua o email pelo seu email do GitHub  
-ssh-keygen -t rsa -b 4096 -C "igor@igormedeiros.com.br"
+ssh-keygen -t rsa -b 4096 -C "seu@email.com.br"
 
 # Inicia o ssh-agent em background  
 eval "$(ssh-agent -s)"

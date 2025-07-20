@@ -11,13 +11,13 @@ from langchain_core.messages import HumanMessage, AIMessage
 load_dotenv()
 
 # Inicializa o LLM
-model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
 
 # Cria um template de prompt com um placeholder para o histórico de chat
 prompt = ChatPromptTemplate.from_messages([
     ("system", "Você é um assistente prestativo. Responda às perguntas de forma concisa e útil."),
     MessagesPlaceholder(variable_name="chat_history"),
-    ("human", "{input}"),
+    ("human", "{input}")
 ])
 
 # Cria o parser de saída

@@ -1,20 +1,23 @@
+# main.py
+
+# 1. Declara as as bibliotecas necessárias
 import os  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain_core.output_parsers import StrOutputParser
 
-# Carrega as variáveis de ambiente (necessário para a chave do Google)  
+# 2 - Carrega as variáveis de ambiente (necessário para a chave do Google)  
 # Certifique-se de ter um arquivo .env  
 load_dotenv()
 
-# 1. Crie um template de prompt.  
-#    A variável {topico} será preenchida dinamicamente.  
+# 3. Crie um template de prompt.  
+# A variável {topico} será preenchida dinamicamente.  
 prompt_template = ChatPromptTemplate.from_template(  
     "Escreva uma única frase engraçada sobre o tópico: {topico}"  
 )
 
-# 2. Inicialize o LLM.  
+# 4. Inicialize o LLM.  gemini-2.5-flash
 model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 3. Crie um parser de saída.  
