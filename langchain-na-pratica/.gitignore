@@ -6,6 +6,7 @@ dist/
 wheels/
 *.egg-info
 .trae/
+.github/
 
 # Virtual environments
 .venv

@@ -1,0 +1,3 @@
+# Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo
+
+...conteúdo do capítulo 7 movido do ebook.md...

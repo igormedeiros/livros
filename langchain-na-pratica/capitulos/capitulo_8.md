@@ -1,0 +1,3 @@
+# Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain
+
+...conteúdo do capítulo 8 movido do ebook.md...
