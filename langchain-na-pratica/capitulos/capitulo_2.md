@@ -1,17 +1,42 @@
 ## Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain
 
+**Neste capítulo, você vai aprender:**
+
+* Como configurar um ambiente de desenvolvimento Python robusto e seguro para projetos de IA com LangChain.
+* Vantagens do Linux/WSL, pyenv, zsh, Oh My Zsh e chaves SSH para produtividade e segurança.
+* Gerenciamento moderno de dependências com uv e pyproject.toml.
+* Práticas recomendadas para proteger chaves de API e variáveis de ambiente.
+* Considerações sobre hardware para rodar LLMs locais.
+* Exercícios práticos para instalar ferramentas essenciais e validar o ambiente.
+
+---
+
+## Vamos começar?
+
+Antes de mergulharmos no mundo do LangChain, é fundamental garantir que nosso ambiente de desenvolvimento esteja pronto para a batalha. Configurar o ambiente certo não é apenas uma questão de conveniência, mas também de eficiência e segurança. Neste capítulo, vamos preparar o terreno para que você possa se concentrar no que realmente importa: construir aplicações incríveis com IA.
 
 Então, antes de começarmos, respire fundo. Pegue um café (ou um chá, no meu caso, já que ironicamente não sou fã de café) e vamos passar por isso juntos, passo a passo. Lembro-me de um colega que passou horas depurando um erro complexo, apenas para descobrir que era um ponto e vírgula faltando. Ou, pior, um espaço a mais na indentação em Python. A máquina é implacável com a sintaxe, mas a satisfação de encontrar o erro é indescritível! A paciência que você exercita aqui será sua maior aliada em toda a jornada com IA. Prometo que, ao final deste capítulo, você terá uma base sólida e organizada para construir todos os projetos incríveis que virão.
+
+### **Por que um bom ambiente de desenvolvimento é crucial?**
+Um ambiente de desenvolvimento bem configurado é a fundação sobre a qual você construirá suas aplicações. Ele não apenas facilita o trabalho diário, mas também garante que você possa escalar seus projetos de forma eficiente e segura. 
+
+Basicamente, é importante que você desenvolva em um ambiente que seja o mais próximo possível do ambiente de produção. Isso reduz problemas de compatibilidade e garante que o que funciona no seu computador também funcionará quando você for para o *deploy*.
+
+Aqui estão alguns outros pontos-chave:
+* **Consistência:** Um ambiente padronizado reduz problemas de compatibilidade e garante que todos os membros da equipe estejam na mesma página.
+* **Eficiência:** Ferramentas como pyenv e Oh My Zsh aceleram o fluxo de trabalho, permitindo que você se concentre no código, não na configuração.
+* **Segurança:** Proteger suas chaves de API e variáveis de ambiente é essencial para evitar vazamentos de dados e garantir a integridade do seu projeto.
+* **Hardware adequado:** Considerar as especificações do seu computador é crucial, especialmente ao trabalhar com modelos de linguagem grandes (LLMs) que exigem recursos significativos. Embora esse aspecto seja mais relevante quando você for rodar LLMs locais, é importante ter em mente que um ambiente bem configurado pode fazer a diferença entre um projeto que roda suavemente e outro que trava constantemente.
 
 ### **Meu Ambiente de Batalha: Por que Linux e Ferramentas de Linha de Comando**
 
 Sei que muitos desenvolvedores, especialmente no mundo corporativo, estão acostumados com o Windows e o PowerShell. E eu entendo perfeitamente, são ferramentas poderosas e familiares. No entanto, para o tipo de desenvolvimento que faremos aqui, e para o desenvolvimento de software em geral, eu recomendo fortemente que você abrace o ambiente Linux.
 
+Para alguns, um terminal de computador é uma tela preta, ainda que colorida, é fria e sem vida. Para mim, quando estou no meu terminal Linux Kali com o shell Zsh todo customizado, me sinto como se estivesse tocando o solo de guitarra de "Hotel California" dos Eagles. Existe uma fluidez, uma arte, um prazer em fazer as ferramentas responderem exatamente como você quer, com o mínimo de esforço. É uma dança entre o homem e a máquina.
+
 **Por que Linux?** A grande maioria das ferramentas de desenvolvimento, servidores de produção, contêineres (Docker) e tecnologias de nuvem rodam nativamente em Linux. Desenvolver em um ambiente semelhante ao de produção economiza uma quantidade enorme de dores de cabeça com compatibilidade, permissões de arquivo e pequenas diferenças que podem quebrar sua aplicação quando você for para o *deploy*.
 
-**"Mas Igor, eu uso Windows\!"** Sem problemas\! A melhor invenção da Microsoft para desenvolvedores nos últimos anos foi o **Windows Subsystem for Linux (WSL)**. Ele permite que você rode uma distribuição Linux completa diretamente no seu Windows, com integração total. É o melhor dos dois mundos. Pessoalmente, eu uso o Kali Linux, que está disponível gratuitamente na Microsoft Store, por sua robustez e conjunto de ferramentas, mas distribuições como Ubuntu também são excelentes escolhas.
-
-(E, parafraseando um meme clássico da comunidade de desenvolvimento: "Pare de Programar no Windows!")
+**"Mas Igor, eu uso Windows!"** Sem problemas! A melhor invenção da Microsoft para desenvolvedores nos últimos anos foi o **Windows Subsystem for Linux (WSL)**. Ele permite que você rode uma distribuição Linux completa diretamente no seu Windows, com integração total. É o melhor dos dois mundos. Pessoalmente, eu uso o Kali Linux, que está disponível gratuitamente na Microsoft Store, por sua robustez e conjunto de ferramentas, mas distribuições como Ubuntu também são excelentes escolhas.
 
 ### **Gerenciando Versões do Python como um Profissional: pyenv**
 
@@ -31,9 +56,7 @@ Este script automatiza a instalação de todas as dependências necessárias, do
 * **Objetivo:** Preparar um ambiente Linux robusto com a versão correta do Python gerenciada pelo pyenv.  
 * **Nome do Arquivo:** `setup_python_kali.sh`  
 * **Dependências:** git, curl, build-essential e outras dependências de compilação.  
-* **Comando de Execução:** ````sh
-bash setup_python_kali.sh
-````
+* **Comando de Execução:** `setup_python_kali.sh`
 
 ```sh
 #!/bin/bash
@@ -114,6 +137,22 @@ echo "python --version"
 echo ""
 ```
 
+### Hands-on: Exercício 1 — Instalando pyenv e Python no Kali Linux (WSL)
+
+**Comando de Execução (Linux/macOS):**
+```sh
+chmod +x setup_python_kali.sh && ./setup_python_kali.sh
+```
+**Comando de Execução (Windows):**
+Execute o script acima dentro do WSL (Ubuntu/Kali).
+
+**Saída Esperada (pode variar):**
+```
+SUCESSO! Ambiente corrigido e Python 3.12.9 instalado.
+python --version
+Python 3.12.9
+```
+
 ### **Um Terminal com Superpoderes: zsh e Oh My Zsh**
 
 Sou muito exigente com meu terminal. É onde passo boa parte do meu dia, e ele precisa ser rápido, inteligente e visualmente agradável. Por isso, a primeira coisa que faço em qualquer ambiente novo é substituir o bash padrão pelo zsh e turbiná-lo com o framework **Oh My Zsh**.
@@ -129,9 +168,7 @@ Este script instala o zsh, o Oh My Zsh e os plugins que eu uso.
 * **Objetivo:** Configurar um terminal moderno e productivo.  
 * **Nome do Arquivo:** `setup_zsh.sh`  
 * **Dependências:** zsh, git, curl  
-* **Comando de Execução:** ````sh
-bash setup_zsh.sh
-````
+* **Comando de Execução:** `setup_zsh.sh`
 
 ```sh
 #!/bin/bash
@@ -164,6 +201,20 @@ echo "Por favor, reinicie seu terminal ou faça logout e login para que as alter
 exec zsh
 ```
 
+### Hands-on: Exercício 2 — Instalando o Terminal Perfeito (zsh + Oh My Zsh)
+
+**Comando de Execução (Linux/macOS):**
+```sh
+chmod +x setup_zsh.sh && ./setup_zsh.sh
+```
+**Comando de Execução (Windows):**
+Execute o script acima dentro do WSL.
+
+**Saída Esperada (pode variar):**
+```
+Instalação e configuração do Zsh e Oh My Zsh concluídas!
+```
+
 ### **Segurança e Conveniência com Git: Chaves SSH**
 
 Quando você clona, faz *push* ou *pull* de um repositório no GitHub, você precisa se autenticar. A forma mais comum é via HTTPS, que te pede o nome de usuário e senha (ou um token de acesso pessoal) toda vez. É seguro, mas repetitivo.
@@ -179,11 +230,9 @@ Uma forma muito mais segura e conveniente é usar **chaves SSH**. Você gera um 
 **Exercício Prático: Gerando sua Chave SSH para o GitHub**
 
 * **Objetivo:** Criar um par de chaves SSH e exibi-lo para que possa ser adicionado ao GitHub.  
-* **Nome do Arquivo:** generate\_ssh\_key.sh  
+* **Nome do Arquivo:** `generate_ssh_key.sh`  
 * **Dependências:** openssh-client  
-* **Comando de Execução:** ```sh
-bash generate_ssh_key.sh
-```
+* **Comando de Execução:** `generate_ssh_key.sh`
 
 ```sh
 #!/bin/bash  
@@ -201,15 +250,20 @@ echo "Copie a chave pública abaixo e cole nas configurações do seu GitHub:"
 cat ~/.ssh/id_rsa.pub
 ```
 
-Depois de executar o script, copie a saída (que começa com ssh-rsa...) e cole-a na seção "SSH and GPG keys" das configurações da sua conta no GitHub. A partir de agora, ao clonar repositórios, use a URL SSH em vez da HTTPS.
+### Hands-on: Exercício 3 — Gerando sua Chave SSH para o GitHub
 
-### **Minhas Ferramentas de Batalha: VS Code**
+**Comando de Execução (Linux/macOS):**
+```sh
+chmod +x generate_ssh_key.sh && ./generate_ssh_key.sh
+```
+**Comando de Execução (Windows):**
+Execute o script acima dentro do WSL.
 
-Meu editor de código de escolha é o **Visual Studio Code**. Ele é leve, rápido e insanamente extensível. Mas, assim como o terminal, eu tenho minhas manias e customizações.
-
-A primeira coisa que faço em uma instalação nova é instalar o tema **Dracula Official**. Não sei se tenho algum grau de dislexia, mas suspeito que sim, pois o contraste visual é extremamente importante para mim. O tema Dracula, com seu fundo escuro e cores vibrantes, torna o código muito mais legível e menos cansativo para os meus olhos.
-
-A segunda extensão é o **Eclipse Keymap**. Confesso: programei em Java usando o Eclipse por mais de 12 anos. Os atalhos de teclado estão gravados na minha memória muscular. Tentar me adaptar aos atalhos padrão do VS Code seria uma batalha perdida. Essa extensão me permite usar todos os atalhos do Eclipse que eu amo, tornando a transição para o Python muito mais suave. Um dia eu encaro o desafio de mudar para não depender de mais uma extensão, mas esse dia ainda não chegou.
+**Saída Esperada (pode variar):**
+```
+Copie a chave pública abaixo e cole nas configurações do seu GitHub:
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAr...
+```
 
 ### **Gerenciando Dependências: A Revolução do uv e pyproject.toml**
 
@@ -230,6 +284,17 @@ uv é um gerenciador de pacotes e ambientes virtuais escrito em Rust. E, meu ami
 
 A partir de agora, todos os nossos comandos de instalação usarão uv. Ele vai criar um ambiente virtual para nós na primeira vez que adicionarmos uma dependência e manter tudo organizado no pyproject.toml.
 
+### Hands-on: Exercício 4 — Gerenciando Dependências com uv
+
+**Comando de Execução (Linux/macOS/WSL):**
+```sh
+uv add langchain
+```
+**Saída Esperada (pode variar):**
+```
+Added langchain to pyproject.toml
+```
+
 ### **Gerenciando Segredos: Chaves de API e Variáveis de Ambiente**
 
 Para usar modelos de IA como os do Google Gemini, você precisará de uma **chave de API (API Key)**. É extremamente importante que você **nunca, jamais, em hipótese alguma**, coloque sua chave de API diretamente no seu código-fonte, especialmente se você planeja compartilhar esse código ou versioná-lo com o Git. Isso seria como deixar a chave da sua casa debaixo do tapete da porta.
@@ -242,13 +307,13 @@ O Google oferece uma camada gratuita muito generosa para desenvolvedores que que
 1. Vá para aistudio.google.com/apikey.  
 2. Faça login com sua conta do Google.  
 3. Clique em "Create API key in new project".  
-4. Copie a chave gerada. É isso\! Você não precisa configurar um projeto complexo no Google Cloud ou adicionar um cartão de crédito para começar.
+4. Copie a chave gerada. É isso! Você não precisa configurar um projeto complexo no Google Cloud ou adicionar um cartão de crédito para começar.
 
 **Configurando a chave no seu projeto:**
 
 1. **Crie um arquivo .env:** Na raiz da pasta do seu projeto, crie um arquivo chamado .env.  
 2. **Adicione sua chave de API ao arquivo .env:** Abra o arquivo .env e adicione sua chave da seguinte forma:  
-   GOOGLE\_API\_KEY="sua\_chave\_api\_aqui"
+   GOOGLE_API_KEY="sua_chave_api_aqui"
 
 3. **Ignore o arquivo .env no Git:** Para garantir que você nunca envie acidentalmente seus segredos para um repositório público, crie um arquivo chamado .gitignore na raiz do seu projeto e adicione a seguinte linha a ele:  
    # Ambiente virtual  
@@ -258,9 +323,13 @@ O Google oferece uma camada gratuita muito generosa para desenvolvedores que que
    .env
 
    # Cache do Python  
-   \_\_pycache\_\_/
+   __pycache__/
 
-É fundamental ir além de apenas esconder as chaves. Adote o **princípio do menor privilégio**: suas chaves de API devem ter apenas as permissões mínimas necessárias para a tarefa que irão executar. Por exemplo, se uma chave só precisa ler dados, ela não deve ter permissão para escrever ou deletar. Para ambientes de produção, considere o uso de serviços de gerenciamento de segredos como Azure KeyVault ou AWS Secret Manager. É crucial entender que o ambiente de estudos e prototipagem, onde a conveniência é prioridade, difere significativamente de um ambiente de produção, que exige rigorosas práticas de segurança corporativa, como auditorias regulares, controle de acesso baseado em função (RBAC) e monitoramento contínuo. Além disso, a **rotação periódica de chaves** é uma boa prática de segurança. Defina um cronograma para gerar novas chaves e invalidar as antigas, minimizando o risco em caso de vazamento.
+É fundamental ir além de apenas esconder as chaves. Adote o **princípio do menor privilégio**: suas chaves de API devem ter apenas as permissões mínimas necessárias para a tarefa que irão executar. 
+
+Por exemplo, se uma chave só precisa ler dados, ela não deve ter permissão para escrever ou deletar. Para ambientes de produção, considere o uso de serviços de gerenciamento de segredos como Azure KeyVault ou AWS Secret Manager. 
+
+É crucial entender que o ambiente de estudos e prototipagem, onde a conveniência é prioridade, difere significativamente de um ambiente de produção, que exige rigorosas práticas de segurança corporativa, como auditorias regulares, controle de acesso baseado em função (RBAC) e monitoramento contínuo. Além disso, a **rotação periódica de chaves** é uma boa prática de segurança. Defina um cronograma para gerar novas chaves e invalidar as antigas, minimizando o risco em caso de vazamento.
 
 ### **Considerações sobre Hardware**
 
@@ -268,59 +337,110 @@ Antes de encerrar este capítulo sobre ambiente, é importante tocar em um ponto
 
 Eu, por exemplo, tenho um PC servidor de LLM em casa. É uma máquina modesta, com uma RTX 4060 de 8GB de VRAM. Para muitos, 8GB pode parecer pouco, e de fato, limita o tamanho dos modelos que consigo rodar eficientemente (geralmente até modelos de 8 bilhões de parâmetros). Mas mesmo com essa configuração, consigo gerar respostas a uma taxa de 40+ tokens por segundo, o que é incrivelmente rápido para experimentação e desenvolvimento local. Essa experiência me ensinou que não é preciso ter um supercomputador para começar a explorar o mundo dos LLMs locais, mas entender as limitações do seu hardware é fundamental para gerenciar as expectativas e otimizar seus experimentos.
 
+---
+
+### Hands-on: Exercício — Hello, Ambiente Python!
+* **Objetivo:** Validar o ambiente Python e executar o primeiro código com LangChain.
+* **Nome do Arquivo:** `exercicios/capitulo_02/main.py`
+* **Dependências:** `langchain`, `python-dotenv`
+* **Comando de Instalação:**
+```sh
+uv add langchain python-dotenv
+```
+
+```python
+# exercicios/capitulo_02/exercicio_1/main.py
+import os
+from dotenv import load_dotenv
+from langchain_core.prompts import ChatPromptTemplate
+
+load_dotenv()
+prompt = ChatPromptTemplate.from_template("Diga olá para o mundo do LangChain!")
+print(prompt.format())
+```
+
+**Comando de Execução (Linux/macOS):**
+```sh
+chmod +x exercicios/capitulo_02/exercicio_1/run.sh
+./exercicios/capitulo_02/exercicio_1/run.sh
+```
+**Comando de Execução (Windows):**
+```bat
+REM Execute o exercício no Windows
+exercicios\capitulo_02\exercicio_1\run.bat
+```
+**Saída Esperada (pode variar):**
+```
+Diga olá para o mundo do LangChain!
+```
 **Troubleshooting Comum:**
+* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente usando `uv add`.
+* Problemas de permissão: Use `chmod +x` para scripts `.sh`.
+* Variáveis de ambiente não carregadas: Certifique-se de que o arquivo `.env` está na raiz do projeto.
 
-*   **`command not found: pyenv` ou `python: command not found`:** Certifique-se de que você fechou e reabriu seu terminal após a instalação do `pyenv` e a configuração do `.zshrc` (ou `.bashrc`). O `pyenv init` precisa ser executado para que o `pyenv` seja carregado corretamente no seu shell.
-*   **`pip is configured with locations that require TLS/SSL, however the ssl module in Python was not available`:** Este erro geralmente ocorre em ambientes Linux onde as bibliotecas SSL necessárias para compilar o Python não estão instaladas. Certifique-se de que você executou o script `setup_python_kali.sh` e que todas as dependências (`libssl-dev`, `zlib1g-dev`, etc.) foram instaladas com sucesso.
-*   **Problemas com `uv` ou `pip`:** Se você encontrar erros ao instalar pacotes, verifique sua conexão com a internet. Para problemas persistentes, tente limpar o cache do `uv` (`uv cache clean`) ou do `pip` (`pip cache purge`).
-*   **Variáveis de Ambiente não Carregadas:** Se seu código Python não conseguir encontrar a `GOOGLE_API_KEY` ou outras variáveis de ambiente, verifique se o arquivo `.env` está na raiz do seu projeto ou no diretório do capítulo. Certifique-se de que o nome da variável no `.env` corresponde exatamente ao que você está tentando acessar no código (ex: `GOOGLE_API_KEY`).
-*   **Permissões de Execução em Scripts Shell:** Lembre-se de dar permissão de execução aos scripts `.sh` com `chmod +x nome_do_script.sh` antes de executá-los.
-
-### Resumo do Capítulo
-
-Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, robusto e seguro, preparando o terreno para construir aplicações de IA de alta qualidade.
-
-* **Ambiente Linux:** Discutimos as vantagens de desenvolver em um ambiente Linux (via WSL) para garantir compatibilidade com as ferramentas e servidores de produção.  
-* **Gerenciamento de Versões com pyenv:** Aprendemos a instalar e usar o pyenv para gerenciar múltiplas versões do Python sem conflitos, garantindo consistência entre projetos e equipes.  
-* **Terminal e Git:** Turbinamos nosso terminal com zsh e Oh My Zsh para maior produtividade e configuramos chaves SSH para interagir com o GitHub de forma mais segura e conveniente.  
-* **Gerenciamento de Dependências com uv:** Exploramos a evolução do gerenciamento de pacotes em Python, desde o setup.py até o moderno pyproject.toml (PEPs 518 e 621), e adotamos o uv como nossa ferramenta principal por sua velocidade e simplicidade.  
-* **Gerenciamento de Segredos:** Vimos a importância de nunca expor chaves de API no código e aprendemos o passo a passo para obter uma chave gratuita do Google AI Studio e configurá-la de forma segura usando um arquivo .env.
-
-
+---
 
 ### Pontos Chave
+* Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
+* Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
+* A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
+* Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
 
-*   Um ambiente de desenvolvimento bem configurado (Linux/WSL, pyenv, zsh) é crucial para produtividade em IA.
-*   Gerenciamento de dependências com `uv` e `pyproject.toml` oferece velocidade e consistência.
-*   A segurança das chaves de API (variáveis de ambiente, `.env`, `.gitignore`) é fundamental para qualquer projeto de IA.
-*   Compreender as limitações de hardware é importante ao trabalhar com LLMs locais.
+---
 
+### Resumo do Capítulo
+Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, robusto e seguro, preparando o terreno para construir aplicações de IA de alta qualidade.
+
+* Ambiente Linux: Vantagens de desenvolver em Linux (via WSL) para garantir compatibilidade com ferramentas e servidores de produção.
+* Gerenciamento de Versões com pyenv: Instalação e uso do pyenv para múltiplas versões do Python sem conflitos.
+* Terminal e Git: Terminal turbinado com zsh e Oh My Zsh, chaves SSH para interagir com o GitHub de forma segura.
+* Gerenciamento de Dependências com uv: Evolução do gerenciamento de pacotes em Python, adoção do uv por sua velocidade e simplicidade.
+* Gerenciamento de Segredos: Passo a passo para obter e configurar uma chave gratuita do Google AI Studio usando um arquivo .env.
+
+---
 ### Teste seu Conhecimento
 
-1. Qual é a principal vantagem de usar o WSL (Windows Subsystem for Linux) para desenvolvimento Python?  
-   a) Ele permite rodar jogos de Windows no Linux.  
-   b) Ele oferece um ambiente de desenvolvimento semelhante ao de produção, evitando problemas de compatibilidade.  
-   c) Ele é a única forma de instalar o Python no Windows.  
-   d) Ele melhora a performance gráfica de aplicações.  
-2. Para que serve a ferramenta pyenv?  
-   a) Para escrever código Python mais rápido.  
-   b) Para gerenciar as dependências de um projeto, como o LangChain.  
-   c) Para instalar e alternar entre múltiplas versões do Python no mesmo sistema.  
-   d) Para criar interfaces gráficas para aplicações Python.  
-3. Qual arquivo é o padrão moderno para definir as dependências e metadados de um projeto Python, conforme as PEPs 518 e 621?  
-   a) requirements.txt  
-   b) setup.py  
-   c) config.yml  
-   d) pyproject.toml  
-4. Por que é recomendado usar chaves SSH em vez de HTTPS para interagir com o GitHub?  
-   a) Porque é mais rápido para baixar arquivos grandes.  
-   b) Porque é mais seguro e evita a necessidade de digitar a senha a cada interação.  
-   c) Porque o HTTPS não funciona com repositorios privados.  
-   d) Porque o SSH permite editar arquivos diretamente no GitHub.  
-5. Qual comando você usaria com uv para adicionar uma nova dependência a um projeto e registrá-la no pyproject.toml?  
-   a) uv install \<pacote\>  
-   b) uv pip install \<pacote\>  
-   c) uv add \<pacote\>  
-   d) uv sync \<pacote\>
+1. Qual é a principal vantagem de usar o WSL (Windows Subsystem for Linux) para desenvolvimento Python?
+  a) Permite rodar aplicativos Windows no Linux  
+  b) Proporciona um ambiente Linux nativo dentro do Windows, facilitando compatibilidade e produtividade  
+  c) Melhora a performance do Windows  
+  d) Instala automaticamente todas as dependências Python
 
-*(Respostas: 1-b, 2-c, 3-d, 4-b, 5-c)*
+2. Para que serve a ferramenta pyenv?
+  a) Gerenciar ambientes virtuais  
+  b) Atualizar pacotes Python automaticamente  
+  c) Instalar e gerenciar múltiplas versões do Python sem conflitos  
+  d) Proteger variáveis de ambiente
+
+3. Qual arquivo é o padrão moderno para definir as dependências e metadados de um projeto Python?
+  a) requirements.txt  
+  b) setup.py  
+  c) environment.yml  
+  d) pyproject.toml
+
+4. Por que é recomendado usar chaves SSH em vez de HTTPS para interagir com o GitHub?
+  a) HTTPS é mais rápido  
+  b) Chaves SSH oferecem mais segurança e praticidade, evitando digitação de senhas  
+  c) SSH permite editar arquivos diretamente no GitHub  
+  d) HTTPS não funciona em ambientes Linux
+
+5. Qual comando você usaria com uv para adicionar uma nova dependência ao projeto?
+  a) uv install <pacote>  
+  b) pip add <pacote>  
+  c) uv add <pacote>  
+  d) python -m uv <pacote>
+
+---
+
+**Respostas:**  
+1. b  
+2. c  
+3. d  
+4. b  
+5. c
+
+---
+
+### Projeto Hands-on: Melhorando o Chatbot Simples
+
+Crie um projeto Python que utilize LangChain para construir um chatbot simples. Use uv para gerenciar dependências, proteja sua chave de API com .env e documente todos os comandos usados. Experimente rodar o projeto em diferentes versões do Python usando pyenv e compartilhe o repositório via SSH no GitHub.

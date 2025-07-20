@@ -1,6 +1,15 @@
 ## Capítulo 5: Desenvolvimento de Agentes Autônomos e Multiagentes
 
+**Neste capítulo, você vai aprender:**
 
+* O papel dos agentes autônomos e multiagentes em aplicações de IA modernas.
+* Como construir agentes que tomam decisões dinâmicas usando ferramentas (Tools) e o padrão ReAct.
+* Engenharia de contexto, uso de memória e o papel do RAG para ampliar o conhecimento dos agentes.
+* Exercício prático de agente de pesquisa com integração de ferramentas externas e adaptação para LangGraph.
+* Introdução ao LangGraph para orquestração de sistemas multiagentes complexos.
+* Pontos chave, troubleshooting, checklist e teste de conhecimento para consolidar o aprendizado.
+
+---
 
 Seja bem-vindo a um dos territórios mais fascinantes e, admito, mais complexos do LangChain: os agentes. Se o conceito parecer um pouco abstrato ou intimidador no começo, não se preocupe. É um salto conceitual significativo. Pense nisso como aprender a andar de bicicleta depois de só ter usado patinetes. Nos capítulos anteriores, construímos "patinetes": fluxos de trabalho lineares e previsíveis. Agora, vamos dar equilíbrio e autonomia à nossa criação.
 
@@ -10,9 +19,9 @@ O equilíbrio, assim como na bicicleta, vem com a prática. Vamos começar com c
 
 Até agora, usamos LLMs para executar tarefas bem definidas dentro de um pipeline (uma Chain). O fluxo era fixo. Um agente, por outro lado, vira esse jogo de cabeça para baixo. Em um sistema agêntico, o LLM não é apenas um executor de tarefas, ele é o **cérebro**, o **motor de raciocínio** que decide o que fazer a seguir.
 
-A principal diferença entre uma Chain e um Agente é a **autonomia**. Um agente é um sistema que usa um LLM como seu "motor de raciocínio" para determinar a sequência de ações a serem tomadas.
+A principal diferença entre uma Chain e um Agente é a **autonomia**. Um agente é um sistema que usa um LLM como seu "motor de raciocínio" para determinar a sequência de ações a serem tomadas. O padrão ReAct (Reason + Act) é implementado nativamente via `create_react_agent` no LangChain e LangGraph, permitindo raciocínio iterativo e uso dinâmico de ferramentas.
 
-* Uma **Chain** segue um caminho predeterminado. Ex: Prompt \-\> LLM \-\> Parse. O caminho não muda.  
+* Uma **Chain** segue um caminho predeterminado. Ex: Prompt -> LLM -> Parse. O caminho não muda.  
 * Um **Agente** usa o LLM para escolher um caminho dinamicamente a partir de um conjunto de opções disponíveis (as ferramentas). O caminho pode ser diferente a cada execução.
 
 Essa capacidade de tomar decisões em tempo de execução é o que permite que agentes resolvam problemas complexos, interajam com o mundo exterior e executem tarefas que não podem ser roteirizadas de antemão.
@@ -23,7 +32,7 @@ Os efeitos inovadores dessa autonomia são visíveis em modelos como o Google vO
 
 ### Engenharia de Contexto: A Evolução do Prompt
 
-Quando falamos de agentes, especialmente sistemas com múltiplos agentes que colaboram e compartilham informações, a simples "Engenharia de Prompts" evolui para algo mais sofisticado: a **Engenharia de Contexto**.
+Quando falamos de agentes, especialmente sistemas com múltiplos agentes que colaboram e compartilham informações, a simples "Engenharia de Prompts" evolui para algo mais sofisticado: a **Engenharia de Contexto**. Componentes de memória e checkpointers (ex: `MemorySaver`) permitem que agentes mantenham histórico e colaboratividade, facilitando fluxos multiagentes.
 
 Não se trata mais apenas de criar a instrução perfeita para uma única tarefa. Trata-se de gerenciar e moldar dinamicamente o contexto completo que cada agente recebe. Esse contexto pode incluir:
 
@@ -64,15 +73,18 @@ Para construir um agente, precisamos de dois componentes principais:
    * **Observation (Observação):** O resultado da ferramenta é retornado ao LLM como uma "observação".
    * **Repeat (Repetição):** O LLM analisa a observação e decide se a tarefa está concluída ou se precisa de mais um ciclo de Pensamento, Ação e Observação.
 
-### Exercício Prático: Agente de Pesquisa Simples
+Ferramentas são funções Python decoradas ou instâncias de classes Tool, e descrições detalhadas são essenciais para o LLM decidir seu uso. O executor do agente pode ser criado com `create_react_agent` do LangGraph, integrando LLM, ferramentas, prompt e memória.
 
-Vamos construir nosso primeiro agente. Ele terá uma única ferramenta: a capacidade de pesquisar na internet para responder a perguntas sobre eventos atuais ou informações que não estavam nos dados de treinamento do LLM. Usaremos a API da Tavily, que é otimizada para casos de uso de IA.
+### Hands-on: Exercício — Agente de Pesquisa Simples
 
-* **Objetivo:** Construir um agente simples que pode usar uma ferramenta de busca para responder a perguntas factuais.  
-* **Nome do Arquivo:** `exercicios/capitulo_05/exercicio_1/main.py`  
-* **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`  
-* **Comando de Instalação:** `uv add langchain langchain-google-genai langchain-tavily python-dotenv`  
-* **Configuração Adicional:** Você precisará de uma chave de API da Tavily. Você pode obter uma gratuitamente em tavily.com. Adicione-a ao seu arquivo .env como `TAVILY_API_KEY`.
+* **Objetivo:** Construir um agente simples que pode usar uma ferramenta de busca para responder a perguntas factuais.
+* **Nome do Arquivo:** `exercicios/capitulo_05/exercicio_1/main.py`
+* **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`
+* **Comando de Instalação:**
+```sh
+uv add langchain langchain-google-genai langchain-tavily python-dotenv
+```
+* **Configuração Adicional:** Adicione sua chave de API da Tavily ao arquivo `.env` como `TAVILY_API_KEY`.
 
 ```python
 # exercicios/capitulo_05/exercicio_1/main.py
@@ -132,30 +144,38 @@ if __name__ == "__main__":
     print(f"\\n\< Resposta Final: {response2['output']}")
 
 **Comando de Execução (Linux/macOS):**
-
 ```sh
-# Dê permissão de execução ao script
 chmod +x exercicios/capitulo_05/exercicio_1/run.sh
-
-# Execute o exercício
 ./exercicios/capitulo_05/exercicio_1/run.sh
 ```
-
 **Comando de Execução (Windows):**
-
 ```bat
 REM Execute o exercício no Windows
 exercicios\capitulo_05\exercicio_1\run.bat
 ```
+**Saída Esperada (pode variar):**
+```
+Agente de Pesquisa pronto! Faça sua pergunta.
+> Pergunta: Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?
+< Resposta Final: [Resposta baseada na busca Tavily]
+> Pergunta: Qual é a cor do céu?
+< Resposta Final: Azul
+```
+* **Dica:** O exercício pode ser facilmente adaptado para LangGraph usando `create_react_agent`, tornando o agente mais robusto e escalável. Exemplo:
+```python
+from langgraph.prebuilt import create_react_agent
+agent_executor = create_react_agent(llm, tools)
+response = agent_executor.invoke({"messages": [("human", pergunta1)]})
+print(response["messages"][-1].content)
+```
+* **Dica:** Use streaming para inspecionar o raciocínio do agente passo a passo:
+```python
+for event in agent_executor.stream({"messages": [("human", pergunta1)]}, stream_mode="values"):
+    print(event["messages"][-1].content)
+```
+* Proteja chaves de API com arquivos `.env` e configure tracing conforme necessário.
 
-
-Ao executar, observe a saída com verbose=True. Você verá o LLM raciocinando, decidindo chamar a ferramenta tavily_search_results_json, os resultados que a ferramenta retorna e, finalmente, a formulação da resposta final. Para a segunda pergunta, você verá que o LLM decide que não precisa de uma ferramenta e responde diretamente. Isso é autonomia em ação\!
-
-
-
-
-
-
+---
 
 ### Sistemas Multiagentes e a Magia do LangGraph
 
@@ -167,42 +187,83 @@ Gerenciar esses fluxos complexos, que podem ter ciclos e condicionais, é um des
 
 O LangGraph é o estado da arte para construir sistemas multiagentes robustos e é um tópico avançado que exploraremos em projetos futuros, mas é fundamental que você saiba que ele existe e qual problema ele resolve.
 
+---
 
+### Troubleshooting Comum
+* Instale o LangGraph com `pip install langgraph`.
+* Configure memória e checkpointers para agentes multiagentes.
+* Debug de fluxos multiagentes pode ser feito inspecionando o histórico de mensagens e eventos.
+* Proteja chaves de API e configure tracing para inspeção detalhada.
 
-
+---
 
 ### Pontos Chave
-*   Agentes usam LLMs como "cérebros" para tomar decisões dinâmicas, diferentemente das Chains com fluxo fixo.
-*   A Engenharia de Contexto é crucial para gerenciar informações em sistemas agênticos.
-*   Ferramentas (Tools) e o Executor do Agente (Agent Executor) são componentes essenciais para a funcionalidade do agente.
-*   O LangGraph é a ferramenta ideal para orquestrar sistemas multiagentes complexos.
+* Agentes usam LLMs como "cérebros" para tomar decisões dinâmicas, diferentemente das Chains com fluxo fixo.
+* Engenharia de Contexto e uso de memória são cruciais para gerenciar informações em sistemas agênticos.
+* Ferramentas (Tools) e o Executor do Agente (Agent Executor) são componentes essenciais para a funcionalidade do agente.
+* O LangGraph é o padrão para orquestrar sistemas multiagentes complexos.
+* O uso de ferramentas bem descritas e engenharia de contexto são diferenciais para agentes eficientes.
 
-### **Teste seu Conhecimento**
+---
 
-1. Qual é a característica que define um Agente e o diferencia de uma Chain?  
-   a) O uso de modelos de linguagem do Google.  
-   b) A capacidade de tomar decisões dinâmicas sobre qual ação executar a seguir.  
-   c) A velocidade de processamento.  
-   d) A capacidade de gerar texto.  
-2. No padrão ReAct (Reason \+ Act), qual é o papel do LLM?  
-   a) Apenas executar a ferramenta (Act).  
-   b) Apenas raciocinar sobre qual ferramenta usar (Reason).  
-   c) Raciocinar sobre qual ferramenta usar e, em seguida, formular a resposta final com base na observação.  
-   d) Armazenar os resultados em um banco de dados.  
-3. O que é uma "Tool" (Ferramenta) no contexto de um agente LangChain?  
-   a) Um modelo de linguagem específico para uma tarefa.  
-   b) Uma função Python com uma boa descrição que o agente pode decidir invocar.  
-   c) A interface de usuário do agente.  
-   d) Um tipo especial de prompt.  
-4. No exercício do agente de pesquisa, por que o agente não usou a ferramenta de busca para responder "Qual é a cor do céu?"  
-   a) Porque a API da Tavily estava offline.  
-   b) Porque o LLM "sabia" a resposta e julgou que não precisava de informações externas.  
-   c) Porque a pergunta estava mal formulada.  
-   d) Porque a ferramenta de busca não funciona para perguntas sobre cores.  
-5. Para qual tipo de problema o LangGraph é a ferramenta mais indicada?  
-   a) Para criar prompts simples.  
-   b) Para construir um pipeline linear com duas etapas.  
-   c) Para orquestrar sistemas complexos com múltiplos agentes que podem interagir em ciclos.  
+### Resumo do Capítulo
+Neste capítulo, você aprendeu sobre agentes autônomos e multiagentes no LangChain, entendendo como eles diferem das chains tradicionais ao tomar decisões dinâmicas. Explorou o padrão ReAct, engenharia de contexto, o papel do RAG para ampliar o conhecimento dos agentes, e construiu um agente de pesquisa hands-on. Conheceu o LangGraph para orquestração de sistemas multiagentes e revisou os principais conceitos para consolidar o aprendizado.
+
+> **Nota do autor:** O tema de sistemas multiagentes e orquestração com LangGraph é vasto e está em rápida evolução. Se você se interessa por arquiteturas avançadas de IA, vale considerar um livro dedicado ao LangGraph. Ele permitiria explorar casos de uso, padrões de design, integração com outras ferramentas e exemplos práticos em profundidade. O interesse por sistemas multiagentes está crescendo, e um material aprofundado pode ser muito útil para a comunidade.
+
+---
+
+### Teste seu Conhecimento
+1. Qual é a característica que define um Agente e o diferencia de uma Chain?
+   a) O uso de modelos de linguagem do Google.
+   b) A capacidade de tomar decisões dinâmicas sobre qual ação executar a seguir.
+   c) A velocidade de processamento.
+   d) A capacidade de gerar texto.
+2. No padrão ReAct (Reason + Act), qual é o papel do LLM?
+   a) Apenas executar a ferramenta (Act).
+   b) Apenas raciocinar sobre qual ferramenta usar (Reason).
+   c) Raciocinar sobre qual ferramenta usar e, em seguida, formular a resposta final com base na observação.
+   d) Armazenar os resultados em um banco de dados.
+3. O que é uma "Tool" (Ferramenta) no contexto de um agente LangChain?
+   a) Um modelo de linguagem específico para uma tarefa.
+   b) Uma função Python com uma boa descrição que o agente pode decidir invocar.
+   c) A interface de usuário do agente.
+   d) Um tipo especial de prompt.
+4. No exercício do agente de pesquisa, por que o agente não usou a ferramenta de busca para responder "Qual é a cor do céu?"
+   a) Porque a API da Tavily estava offline.
+   b) Porque o LLM "sabia" a resposta e julgou que não precisava de informações externas.
+   c) Porque a pergunta estava mal formulada.
+   d) Porque a ferramenta de busca não funciona para perguntas sobre cores.
+5. Para qual tipo de problema o LangGraph é a ferramenta mais indicada?
+   a) Para criar prompts simples.
+   b) Para construir um pipeline linear com duas etapas.
+   c) Para orquestrar sistemas complexos com múltiplos agentes que podem interagir em ciclos.
    d) Para treinar um novo modelo de linguagem.
+6. Como agentes podem manter histórico e contexto?
+   a) Usando checkpointers e componentes de memória como MemorySaver.
+   b) Apenas com prompts fixos.
+   c) Ignorando o histórico de mensagens.
+   d) Usando apenas ferramentas externas.
 
-*(Respostas: 1-b, 2-c, 3-b, 4-b, 5-c)*
+**Respostas:**
+1. b
+2. c
+3. b
+4. b
+5. c
+6. a
+
+---
+
+### Projeto Hands-on: Orquestrando Agentes Inteligentes
+
+Coloque em prática os conceitos do capítulo criando um projeto Python que utiliza LangChain para construir um sistema multiagente. Implemente pelo menos dois agentes especializados (ex: pesquisador e escritor), cada um com suas próprias ferramentas. Use LangGraph para orquestrar o fluxo entre eles, proteja suas chaves de API com .env e documente todos os comandos usados. Siga a estrutura sugerida:
+
+- Estrutura de diretórios para sistemas multiagentes.
+- Checklist de boas práticas: modularização, logging, versionamento, testes.
+- Fluxograma do grafo de agentes.
+- Dicas para integração de múltiplas ferramentas e fontes de dados.
+- Passos para ativar tracing e compartilhar logs via GitHub.
+- Experimente rodar o projeto em diferentes versões do Python usando pyenv.
+
+---

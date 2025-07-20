@@ -1,69 +1,41 @@
-import os  
-from dotenv import load_dotenv  
-from langchain_core.prompts import ChatPromptTemplate  
-from langchain_google_genai import ChatGoogleGenerativeAI  
+import os
+from dotenv import load_dotenv
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
 
-# Carregar variáveis de ambiente do arquivo .env  
+# Carrega variáveis de ambiente (.env)
 load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    raise EnvironmentError("GOOGLE_API_KEY não encontrada. Adicione ao seu arquivo .env.")
 
-def traduzir_texto(texto_original: str, idioma_destino: str) -> str:  
-    """  
-    Traduz um texto para o idioma de destino usando LangChain e Google Gemini.
+# Inicializa o modelo Gemini
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
 
-    Args:  
-        texto_original: O texto a ser traduzido.  
-        idioma_destino: O idioma para o qual o texto será traduzido.
+# Template dinâmico para tradução
+template = """Você é um tradutor multilíngue especialista.
+Traduza o texto abaixo para {idioma_destino}.
+Responda apenas com a tradução.
 
-    Returns:  
-        O texto traduzido.  
-    """  
-    print(f"Traduzindo '{texto_original}' para {idioma_destino}...")
+Texto:
+{texto_origem}
+"""
 
-    # 1. Definir o template do prompt  
-    template = """  
-    Sua tarefa é ser um tradutor expert.  
-    Traduza o seguinte texto para o idioma '{idioma}':  
-      
-    Texto Original: "{texto}"  
-      
-    Tradução:  
-    """  
-    prompt = ChatPromptTemplate.from_template(template)
+prompt = ChatPromptTemplate.from_template(template)
+parser = StrOutputParser()
 
-    # 2. Inicializar o modelo  
-    # A temperatura 0 torna a tradução mais literal e menos "criativa"  
-    modelo = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
+# Pipeline LCEL: prompt -> modelo -> parser
+chain = prompt | llm | parser
 
-    # 3. Inicializar o parser de saída para obter uma string como resultado  
-    output_parser = StrOutputParser()
+# Exemplos de uso
+exemplos = [
+    {"texto_origem": "A inteligência artificial está mudando o mundo.", "idioma_destino": "Francês"},
+    {"texto_origem": "Python is a powerful programming language.", "idioma_destino": "Japonês"},
+    {"texto_origem": "Hello, world!", "idioma_destino": "Klingon"},
+]
 
-    # 4. Criar a chain usando LangChain Expression Language (LCEL)  
-    chain = prompt | modelo | output_parser
-
-    # 5. Invocar a chain com os parâmetros necessários  
-    try:  
-        resultado = chain.invoke({
-            "idioma": idioma_destino,  
-            "texto": texto_original  
-        })  
-        return resultado  
-    except Exception as e:  
-        return f"Ocorreu um erro durante a tradução: {e}"
-
-# --- Execução do Exemplo ---
-if __name__ == "__main__":  
-    # Exemplo 1: Traduzindo para o Francês  
-    frase_pt = "A inteligência artificial está mudando o mundo."  
-    traducao_fr = traduzir_texto(frase_pt, "Francês")  
-    print(f"Resultado: {traducao_fr}\n")
-
-    # Exemplo 2: Traduzindo para o Japonês  
-    frase_en = "Python is a powerful programming language."  
-    traducao_jp = traduzir_texto(frase_en, "Japonês")  
-    print(f"Resultado: {traducao_jp}\n")  
-      
-    # Exemplo 3: Traduzindo para o Klingon (para testar a criatividade do modelo)  
-    frase_nerd = "Hello, world!"  
-    traducao_klingon = traduzir_texto(frase_nerd, "Klingon")  
-    print(f"Resultado: {traducao_klingon}\n")
+for exemplo in exemplos:
+    print(f"Traduzindo '{exemplo['texto_origem']}' para {exemplo['idioma_destino']}...")
+    resultado = chain.invoke(exemplo)
+    print(f"Resultado: {resultado}\n")

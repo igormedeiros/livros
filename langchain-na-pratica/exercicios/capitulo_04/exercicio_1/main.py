@@ -1,3 +1,4 @@
+# exercicios/capitulo_04/exercicio_1/main.py (OBSOLETO)
 from dotenv import load_dotenv
 from langchain.chains import LLMChain, SequentialChain
 from langchain_core.prompts import PromptTemplate

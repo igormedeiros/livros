@@ -1,10 +1,11 @@
-import os
+# exercicios/capitulo_06/exercicio_2/main.py
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.tools import tool
 import requests
+import os
 
 # Carregar variáveis de ambiente
 load_dotenv()

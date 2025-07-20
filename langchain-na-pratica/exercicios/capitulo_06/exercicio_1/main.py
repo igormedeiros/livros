@@ -1,4 +1,4 @@
-import os
+# exercicios/capitulo_06/exercicio_1/main.py
 import sqlite3
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI

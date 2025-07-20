@@ -1,3 +1,5 @@
+# exercicios/capitulo_04/exercicio_4/main.py  
+
 from dotenv import load_dotenv  
 from langchain_core.prompts import ChatPromptTemplate  
 from langchain_google_genai import ChatGoogleGenerativeAI  

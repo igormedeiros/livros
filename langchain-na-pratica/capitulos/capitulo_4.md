@@ -1,14 +1,27 @@
 ## Capítulo 4: Construção de Pipelines: Da SequentialChain à LCEL
 
+**Neste capítulo, você vai aprender:**
+
+* O papel dos pipelines em aplicações reais (chatbots, RAG, automação).
+* A evolução das chains no LangChain: do imperativo ao declarativo.
+* Como construir pipelines com LCEL, RunnablePassthrough, RunnableParallel e RunnableLambda.
+* Diferenças entre abordagens clássicas (LLMChain/SequentialChain) e modernas (LCEL).
+* Exercícios práticos para criar pipelines eficientes, paralelos, com streaming e tracing.
+* Troubleshooting, checklist de construção, teste de conhecimento e projeto hands-on.
+
+---
+
 ### A Evolução das Chains: Do Imperativo ao Declarativo
 
 Nos primeiros dias do LangChain, a forma de construir fluxos de trabalho era através de classes como LLMChain e SequentialChain. Essa abordagem, embora funcional, era o que chamamos de **imperativa**: você instanciava objetos e os conectava de forma mais verbosa, o que tornava o código mais difícil de ler e manter. Era como dar instruções passo a passo para montar um móvel, detalhando cada parafuso.
 
-O time do LangChain percebeu que poderia haver uma maneira melhor, mais intuitiva e mais poderosa. Uma maneira que fosse **declarativa**, onde você simplesmente descreve o fluxo de dados — como um diagrama de montagem — e o framework se encarrega da execução otimizada.
+O time do LangChain percebeu que poderia haver uma maneira melhor, mais intuitiva e mais poderosa. Uma maneira que fosse **declarativa**, onde você simplesmente descreve o fluxo de dados — como um diagrama de montagem — e o framework se encarrega da execução otimizada. LCEL permite propagação automática de configurações (RunnableConfig), facilitando logging, tracing e debugging em pipelines complexos.
 
-Essa percepção deu origem à **LangChain Expression Language (LCEL)**, lançada em agosto de 2023\. A LCEL é, sem dúvida, uma das inovações mais importantes do framework e é a maneira moderna e recomendada de construir qualquer tipo de pipeline.
+Essa percepção deu origem à **LangChain Expression Language (LCEL)**, lançada em agosto de 2023. A LCEL é, sem dúvida, uma das inovações mais importantes do framework e é a maneira moderna e recomendada de construir qualquer tipo de pipeline.
 
 Neste capítulo, vamos fazer uma viagem no tempo. Primeiro, vamos construir uma chain "à moda antiga" para entender as dores que a LCEL veio resolver. Depois, vamos mergulhar de cabeça na LCEL e ver como ela torna nossa vida muito mais fácil.
+
+---
 
 ### O Jeito Clássico: LLMChain e SequentialChain (OBSOLETO)
 
@@ -31,6 +44,8 @@ chain = LLMChain(llm=llm, prompt=prompt)
 ```
 
 Agora, e se quiséssemos fazer aquilo que discutimos no Capítulo 1: gerar uma pergunta e depois respondê-la? Precisávamos da `SequentialChain`.
+
+**Observação:** O uso de APIs obsoletas pode dificultar manutenção e escalabilidade. Prefira LCEL para novos projetos.
 
 **Exercício Prático: Chain Sequencial (O Jeito Antigo - OBSOLETO)**
 
@@ -76,7 +91,6 @@ print(resultado)
 ```
 
 **Comando de Execução (Linux/macOS):**
-
 ```sh
 # Dê permissão de execução ao script
 chmod +x exercicios/capitulo_04/exercicio_1/run.sh
@@ -84,37 +98,42 @@ chmod +x exercicios/capitulo_04/exercicio_1/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_1/run.sh
 ```
-```
-
 **Comando de Execução (Windows):**
-
 ```bat
 REM Execute o exercício no Windows
 exercicios\capitulo_04\exercicio_1\run.bat
 ```
-
-Isso funciona, mas note a verbosidade. Precisamos definir `output_key` para cada `LLMChain` e depois listar todas as `input_variables` e `output_variables` na `SequentialChain`. Fica complexo rapidamente. A LCEL resolve isso de forma muito mais elegante e eficiente.
+**Saída Esperada (pode variar):**
+Resultado final com pergunta gerada e resposta elaborada sobre o tópico informado.
 
 **Troubleshooting Comum:**
+* `DeprecationWarning`: Aviso esperado ao usar classes legadas.
+* `AuthenticationError` ou `GOOGLE_API_KEY` não configurada: Verifique o arquivo `.env`.
+* Erros de Conexão: Verifique rede ou limites de uso da API.
 
-*   **`DeprecationWarning`:** Este é um aviso esperado, pois estamos usando classes legadas (`LLMChain`, `SequentialChain`). Ele serve para reforçar a importância de migrar para a LCEL em novos projetos.
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Certifique-se de que sua chave de API do Google está corretamente configurada no arquivo `.env`.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
+---
 
+### Por que usar LCEL?
 
-### A Revolução da LCEL: Por que Devemos Usá-la?
+A LCEL resolve muitos dos problemas das classes legadas, como LLMChain e SequentialChain, que são consideradas obsoletas na versão 0.2+ do LangChain. Com LCEL, você constrói pipelines de forma **declarativa**, focando no fluxo de dados e não na implementação detalhada de cada etapa. Configurações como logging e tracing são propagadas automaticamente.
 
-A LCEL não é apenas uma "sintaxe mais bonita"; ela é uma **linguagem declarativa para compor Runnables**, destravando funcionalidades cruciais de forma quase automática e transformando o LangChain de uma ferramenta de prototipagem para uma ferramenta pronta para produção.
+A abordagem moderna da LCEL permite criar pipelines claros, concisos e escaláveis. Você descreve o que deseja fazer e o LangChain executa de forma otimizada, facilitando a leitura, manutenção e evolução do código.
 
-* **Streaming Nativo:** Obtenha respostas do modelo token a token com o método .stream(). Isso melhora drasticamente a experiência do usuário em aplicações de chat, que não precisa mais esperar a resposta completa.  
-* **Suporte Assíncrono Garantido:** Qualquer chain LCEL pode ser executada de forma não-bloqueante com .ainvoke(). Isso é essencial para servidores web que precisam lidar com múltiplas requisições simultaneamente.  
-* **Execução Paralela Otimizada:** A LCEL pode executar múltiplos componentes ao mesmo tempo para otimizar a latência, simplesmente definindo um dicionário de Runnables.  
-* **Integração Total com LangSmith:** Tenha rastreabilidade completa de cada passo do seu pipeline, facilitando o debug e a observabilidade, algo que era muito mais complexo com as chains antigas.  
-* **Interface Unificada (Runnable):** Quase tudo no LangChain moderno implementa a interface Runnable. Isso significa que prompts, modelos, parsers e até funções Python podem ser encadeados da mesma forma, usando o operador pipe (|), tornando o código mais limpo, legível e modular.
+Além da clareza, a LCEL traz ganhos de performance: é otimizada para execução eficiente, suporta paralelismo nativo (com `RunnableParallel`), streaming de respostas e integração direta com ferramentas como LangSmith. Isso permite lidar com grandes volumes de dados e operações complexas sem comprometer a velocidade ou a robustez.
 
-### LCEL na Prática: Exercícios Essenciais
+---
+
+### Hands-on: Exercício 2 — LCEL na Prática: Sinopse de Filme
 
 A melhor forma de entender a LCEL é colocando a mão na massa. Vamos passar por uma série de exercícios que demonstram seus principais recursos.
+
+**Dica:** Funções Python são automaticamente convertidas em `RunnableLambda` ao usar o operador `|`. Dicionários são convertidos em `RunnableParallel` para execução concorrente.
+
+**Exemplo de streaming:**
+```python
+for chunk in chain.stream({"genero": "Comédia"}):
+    print(chunk, end="|")
+```
 
 **Exercício 1: A Chain Mais Simples (com LCEL)**
 
@@ -139,7 +158,6 @@ print(chain.invoke({"genero": "Comédia de Ficção Científica"}))
 ```
 
 **Comando de Execução (Linux/macOS):**
-
 ```sh
 # Dê permissão de execução ao script
 chmod +x exercicios/capitulo_04/exercicio_2/run.sh
@@ -147,34 +165,25 @@ chmod +x exercicios/capitulo_04/exercicio_2/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_2/run.sh
 ```
-```
-
 **Comando de Execução (Windows):**
-
 ```bat
 REM Execute o exercício no Windows
 exercicios\capitulo_04\exercicio_2\run.bat
 ```
+**Saída Esperada (pode variar):**
+Sinopse de filme gerada para o gênero informado.
 
+**Troubleshooting Comum:**
+* `AuthenticationError` ou `GOOGLE_API_KEY` não configurada.
+* `ValidationError` ou erros de schema.
+* Erros de Conexão.
+* Saída inesperada do LLM: ajuste o prompt ou a temperature.
 
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
+---
 
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
+### Hands-on: Exercício 3 — Passando Dados com RunnablePassthrough
 
-```
-```
-
-**Comando de Execução:**
-
-```sh
-chmod +x execucao_exercicio_4_1.sh
-./execucao_exercicio_4_1.sh
-```
-
+**Dica:** Use `RunnablePassthrough.assign` para empacotar outputs em dicionários, útil para debugging e integração.
 
 **Exercício 2: Passando Dados com RunnablePassthrough**
 
@@ -210,7 +219,6 @@ print(chain_completa.invoke("a filosofia estoica"))
 ```
 
 **Comando de Execução (Linux/macOS):**
-
 ```sh
 # Dê permissão de execução ao script
 chmod +x exercicios/capitulo_04/exercicio_3/run.sh
@@ -218,31 +226,25 @@ chmod +x exercicios/capitulo_04/exercicio_3/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_3/run.sh
 ```
-```
-
 **Comando de Execução (Windows):**
-
 ```bat
 REM Execute o exercício no Windows
 exercicios\capitulo_04\exercicio_3\run.bat
 ```
+**Saída Esperada (pode variar):**
+Pergunta gerada sobre o tópico e resposta contextualizada.
 
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
+**Troubleshooting Comum:**
+* `AuthenticationError` ou `GOOGLE_API_KEY` não configurada.
+* `ValidationError` ou erros de schema.
+* Erros de Conexão.
+* Saída inesperada do LLM: ajuste o prompt ou a temperature.
 
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
+---
 
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
+### Hands-on: Exercício 4 — Execução Paralela com RunnableParallel
 
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
-
+**Dica:** O uso de `RunnableParallel` permite que cada etapa receba o mesmo input e execute em paralelo, retornando um dicionário com os resultados.
 
 **Exercício 3: Execução Paralela com RunnableParallel**
 
@@ -275,7 +277,6 @@ print(resultado)
 ```
 
 **Comando de Execução (Linux/macOS):**
-
 ```sh
 # Dê permissão de execução ao script
 chmod +x exercicios/capitulo_04/exercicio_4/run.sh
@@ -283,188 +284,99 @@ chmod +x exercicios/capitulo_04/exercicio_4/run.sh
 # Execute o exercício
 ./exercicios/capitulo_04/exercicio_4/run.sh
 ```
-```
-
 **Comando de Execução (Windows):**
-
 ```bat
 REM Execute o exercício no Windows
 exercicios\capitulo_04\exercicio_4\run.bat
 ```
+**Saída Esperada (pode variar):**
+Retorno paralelo: capital, população e curiosidade sobre o país informado.
 
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
+**Troubleshooting Comum:**
+* `AuthenticationError` ou `GOOGLE_API_KEY` não configurada.
+* `ValidationError` ou erros de schema.
+* Erros de Conexão.
+* Saída inesperada do LLM: ajuste o prompt ou a temperature.
 
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
+---
 
-**Exercício 4: Usando Funções Python com RunnableLambda**
+### Troubleshooting Comum
+* `DeprecationWarning`: Aviso esperado ao usar classes legadas.
+* `AuthenticationError` ou `GOOGLE_API_KEY` não configurada: Verifique o arquivo `.env`.
+* Erros de Conexão: Verifique rede ou limites de uso da API.
+* Ative tracing com LangSmith usando `LANGSMITH_TRACING=true`.
+* Proteja chaves de API com Pydantic `SecretStr` ou arquivos `.env`.
+* Implemente testes automatizados para chains customizadas.
 
-* **Objetivo:** Criar uma chain que recebe uma lista de números, calcula o quadrado de cada um e depois pede ao LLM para descrever o resultado.
-
-```python
-# exercicios/capitulo_04/exercicio_5/main.py  
-from dotenv import load_dotenv  
-from langchain_core.prompts import ChatPromptTemplate  
-from langchain_google_genai import ChatGoogleGenerativeAI  
-from langchain_core.output_parsers import StrOutputParser  
-from langchain_core.runnables import RunnableLambda
-
-load_dotenv()
-
-def calcular_quadrados(numeros: list[int]) -> list[int]:  
-    print("Executando a função Python para calcular quadrados...")  
-    return [n*n for n in numeros]
-
-prompt = ChatPromptTemplate.from_template("Descreva esta lista de números de forma poética: {lista_quadrados}")  
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser = StrOutputParser()
-
-chain = (  
-    RunnableLambda(calcular_quadrados)  
-    | (lambda quadrados: {"lista_quadrados": quadrados})  
-    | prompt  
-    | model  
-    | parser  
-)
-
-print(chain.invoke([1, 2, 3, 4, 5]))
-```
-
-**Comando de Execução (Linux/macOS):**
-
-```sh
-# Dê permissão de execução ao script
-chmod +x exercicios/capitulo_04/exercicio_5/run.sh
-
-# Execute o exercício
-./exercicios/capitulo_04/exercicio_5/run.sh
-```
-```
-
-**Comando de Execução (Windows):**
-
-```bat
-REM Execute o exercício no Windows
-exercicios\capitulo_04\exercicio_5\run.bat
-```
-
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
-
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
-*   **Problemas com `RunnableLambda`:** Certifique-se de que a função Python que você está passando para `RunnableLambda` está retornando o tipo de dado esperado pela próxima etapa da chain. Erros de tipo ou formato de dados são comuns aqui.
-
-
-**Exercício 5: Streaming de Respostas**
-
-* **Objetivo:** Criar uma chain que faz streaming da resposta do LLM, imprimindo-a token por token.
-
-```python
-# exercicios/capitulo_04/exercicio_6/main.py  
-from dotenv import load_dotenv  
-from langchain_google_genai import ChatGoogleGenerativeAI  
-from langchain_core.prompts import ChatPromptTemplate  
-from langchain_core.output_parsers import StrOutputParser
-
-load_dotenv()
-
-prompt = ChatPromptTemplate.from_template("Conte uma história curta sobre um robô que aprendeu a sonhar.")  
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash")  
-parser = StrOutputParser()
-
-chain = prompt | model | parser
-
-print("--- Resposta em Streaming ---")  
-for chunk in chain.stream({}):  
-    print(chunk, end="", flush=True)  
-print("\n--- Fim do Streaming ---")
-```
-
-**Troubleshooting Comum para Exercícios LCEL (Capítulo 4):**
-
-*   **`AuthenticationError` ou `GOOGLE_API_KEY` não configurada:** Verifique se sua `GOOGLE_API_KEY` está corretamente configurada no arquivo `.env`.
-*   **`ValidationError` ou Erros de Schema:** Se você estiver usando parsers de saída (como `JsonOutputParser`), certifique-se de que o formato da saída do LLM corresponde ao schema esperado. Pequenas variações na resposta do modelo podem causar esses erros.
-*   **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
-*   **Saída Inesperada do LLM:** Se o LLM não estiver respondendo como esperado, revise o `ChatPromptTemplate`. A clareza e especificidade do prompt são cruciais. Experimente ajustar a `temperature` do modelo (um valor mais baixo, como `0.0`, torna o modelo mais determinístico).
-*   **Problemas com `RunnablePassthrough` ou `RunnableParallel`:** Verifique se as chaves dos dicionários de entrada e saída estão corretas e se os dados estão fluindo conforme o esperado entre os componentes da chain. Use `chain.invoke({'input': ...})` e inspecione a saída de cada etapa se possível.
-*   **Problemas com `RunnableLambda`:** Certifique-se de que a função Python que você está passando para `RunnableLambda` está retornando o tipo de dado esperado pela próxima etapa da chain. Erros de tipo ou formato de dados são comuns aqui.
-*   **Streaming não funciona:** Verifique se você está usando o método `.stream()` corretamente e se o LLM que você está utilizando suporta streaming. Nem todos os LLMs ou APIs oferecem streaming de forma nativa.
-
-**Comando de Execução (Linux/macOS):**
-
-```sh
-# Dê permissão de execução ao script
-chmod +x exercicios/capitulo_04/exercicio_6/run.sh
-
-# Execute o exercício
-./exercicios/capitulo_04/exercicio_6/run.sh
-```
-**Comando de Execução (Windows):**
-
-```bat
-REM Execute o exercício no Windows
-exercicios\capitulo_04\exercicio_6\run.bat
-```
-
-Falando em combinar coisas que parecem não combinar, vou contar uma pequena curiosidade sobre mim: eu adoro o ambiente de cafeterias para trabalhar. Aquele burburinho de fundo, a energia das pessoas ao redor... tudo isso me ajuda a focar de uma maneira que o silêncio do escritório em casa não consegue. A ironia? Eu não sou fã de café. Sou o cara estranho em um canto, com uma xícara de chá de camomila, programando freneticamente.
-
-Essa minha peculiaridade me rendeu o apelido de "cliente diferentão" em algumas cafeterias. Mas, assim como a LCEL nos mostra que a combinação de elementos aparentemente díspares pode gerar resultados poderosos e harmoniosos, minha xícara de chá em meio a um mar de expressos é a prova de que a produtividade pode vir de onde menos se espera.
-
-Às vezes, em LangChain, vamos combinar componentes de maneiras inesperadas, como fizemos com a RunnableParallel. Podemos achar que executar tarefas em paralelo pode criar confusão, mas, na verdade, quando orquestrado corretamente, o resultado é surpreendentemente eficiente e harmonioso. É como a minha produtividade movida a chá em meio a um mar de expressos: funciona, e funciona muito bem.
-
-### Checklist de Construção de Pipelines
-
-* [ ] Definir claramente o objetivo do pipeline e as etapas necessárias para alcançá-lo.  
-* [ ] Usar a sintaxe LCEL (|) para compor Runnables (prompts, modelos, parsers, funções).  
-* [ ] Garantir a passagem correta de dados entre as etapas, usando dicionários e RunnablePassthrough quando necessário.  
-* [ ] Utilizar RunnableParallel para otimizar a latência executando tarefas independentes ao mesmo tempo.  
-* [ ] Integrar lógica customizada usando RunnableLambda quando necessário.  
-* [ ] Implementar streaming (.stream()) para melhorar a experiência do usuário em aplicações interativas.  
-* [ ] Incluir monitoramento e logging (idealmente com LangSmith) para acompanhar a execução e identificar falhas.  
-* [ ] Testar o pipeline com diferentes entradas para validar a robustez e a eficiência.  
-* [ ] Documentar o fluxo e as dependências para facilitar a manutenção futura.
-
-
-
-
+---
 
 ### Pontos Chave
-*   A LCEL é a forma moderna e recomendada de construir pipelines no LangChain, oferecendo streaming, suporte assíncrono e execução paralela nativamente.
-*   `RunnablePassthrough`, `RunnableParallel`, e `RunnableLambda` são componentes chave para construir pipelines flexíveis e eficientes.
-*   A transição de abordagens imperativas para declarativas (LCEL) simplifica o código e melhora a performance.
+* LCEL é a abordagem moderna e recomendada para pipelines no LangChain.
+* Streaming, paralelismo e integração com LangSmith são nativos na LCEL.
+* Chains legadas são úteis para contexto histórico, mas não devem ser usadas em produção.
+* Exercícios práticos demonstram as vantagens da LCEL em clareza, modularidade e performance.
+* O uso de `RunnableParallel` e `RunnablePassthrough` facilita a modularização e reuso de componentes.
+
+---
+
+### Resumo do Capítulo
+Neste capítulo, você aprendeu a diferença entre pipelines imperativos e declarativos, explorou a LCEL e suas vantagens, e colocou em prática a construção de chains modernas, paralelas e eficientes. Explore integrações avançadas como LangGraph e LangServe para projetos de maior escala.
+
+---
 
 ### Teste seu Conhecimento
+1. Qual é a principal vantagem da LCEL em relação às chains clássicas?
+   a) Permite integração com LangSmith e streaming nativo.
+   b) É mais difícil de usar.
+   c) Não suporta paralelismo.
+   d) Só funciona com LLMChain.
+2. O que o RunnablePassthrough permite em uma chain LCEL?
+   a) Executar múltiplos modelos em paralelo.
+   b) Passar dados do input diretamente para etapas subsequentes.
+   c) Validar a saída do modelo.
+   d) Gerar prompts automaticamente.
+3. Qual componente LCEL permite executar múltiplas chains ao mesmo tempo?
+   a) RunnableLambda
+   b) RunnableParallel
+   c) RunnablePassthrough
+   d) SequentialChain
+4. Qual é o método recomendado para obter respostas token a token em LCEL?
+   a) .run()
+   b) .stream()
+   c) .ainvoke()
+   d) .output()
+5. Por que as chains legadas como LLMChain e SequentialChain são consideradas obsoletas?
+   a) Não funcionam com Python 3.12.
+   b) Não suportam streaming, paralelismo e integração moderna.
+   c) São mais rápidas que LCEL.
+   d) Foram removidas do LangChain.
+6. Como ativar tracing para inspeção de pipelines?
+   a) Definindo LANGSMITH_TRACING=true no ambiente.
+   b) Usando apenas SequentialChain.
+   c) Removendo o arquivo .env.
+   d) Desabilitando logs.
 
-1. Qual era a principal desvantagem da abordagem clássica com SequentialChain?  
-   a) Não era possível conectar mais de duas chains.  
-   b) Era verbosa e exigia a definição manual de input_variables e output_variables.  
-   c) Não funcionava com modelos de chat.  
-   d) Era mais rápida que a LCEL.  
-2. Qual dos seguintes é um benefício fundamental da LCEL que não estava facilmente disponível nas chains clássicas?  
-   a) A capacidade de usar prompts.  
-   b) Suporte nativo para streaming, batch e execução assíncrona.  
-   c) A capacidade de usar modelos do Google.  
-   d) A necessidade de definir output_key.  
-3. No contexto da LCEL, o que o RunnablePassthrough faz?  
-   a) Ignora completamente a entrada e passa um valor fixo.  
-   b) Passa a entrada original de uma chain para uma etapa posterior, sem modificá-la.  
-   c) Executa uma função Python.  
-   d) Converte a saída para uma string.  
-4. Se você tem duas tarefas independentes que podem ser executadas ao mesmo tempo para economizar tempo, qual componente da LCEL você usaria?  
-   a) RunnableLambda  
-   b) RunnablePassthrough  
-   c) RunnableParallel  
-   d) SequentialChain  
-5. Qual método você chamaria em uma chain LCEL para obter a resposta token a token, em vez de esperar a resposta completa?  
-   a) .invoke()  
-   b) .run()  
-   c) .batch()  
-   d) .stream()
+**Respostas:**
+1. a
+2. b
+3. b
+4. b
+5. b
+6. a
 
-*(Respostas: 1-b, 2-b, 3-b, 4-c, 5-d)*
+---
+
+### Projeto Hands-on: Pipeline Inteligente
+
+Coloque em prática os conceitos do capítulo criando um pipeline inteligente com LCEL. Implemente etapas paralelas, streaming de respostas e integração com LangSmith. Siga a estrutura sugerida:
+
+- Estrutura de diretórios recomendada para projetos LCEL.
+- Checklist de boas práticas: modularização, logging, versionamento, testes.
+- Fluxograma do pipeline.
+- Dicas para integração com APIs externas e testes automatizados.
+- Orientação para uso de streaming e paralelismo.
+- Passos para ativar tracing com LangSmith e compartilhar logs via GitHub.
+- Proteja chaves de API com .env.
+- Documente comandos de execução e compartilhe o projeto via GitHub usando SSH.
+
+---

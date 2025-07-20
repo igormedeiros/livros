@@ -1,3 +1,5 @@
+# exercicios/capitulo_01/exercicio_2/main.py
+
 import os
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI

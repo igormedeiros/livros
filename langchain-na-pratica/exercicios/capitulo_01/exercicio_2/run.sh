@@ -4,4 +4,4 @@
 cd "$(dirname "$0")"
 
 # Executa o script Python
-uv run python main.py
+python main.py
