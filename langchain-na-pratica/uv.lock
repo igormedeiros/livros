@@ -10,6 +10,9 @@ resolution-markers = [
 members = [
     "capitulo-02",
     "capitulo-03",
+    "capitulo-04",
+    "capitulo-05",
+    "capitulo-06",
     "exercicio-1",
     "langchain-na-pratica",
 ]
@@ -156,6 +159,59 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "langchain-core", specifier = ">=0.3.69" },
+    { name = "langchain-google-genai", specifier = ">=2.1.8" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
+]
+
+[[package]]
+name = "capitulo-04"
+version = "0.1.0"
+source = { virtual = "exercicios/capitulo_04" }
+dependencies = [
+    { name = "langchain" },
+    { name = "langchain-google-genai" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "langchain", specifier = ">=0.3.26" },
+    { name = "langchain-google-genai", specifier = ">=2.1.8" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
+]
+
+[[package]]
+name = "capitulo-05"
+version = "0.1.0"
+source = { virtual = "exercicios/capitulo_05" }
+dependencies = [
+    { name = "langchain-community" },
+    { name = "langchain-google-genai" },
+    { name = "langchain-tavily" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "langchain-community", specifier = ">=0.3.27" },
+    { name = "langchain-google-genai", specifier = ">=2.1.8" },
+    { name = "langchain-tavily", specifier = ">=0.2.10" },
+    { name = "python-dotenv", specifier = ">=1.1.1" },
+]
+
+[[package]]
+name = "capitulo-06"
+version = "0.1.0"
+source = { virtual = "exercicios/capitulo_06" }
+dependencies = [
+    { name = "langchain" },
+    { name = "langchain-google-genai" },
+    { name = "python-dotenv" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "langchain", specifier = ">=0.3.26" },
     { name = "langchain-google-genai", specifier = ">=2.1.8" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
 ]

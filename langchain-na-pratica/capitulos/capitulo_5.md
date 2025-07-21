@@ -77,6 +77,8 @@ Ferramentas são funções Python decoradas ou instâncias de classes Tool, e de
 
 ### Hands-on: Exercício — Agente de Pesquisa Simples
 
+#### O que é a API da Tavily? Como obter e custos
+
 * **Objetivo:** Construir um agente simples que pode usar uma ferramenta de busca para responder a perguntas factuais.
 * **Nome do Arquivo:** `exercicios/capitulo_05/exercicio_1/main.py`
 * **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`
@@ -86,13 +88,27 @@ uv add langchain langchain-google-genai langchain-tavily python-dotenv
 ```
 * **Configuração Adicional:** Adicione sua chave de API da Tavily ao arquivo `.env` como `TAVILY_API_KEY`.
 
+A **API da Tavily** é uma ferramenta de busca que permite ao seu agente LangChain pesquisar informações atualizadas na internet, especialmente sobre eventos recentes, pessoas, empresas e fatos que mudam rapidamente. Ela é usada como uma "ferramenta externa" para ampliar o conhecimento do agente além do que está disponível no modelo de linguagem.
+
+- **Para que serve:** Permite que o agente realize buscas em tempo real, trazendo respostas baseadas em fontes confiáveis e atualizadas, reduzindo o risco de respostas desatualizadas ou inventadas.
+- **Como obter:** 
+   1. Acesse [https://app.tavily.com/](https://app.tavily.com/) e crie uma conta gratuita.
+   2. No painel da Tavily, vá em "API Keys" e gere uma nova chave.
+   3. Copie a chave e adicione ao seu arquivo `.env` como `TAVILY_API_KEY=suachaveaqui`.
+- **Tem custo?**  
+   - A Tavily oferece um plano gratuito com limite de buscas mensais (veja detalhes atualizados no site).
+   - Para uso mais intenso ou comercial, existem planos pagos com limites maiores e recursos adicionais.
+
+> **Dica:** Sempre proteja sua chave de API e nunca a compartilhe publicamente.
+
+
 ```python
 # exercicios/capitulo_05/exercicio_1/main.py
 
 import os  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
-from langchain_tavily_search import TavilySearchResults  
+from langchain_tavily import TavilySearch
 from langchain.agents import AgentExecutor, create_tool_calling_agent  
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -103,9 +119,9 @@ load_dotenv()
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 2\. Definir as ferramentas que o agente pode usar  
-search_tool = TavilySearchResults(  
-    max_results=2,  
-    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."  
+search_tool = TavilySearch(
+    max_results=2,
+    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."
 )  
 tools = [search_tool]
 
@@ -130,18 +146,19 @@ agent = create_tool_calling_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # \--- Execução \---
-if __name__ == "__main__":  
-    print("Agente de Pesquisa pronto\! Faça sua pergunta.")  
-      
-    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"  
-    print(f"\\n\> Pergunta: {pergunta1}")  
-    response1 = agent_executor.invoke({"input": pergunta1})  
-    print(f"\\n\< Resposta Final: {response1['output']}")
+if __name__ == "__main__":
+    print("Agente de Pesquisa pronto! Faça sua pergunta.")
 
-    pergunta2 = "Qual é a cor do céu?"  
-    print(f"\\n\> Pergunta: {pergunta2}")  
-    response2 = agent_executor.invoke({"input": pergunta2})  
-    print(f"\\n\< Resposta Final: {response2['output']}")
+    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"
+    print(f"\n> Pergunta: {pergunta1}")
+    response1 = agent_executor.invoke({"input": pergunta1})
+    print(f"\n< Resposta Final: {response1['output']}")
+
+    pergunta2 = "Qual é a cor do céu?"
+    print(f"\n> Pergunta: {pergunta2}")
+    response2 = agent_executor.invoke({"input": pergunta2})
+    print(f"\n< Resposta Final: {response2['output']}")
+```
 
 **Comando de Execução (Linux/macOS):**
 ```sh

@@ -25,4 +25,7 @@ members = [
     "exercicios/capitulo_01/exercicio_1",
     "exercicios/capitulo_02",
     "exercicios/capitulo_03",
+    "exercicios/capitulo_04",
+    "exercicios/capitulo_05",
+    "exercicios/capitulo_06",
 ]

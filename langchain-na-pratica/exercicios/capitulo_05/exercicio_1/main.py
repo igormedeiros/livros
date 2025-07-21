@@ -3,7 +3,7 @@
 import os  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
-from langchain_tavily_search import TavilySearchResults  
+from langchain_tavily import TavilySearch
 from langchain.agents import AgentExecutor, create_tool_calling_agent  
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -14,9 +14,9 @@ load_dotenv()
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 2\. Definir as ferramentas que o agente pode usar  
-search_tool = TavilySearchResults(  
-    max_results=2,  
-    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."  
+search_tool = TavilySearch(
+    max_results=2,
+    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."
 )  
 tools = [search_tool]
 
@@ -41,15 +41,15 @@ agent = create_tool_calling_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # \--- Execução \---
-if __name__ == "__main__":  
-    print("Agente de Pesquisa pronto\! Faça sua pergunta.")  
-      
-    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"  
-    print(f"\\n\> Pergunta: {pergunta1}")  
-    response1 = agent_executor.invoke({"input": pergunta1})  
-    print(f"\\n\< Resposta Final: {response1['output']}")
+if __name__ == "__main__":
+    print("Agente de Pesquisa pronto! Faça sua pergunta.")
 
-    pergunta2 = "Qual é a cor do céu?"  
-    print(f"\\n\> Pergunta: {pergunta2}")  
-    response2 = agent_executor.invoke({"input": pergunta2})  
-    print(f"\\n\< Resposta Final: {response2['output']}")
+    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"
+    print(f"\n> Pergunta: {pergunta1}")
+    response1 = agent_executor.invoke({"input": pergunta1})
+    print(f"\n< Resposta Final: {response1['output']}")
+
+    pergunta2 = "Qual é a cor do céu?"
+    print(f"\n> Pergunta: {pergunta2}")
+    response2 = agent_executor.invoke({"input": pergunta2})
+    print(f"\n< Resposta Final: {response2['output']}")
