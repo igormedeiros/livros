@@ -8,6 +8,8 @@
 
 Este livro faz parte da série "IA na Prática".
 Lançamento: 20 de Julho de 2025.
+ASIN: B0FJ7L9NTM
+Link do ebook na Amazon Brasil: https://www.amazon.com.br/dp/B0FJ7L9NTM
 
 Nenhuma parte desta publicação pode ser reproduzida, distribuída ou transmitida por qualquer forma ou meio, incluindo fotocópia, gravação ou outros métodos eletrônicos ou mecânicos, sem a permissão prévia por escrito do autor, exceto no caso de breves citações incorporadas em resenhas críticas e outros usos não comerciais permitidos pela lei de direitos autorais.
 
