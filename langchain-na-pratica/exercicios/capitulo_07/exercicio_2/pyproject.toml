@@ -1,0 +1,13 @@
+[project]
+name = "exercicio-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-chroma>=0.2.4",
+    "langchain-community>=0.3.27",
+    "langchain-google-genai>=2.1.8",
+    "markdown>=3.8.2",
+    "unstructured>=0.18.9",
+]

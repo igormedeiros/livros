@@ -1,0 +1,16 @@
+[project]
+name = "chatbot-rag-gemini"
+version = "0.1.0"
+dependencies = [
+    "langchain",
+    "langchain-google-genai",
+    "langchain-chroma",
+    "pypdf",
+    "python-dotenv",
+]
+
+[tool.uv.workspace]
+members = [
+    "exercicio_2",
+    "exercicio_3",
+]
