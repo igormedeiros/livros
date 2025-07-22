@@ -1,3 +1,4 @@
+<!-- capitulos/inicio.md -->
 # **LangChain na Prática: O primeiro passo com Agentes de IA**
 
 **Igor Medeiros**
@@ -154,6 +155,44 @@ Ao **Marcello Manzan**, um irmão de alma que a faculdade me deu e que hoje é c
 A cada um de vocês, meu mais profundo e sincero obrigado.
 
 
+<!-- capitulos/agradecimentos.md -->
+## **Agradecimentos**
+
+Nenhum livro é escrito no vácuo, e este não é exceção. Minha gratidão transborda por aqueles que, de formas distintas, mas igualmente importantes, tornaram esta obra possível.
+
+A **Felipe Gagliazzo**, meu Mestre Jedi particular. Sua sabedoria e paciência são um farol. Obrigado pelo aprendizado contínuo e por me dar o apoio necessário para me sentir mais confiante no trabalho e na vida. Sua mentoria é um presente que valorizo imensamente.
+
+A **Nicolli Botelho**, por enxergar além e me confiar desafios que são muito mais que uma declaração de confiança no meu trabalho; são oportunidades generosas de crescimento que me impulsionam a cada dia. Sua liderança inspiradora me motiva a ser um profissional melhor.
+
+A **Marcus Borin**, pelo encorajamento constante e por sempre me empurrar a subir um degrau a mais na infinita escada do conhecimento. Sua crença no meu potencial é um motor poderoso que me faz acreditar que posso ir mais longe.
+
+A **Emilly Gomes**, por uma amizade e um apoio incondicional que me fazem sentir parte de uma comunidade verdadeiramente acolhedora. Sua presença torna a jornada muito mais leve e divertida, e sou grato por cada conversa e risada.
+
+A **Anne Aguiar**, pelo encorajamento sincero e por acreditar em meu trabalho mesmo quando eu duvidava. Sua fé foi um combustível essencial para que este projeto saísse do papel e se tornasse realidade.
+
+Ao **Flavio Pires**, pela amizade inestimável e pela paciência de um monge ao escutar meus longos e intermináveis áudios no WhatsApp divagando sobre agentes de IA. Suas perguntas e insights sempre me ajudaram a clarear as ideias.
+
+Ao **Fernando Fish**, por ser um exemplo tão forte de rigor técnico e científico. Seu profissionalismo, aliado a um carinho e uma inspiração contagianes, são uma referência que busco seguir em minha própria carreira.
+
+À **Patricia Baena**, por acreditar em mim desde o início, por confiar no meu trabalho e por ter a generosidade de sempre buscar me apresentar portas que só eu poderia abrir. Sua mentoria e visão de futuro foram cruciais em minha trajetória.
+
+À **Giselle Arruda**, por segurar minha mão em momentos difíceis, quando precisei de ajuda para me reerguer profissionalmente. Você foi a pessoa que me aparou e me guiou com uma força e uma empatia que jamais esquecerei.
+
+Ao **Fernando Lopes Jr.**, por ser um amigo e um incentivador, sempre me apoiando nos momentos mais difíceis.
+
+Ao **Eduardo Bregaida**, que confiou em mim e me apresentou uma possibilidade de recomeço quando eu mais precisei, enquanto enfrentava uma terrível fase de problemas de saúde mental e buscava um caminho de volta ao mercado de TI. Sua confiança foi um ponto de virada.
+
+À **Marina**, **Adriana** e **Julio**, por confiarem sempre em mim para voltar ao cenário das palestras técnicas pelo Brasil e outros países, ainda que de forma online, no contexto interno corporativo. Sua crença no meu potencial foi fundamental para essa retomada.
+
+À **Cristiane Tokarski**, por ter surgido como um anjo que agiu corrigindo o curso que a vida havia me conduzido, onde eu não me sentia "encaixado" na trilha do meu proposito profissional. Sua orientação foi um farol que me ajudou a reencontrar meu caminho e propósito.
+
+Ao **Marcello Manzan**, um irmão de alma que a faculdade me deu e que hoje é como se fosse da minha família. Sua busca incansável pela excelência profissional é uma inspiração diária, um farol que me guia. Mais do que isso, sou grato pela sua amizade inabalável e pelas risadas que, ao longo dos anos, transformaram desafios em memórias preciosas.
+
+À vasta e vibrante comunidade open source do LangChain e de todas as bibliotecas e ferramentas que tornaram este livro possível. Seu trabalho incansável e colaboração são a verdadeira força motriz por trás da inovação em IA. Reconhecemos e agradecemos a todos os projetos de código aberto e seus contribuidores, cujas licenças e termos de uso foram respeitados na criação deste material.
+
+A cada um de vocês, meu mais profundo e sincero obrigado.
+
+<!-- capitulos/introducao.md -->
 ## **Introdução**
 
 A vida nos conduz por caminhos únicos. Antes de mergulharmos no código e nos conceitos que preenchem as páginas a seguir, gostaria que você fizesse uma pequena pausa. Reflita sobre as razões que te trouxeram até aqui, até este livro. Foi a curiosidade sobre o boom da Inteligência Artificial? A necessidade de resolver um problema específico no seu trabalho? Ou talvez um desejo profundo de criar algo novo, algo que possa, de alguma forma, impactar o mundo?
@@ -228,6 +267,7 @@ Mantenha essa abordagem em mente enquanto avança pelos capítulos. Tente conect
 No fundo, a programação e a filosofia compartilham um terreno comum: ambas buscam entender e moldar a realidade através da lógica e da abstração. Assim como um filósofo constrói argumentos para desvendar verdades, um programador constrói algoritmos para resolver problemas. A IA, nesse sentido, é a materialização de um pensamento filosófico antigo: a busca por inteligência e autonomia. Ao programar com IA, estamos não apenas escrevendo código, mas participando de um diálogo contínuo com a natureza da inteligência e da criação.
 
 
+<!-- capitulos/capitulo_1.md -->
 ## Capítulo 1: Introdução ao LangChain — Fundamentos e Conceitos Essenciais
 
 **Neste capítulo, você vai aprender:**
@@ -568,7 +608,7 @@ exercicios\capitulo_01\exercicio_2\run.bat
 * **Erros de Conexão:** Problemas de rede ou limites de taxa da API podem causar erros. Tente novamente após alguns segundos ou verifique sua conexão com a internet.
 * **Comportamento Inesperado do Chatbot:** Se o chatbot não estiver mantendo o contexto ou respondendo de forma estranha, revise o `system prompt` e a forma como o `chat_history` está sendo passado para a chain. A clareza das instruções no prompt é fundamental.
 
-
+<!-- capitulos/capitulo_2.md -->
 ## Capítulo 2: Configurando o Ambiente de Desenvolvimento Python para LangChain
 
 **Neste capítulo, você vai aprender:**
@@ -1016,6 +1056,7 @@ Neste capítulo, montamos um ambiente de desenvolvimento Python profissional, ro
 
 Crie um projeto Python que utilize LangChain para construir um chatbot simples. Use uv para gerenciar dependências, proteja sua chave de API com .env e documente todos os comandos usados. Experimente rodar o projeto em diferentes versões do Python usando pyenv e compartilhe o repositório via SSH no GitHub.
 
+<!-- capitulos/capitulo_3.md -->
 ## Capítulo 3: Manipulação de Prompts e Modelos de Linguagem com LangChain
 
 **Neste capítulo, você vai aprender:**
@@ -1290,7 +1331,7 @@ Neste capítulo, mergulhamos na arte e ciência da engenharia de prompts e como 
 
 Coloque em prática os conceitos do capítulo criando um chatbot simples com LangChain, PromptTemplates e LCEL. Implemente funcionalidades como tradução automática, ajuste de tom e número de pontos em respostas. Documente comandos de execução, proteja chaves de API com .env e compartilhe o projeto via GitHub usando SSH.
 
-
+<!-- capitulos/capitulo_4.md -->
 ## Capítulo 4: Construção de Pipelines: Da SequentialChain à LCEL
 
 **Neste capítulo, você vai aprender:**
@@ -1672,7 +1713,9 @@ Coloque em prática os conceitos do capítulo criando um pipeline inteligente co
 - Proteja chaves de API com .env.
 - Documente comandos de execução e compartilhe o projeto via GitHub usando SSH.
 
+---
 
+<!-- capitulos/capitulo_5.md -->
 ## Capítulo 5: Desenvolvimento de Agentes Autônomos e Multiagentes
 
 **Neste capítulo, você vai aprender:**
@@ -1752,6 +1795,8 @@ Ferramentas são funções Python decoradas ou instâncias de classes Tool, e de
 
 ### Hands-on: Exercício — Agente de Pesquisa Simples
 
+#### O que é a API da Tavily? Como obter e custos
+
 * **Objetivo:** Construir um agente simples que pode usar uma ferramenta de busca para responder a perguntas factuais.
 * **Nome do Arquivo:** `exercicios/capitulo_05/exercicio_1/main.py`
 * **Dependências:** `langchain`, `langchain-google-genai`, `langchain-tavily`, `python-dotenv`
@@ -1761,13 +1806,27 @@ uv add langchain langchain-google-genai langchain-tavily python-dotenv
 ```
 * **Configuração Adicional:** Adicione sua chave de API da Tavily ao arquivo `.env` como `TAVILY_API_KEY`.
 
+A **API da Tavily** é uma ferramenta de busca que permite ao seu agente LangChain pesquisar informações atualizadas na internet, especialmente sobre eventos recentes, pessoas, empresas e fatos que mudam rapidamente. Ela é usada como uma "ferramenta externa" para ampliar o conhecimento do agente além do que está disponível no modelo de linguagem.
+
+- **Para que serve:** Permite que o agente realize buscas em tempo real, trazendo respostas baseadas em fontes confiáveis e atualizadas, reduzindo o risco de respostas desatualizadas ou inventadas.
+- **Como obter:** 
+   1. Acesse [https://app.tavily.com/](https://app.tavily.com/) e crie uma conta gratuita.
+   2. No painel da Tavily, vá em "API Keys" e gere uma nova chave.
+   3. Copie a chave e adicione ao seu arquivo `.env` como `TAVILY_API_KEY=suachaveaqui`.
+- **Tem custo?**  
+   - A Tavily oferece um plano gratuito com limite de buscas mensais (veja detalhes atualizados no site).
+   - Para uso mais intenso ou comercial, existem planos pagos com limites maiores e recursos adicionais.
+
+> **Dica:** Sempre proteja sua chave de API e nunca a compartilhe publicamente.
+
+
 ```python
 # exercicios/capitulo_05/exercicio_1/main.py
 
 import os  
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI  
-from langchain_tavily_search import TavilySearchResults  
+from langchain_tavily import TavilySearch
 from langchain.agents import AgentExecutor, create_tool_calling_agent  
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -1778,9 +1837,9 @@ load_dotenv()
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 # 2\. Definir as ferramentas que o agente pode usar  
-search_tool = TavilySearchResults(  
-    max_results=2,  
-    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."  
+search_tool = TavilySearch(
+    max_results=2,
+    description="Uma ferramenta de busca para encontrar informações na internet sobre eventos atuais, pessoas, lugares ou empresas."
 )  
 tools = [search_tool]
 
@@ -1805,18 +1864,19 @@ agent = create_tool_calling_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # \--- Execução \---
-if __name__ == "__main__":  
-    print("Agente de Pesquisa pronto\! Faça sua pergunta.")  
-      
-    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"  
-    print(f"\\n\> Pergunta: {pergunta1}")  
-    response1 = agent_executor.invoke({"input": pergunta1})  
-    print(f"\\n\< Resposta Final: {response1['output']}")
+if __name__ == "__main__":
+    print("Agente de Pesquisa pronto! Faça sua pergunta.")
 
-    pergunta2 = "Qual é a cor do céu?"  
-    print(f"\\n\> Pergunta: {pergunta2}")  
-    response2 = agent_executor.invoke({"input": pergunta2})  
-    print(f"\\n\< Resposta Final: {response2['output']}")
+    pergunta1 = "Qual foi o filme vencedor do Oscar de Melhor Filme em 2024?"
+    print(f"\n> Pergunta: {pergunta1}")
+    response1 = agent_executor.invoke({"input": pergunta1})
+    print(f"\n< Resposta Final: {response1['output']}")
+
+    pergunta2 = "Qual é a cor do céu?"
+    print(f"\n> Pergunta: {pergunta2}")
+    response2 = agent_executor.invoke({"input": pergunta2})
+    print(f"\n< Resposta Final: {response2['output']}")
+```
 
 **Comando de Execução (Linux/macOS):**
 ```sh
@@ -1941,7 +2001,9 @@ Coloque em prática os conceitos do capítulo criando um projeto Python que util
 - Passos para ativar tracing e compartilhar logs via GitHub.
 - Experimente rodar o projeto em diferentes versões do Python usando pyenv.
 
+---
 
+<!-- capitulos/capitulo_6.md -->
 ## Capítulo 6: Ferramentas e Agentes: Capacitando LLMs com Ações
 
 **Neste capítulo, você vai aprender:**
@@ -2305,513 +2367,652 @@ Coloque em prática os conceitos do capítulo criando um projeto Python que util
 - Passos para ativar tracing e compartilhar logs via GitHub.
 - Experimente rodar o projeto em diferentes versões do Python usando pyenv.
 
+---
 
-## Capítulo 7: Técnicas Avançadas: Memória, Feedback e Aprendizado Contínuo
+<!-- capitulos/capitulo_7.md -->
+## Capítulo 7: RAG - Geração Aumentada por Recuperação com LangChain
 
 **Neste capítulo, você vai aprender:**
 
-* O papel da memória em agentes de IA e sua analogia com o cérebro humano.
-* Tipos de memória em LangChain: ConversationBufferMemory, GenerativeAgentMemory, VectorStore, Knowledge Triples, e ChromaDB.
-* Como implementar e testar memória em agentes, com exemplos práticos e instruções de execução.
-* Estratégias de feedback e aprendizado contínuo para agentes que evoluem com a experiência.
-* Estudo de caso: Assistente de suporte que aprende com interações reais.
-* Exercício hands-on para consolidar o aprendizado.
+*   O que é RAG (Retrieval-Augmented Generation) e por que essa técnica é fundamental para criar IAs com conhecimento atualizado e específico.
+*   Os conceitos essenciais por trás do RAG: Embeddings, Bancos de Dados Vetoriais (ChromaDB) e Chunking.
+*   Como usar a LangChain Expression Language (LCEL) para construir pipelines de RAG de forma declarativa e intuitiva.
+*   A implementação de um projeto prático: um chatbot que responde a perguntas sobre um documento PDF usando RAG, LangChain e o modelo Gemini do Google.
+
+
+### O Problema: A Memória Curta da IA
+
+Modelos de linguagem (LLMs) como o Gemini do Google são extremamente inteligentes, mas seu conhecimento é limitado ao que viram durante o treinamento. Eles não sabem sobre seus documentos privados ou eventos recentes. Para resolver isso, usamos uma técnica chamada RAG (Retrieval-Augmented Generation), que dá ao LLM uma "memória externa" para consultar.
+
+Esse problema é conhecido como "memória curta" dos LLMs. Mesmo os modelos mais avançados, como o Gemini, GPT-4 ou Claude, só conseguem responder com base nas informações presentes em seus dados de treinamento, que geralmente têm um corte temporal (por exemplo, até 2023) e não incluem documentos privados, dados corporativos ou informações específicas do seu contexto. Isso significa que, se você perguntar sobre um relatório interno da sua empresa, um artigo científico recém-publicado ou até mesmo sobre um documento PDF que só você possui, o LLM não conseguirá responder de forma precisa — simplesmente porque ele nunca viu esse conteúdo.
+
+Além disso, LLMs não têm acesso direto à internet ou a bancos de dados externos durante a inferência. Eles não podem buscar informações em tempo real ou consultar arquivos locais por conta própria. Isso limita bastante sua utilidade em aplicações que exigem respostas atualizadas, personalizadas ou baseadas em dados privados.
+
+Outro desafio é o tamanho da janela de contexto: mesmo que você tente "colar" um documento inteiro no prompt, há um limite de tokens que o modelo pode processar de uma vez. Documentos longos, bases de conhecimento extensas ou múltiplos arquivos rapidamente ultrapassam esse limite, tornando inviável enviar tudo para o LLM analisar de uma só vez.
+
+Por isso, surge a necessidade de uma abordagem que permita ao LLM acessar informações externas de forma eficiente, segura e contextualizada. É aí que entra o RAG: ele atua como um "ponteiro inteligente" para a memória externa, permitindo que o modelo recupere apenas os trechos mais relevantes de grandes volumes de dados e use esse contexto para gerar respostas fundamentadas, atualizadas e personalizadas.
+
+Em resumo, a limitação dos LLMs em acessar conhecimento fora do seu treinamento é um obstáculo para aplicações práticas em ambientes corporativos, acadêmicos ou pessoais. O RAG resolve esse problema ao conectar o modelo a fontes de dados externas, ampliando sua utilidade e tornando-o realmente capaz de responder perguntas sobre qualquer conteúdo que você desejar.
+
+
+### A Solução: RAG (Geração Aumentada por Recuperação)
+
+RAG (Retrieval-Augmented Generation) é uma abordagem que conecta modelos de linguagem (LLMs) a fontes externas de conhecimento, permitindo que eles respondam perguntas com base em informações que não estavam presentes em seus dados de treinamento. O processo de RAG pode ser dividido em três etapas principais:
+
+1. **Recuperar (Retrieve):** Quando uma pergunta é feita, o sistema busca os trechos mais relevantes de uma base de conhecimento externa (como documentos, wikis, PDFs, bancos de dados, etc.). Essa busca é feita por similaridade semântica, usando embeddings para encontrar os textos mais próximos do significado da pergunta.
+
+2. **Aumentar (Augment):** Os trechos recuperados são inseridos em um prompt junto com a pergunta original. Esse contexto adicional fornece ao LLM informações específicas e atualizadas, ampliando sua capacidade de resposta.
+
+3. **Gerar (Generate):** O prompt enriquecido é enviado ao LLM, que utiliza tanto o contexto recuperado quanto seu conhecimento prévio para gerar uma resposta precisa, fundamentada e contextualizada.
+
+Essa arquitetura reduz significativamente o risco de "alucinações" (respostas inventadas) e permite que a IA utilize dados privados, corporativos ou atualizados, tornando-a muito mais útil em cenários do mundo real.
 
 ---
 
-### 1. Introdução: Por que Memória é Fundamental para Agentes de IA?
+### As Ferramentas Essenciais
 
-Imagine um agente de IA sem memória: ele responde a cada pergunta como se fosse a primeira vez, sem contexto ou aprendizado. Assim como o cérebro humano, a memória permite que agentes retenham informações, aprendam com experiências passadas e adaptem seu comportamento. Em LangChain, a memória é o que transforma um chatbot simples em um assistente inteligente e evolutivo.
+Para implementar um pipeline RAG eficiente, alguns componentes são fundamentais:
 
----
+- **Embeddings:** São representações numéricas de textos, criadas por modelos especializados. Embeddings permitem que o significado de frases, sentenças ou documentos seja comparado matematicamente. Textos com significados semelhantes terão embeddings próximos no espaço vetorial. Isso é essencial para buscar informações relevantes por similaridade de significado, e não apenas por palavras-chave.
 
-### 2. Tipos de Memória em LangChain
+- **Banco de Dados Vetorial (ChromaDB):** Um banco de dados vetorial armazena embeddings e permite buscas rápidas por similaridade. O ChromaDB, por exemplo, é uma solução open source leve e fácil de usar, ideal para prototipagem e produção. Ele permite indexar grandes volumes de dados e recuperar rapidamente os chunks mais relevantes para cada pergunta.
 
-| Tipo de Memória              | Descrição                                                                 | Uso Típico                      |
-|------------------------------|--------------------------------------------------------------------------|----------------------------------|
-| ConversationBufferMemory     | Armazena o histórico da conversa em buffer.                              | Chatbots, FAQ, suporte           |
-| GenerativeAgentMemory        | Permite reflexão, auto-resumo e aprendizado contínuo.                    | Agentes autônomos, simulacros    |
-| VectorStore (Semantic)       | Busca semântica de memórias usando embeddings.                           | Recuperação de contexto, RAG     |
-| ChromaDB                     | Banco de dados vetorial AI-native para busca semântica eficiente.        | RAG, armazenamento escalável     |
-| Knowledge Triples            | Estrutura fatos em triplas (sujeito, predicado, objeto).                 | Base de conhecimento estruturada |
+- **Chunking:** Como LLMs têm um limite de tokens (quantidade de texto que conseguem processar de uma vez), é necessário dividir documentos longos em pedaços menores chamados chunks. O chunking garante que cada parte do texto seja gerenciável e que informações importantes não sejam perdidas. Parâmetros como `chunk_size` e `chunk_overlap` ajudam a equilibrar contexto e granularidade.
 
-**Fluxograma textual:**
-
-Usuário → [Agente] → [Memória (Buffer/Semântica/ChromaDB/Estruturada)] → [Ferramentas/Respostas]
+- **LangChain Expression Language (LCEL):** LCEL é uma linguagem declarativa baseada em operadores de pipeline (`|`) que facilita a composição de fluxos de processamento em IA. Com LCEL, você pode conectar loaders, splitters, retrievers, prompts, LLMs e parsers de forma enxuta e intuitiva, criando pipelines robustos e fáceis de manter.
 
 ---
 
-### 2.1 Introdução ao ChromaDB
+Essas ferramentas, quando combinadas, permitem criar aplicações de IA capazes de responder perguntas sobre qualquer conteúdo, seja ele um documento PDF, um arquivo Markdown, uma planilha CSV ou uma base de dados inteira. O RAG transforma o LLM em um verdadeiro "especialista" sobre os dados que você fornecer, tornando-o útil para aplicações corporativas, acadêmicas e pessoais.
 
-O ChromaDB é um banco de dados vetorial open-source, projetado para armazenar e buscar embeddings de forma eficiente. Ele é amplamente utilizado em aplicações de IA para recuperação de contexto, RAG (Retrieval-Augmented Generation) e armazenamento escalável de memórias semânticas.
 
-**Vantagens:**
-- Busca rápida e eficiente de vetores.
-- Suporte nativo a LangChain.
-- Fácil integração com modelos de embeddings.
+### Projeto Prático: Chatbot de Documentos com LCEL e Gemini
 
----
+Vamos construir uma aplicação de linha de comando em Python que lê um documento PDF e responde a perguntas sobre seu conteúdo.
 
-### 3. Implementação Prática: Memória em Ação
+Use o comando abaixo para iniciar o projeto:
 
-#### 3.1 ConversationBufferMemory
-
-**Instalação dos pacotes:**
 ```sh
-uv add langchain langchain-openai python-dotenv
+uv init
 ```
 
-**Exemplo de código:**
+Assim, você terá a seguinte estrutura de pastas: 
+
+```
+exercicios/
+└── capitulo_07/
+    └── exercicio_1/
+        ├── app.py
+        ├── seu_documento.pdf
+        ├── pyproject.toml
+        └── .env
+```
+
+#### Instalação de Dependências
+
+Crie um ambiente virtual e instale as bibliotecas com `uv`:
+
+```sh
+# Navegue até o diretório do exercício
+cd exercicios/capitulo_07/exercicio_1
+
+# Crie o ambiente virtual com uv
+uv venv
+
+# Ative o ambiente virtual
+# No Linux/macOS:
+source .venv/bin/activate
+# No Windows:
+.venv\Scripts\activate
+
+# Instale as dependências
+uv add langchain langchain-google-genai langchain-chroma pypdf python-dotenv
+```
+
+#### Configuração da Chave de API
+
+Você precisará de uma chave de API do Google AI Studio. Crie um arquivo chamado `.env` na pasta do projeto e adicione sua chave:
+
+```
+GOOGLE_API_KEY="SUA_CHAVE_API_AQUI"
+```
+
+#### O Código Completo (`main.py`)
+
+Este script único contém toda a lógica. Ele carrega o PDF, o divide em chunks, armazena no ChromaDB e cria a cadeia RAG com LCEL para interagir com o modelo Gemini.
+
 ```python
-# capitulo_07/exercicio_1/main.py
-from langchain.memory import ConversationBufferMemory
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+# exercicios/capitulo_07/exercicio_1/main.py
+import os
+from dotenv import load_dotenv
+
+# LangChain Imports
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.tools import tool
-from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
-model = ChatOpenAI(temperature=0)
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
 
-@tool
-def get_user_age(name: str) -> str:
-    """Retorna a idade do usuário (exemplo didático)."""
-    if "bob" in name.lower():
-        return "42 anos"
-    return "41 anos"
+# --- 1. FASE DE INDEXAÇÃO (INGESTÃO DE DADOS) ---
 
-tools = [get_user_age]
-prompt = ChatPromptTemplate.from_messages([
-    ("placeholder", "{chat_history}"),
-    ("human", "{input}"),
-    ("placeholder", "{agent_scratchpad}"),
-])
+# Carregar o documento PDF
+print("Carregando PDF...")
+loader = PyPDFLoader("seu_documento.pdf")
+docs = loader.load()
 
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-agent = create_tool_calling_agent(model, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, memory=memory)
+# Dividir o documento em chunks
+print("Dividindo documento em chunks...")
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+splits = text_splitter.split_documents(docs)
 
-# Primeira interação
-print(agent_executor.invoke({"input": "Oi! Meu nome é Bob, qual minha idade?"}))
-# Segunda interação (memória)
-print(agent_executor.invoke({"input": "Você lembra meu nome?"}))
-```
+# Inicializar o modelo de embeddings do Google
+print("Inicializando modelo de embeddings...")
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-**Execução:**
-```sh
-python capitulo_07/exercicio_1/main.py
-```
-**Resultado esperado:**
-```
-{'output': '42 anos'}
-{'output': 'Seu nome é Bob.'}
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Problemas de permissão: Verifique se o arquivo está no diretório correto.
+# Criar o banco de dados vetorial ChromaDB com os chunks
+print("Criando e armazenando embeddings no ChromaDB...")
+vectorstore = Chroma.from_documents(documents=splits, embedding=embedding_model)
 
----
+# --- 2. FASE DE RECUPERAÇÃO E GERAÇÃO (RAG) ---
 
-#### 3.2 GenerativeAgentMemory
+# Criar o retriever a partir do vectorstore
+retriever = vectorstore.as_retriever()
 
-**Instalação dos pacotes:**
-```sh
-uv add langchain
-```
+# Inicializar o LLM Gemini
+print("Inicializando LLM Gemini...")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
 
-**Exemplo de código:**
-```python
-# capitulo_07/exercicio_2/main.py
-from langchain.experimental.generative_agents import GenerativeAgent, GenerativeAgentMemory
-from datetime import datetime, timedelta
+# Template do Prompt
+prompt_template = """
+Use o seguinte contexto para responder à pergunta.
+Se você não sabe a resposta, apenas diga que não sabe. Não tente inventar uma resposta.
 
-memory = GenerativeAgentMemory(reflection_threshold=8)
-agent = GenerativeAgent(
-    name="Tommie",
-    age=25,
-    traits="ansioso, gosta de design, comunicativo",
-    status="procurando emprego",
-    memory=memory,
+Contexto:
+{context}
+
+Pergunta:
+{question}
+
+Resposta útil:
+"""
+prompt = ChatPromptTemplate.from_template(prompt_template)
+
+# Função para formatar os documentos recuperados
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+# Construir a cadeia RAG usando LangChain Expression Language (LCEL)
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
 )
 
-observations = [
-    "Tommie lembra do cachorro Bruno de infância",
-    "Tommie está cansado após dirigir",
-    "Viu a nova casa",
-    "Os vizinhos têm um gato",
-    "A rua é barulhenta à noite",
-    "Tommie está com fome",
-    "Tommie tenta descansar."
+# --- 3. INTERAÇÃO COM O USUÁRIO ---
+
+print("\nSetup completo! O chatbot está pronto.")
+print("Digite 'sair' para encerrar.")
+
+while True:
+    user_question = input("\nFaça sua pergunta: ")
+    if user_question.lower() == 'sair':
+        break
+    
+    print("\nGerando resposta...")
+    response = rag_chain.invoke(user_question)
+    print("--- Resposta ---")
+    print(response)
+    print("----------------")
+
+# Limpeza (opcional): remove o banco de dados vetorial ao sair
+vectorstore.delete_collection()
+print("\nChatbot encerrado.")
+```
+
+---
+
+### Executando e Testando
+
+Para executar sua aplicação, simplesmente rode o script no seu terminal:
+
+```sh
+uv run main.py
+```
+
+A aplicação irá processar seu PDF e, em seguida, solicitará que você faça perguntas.
+
+**Exemplo de Interação:**
+
+1.  Carregue um PDF sobre a história do Brasil.
+2.  Execute `uv run main.py`.
+3.  Quando solicitado, pergunte: "Quem descobriu o Brasil?"
+4.  O chatbot usará o conteúdo do seu PDF para responder de forma precisa.
+
+### Exemplos Adicionais
+
+Para fixar ainda mais os conceitos, preparei outros exemplos de como usar RAG com diferentes tipos de documentos e formatos.
+
+#### Lendo Arquivos Markdown (.md)
+
+Por que vetorizar arquivos em formato markdown? O processo para ler arquivos Markdown é muito semelhante ao de PDFs. A principal diferença é o uso do `UnstructuredMarkdownLoader`.
+
+A vantagem prática é que markdowns são compreensíveis por humanos e LLMs ao mesmo tempo. Frequentemente, usamos markdowns em uma wiki, por exemplo, para documentar projetos, o que facilita a consulta e a atualização de informações.
+
+Outra vantagem é o caracter delimitador, o que permite que o LLM entenda melhor a estrutura do documento, como títulos, subtítulos e listas.
+
+**Sobre o caracter delimitador, chunk size e overlap:**
+
+O caracter delimitador é um elemento do texto (como títulos `#`, `##`, listas ou tabelas) usado para dividir o documento em partes menores (chunks) de forma lógica. No caso de arquivos Markdown, delimitadores como títulos ajudam o splitter a identificar onde começa e termina cada seção, permitindo que cada chunk corresponda a uma parte coesa do conteúdo. Isso mantém o contexto e a estrutura do documento, facilitando a recuperação de informações relevantes durante o processo de RAG.
+
+Ao configurar o splitter, você pode definir:
+
+- **chunk_size**: o número máximo de caracteres em cada chunk. Por exemplo, `chunk_size=1000` cria pedaços de até 1000 caracteres. Ajuste esse valor conforme o tamanho médio das seções do seu documento e a janela de contexto do LLM.
+- **chunk_overlap**: quantos caracteres do final de um chunk serão repetidos no início do próximo. Por exemplo, `chunk_overlap=200` garante que informações importantes na fronteira entre dois chunks não sejam perdidas.
+
+Exemplo de uso com splitter de texto:
+
+```python
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+splits = text_splitter.split_documents(docs)
+```
+
+No caso de Markdown, você pode usar delimitadores de cabeçalho para dividir por seções:
+
+```python
+headers_to_split_on = [
+    ("#", "Título"),
+    ("##", "Subtítulo"),
+    ("###", "Subsubtítulo"),
 ]
-for obs in observations:
-    agent.memory.add_memory(obs)
-
-print(agent.get_summary(force_refresh=True))
+text_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on,
+    strip_headers=True
+)
+splits = text_splitter.split_documents(docs)
 ```
 
-**Execução:**
-```sh
-python capitulo_07/exercicio_2/main.py
-```
-**Resultado esperado:**
-```
-Resumo do agente: Tommie é ansioso, gosta de design, comunicativo, está cansado e sente falta do cachorro Bruno.
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Erros de sintaxe: Confira se o código está igual ao exemplo.
+O ajuste desses parâmetros depende do equilíbrio entre contexto suficiente para o LLM e o limite de tokens do modelo. Teste diferentes valores para encontrar o melhor resultado para seu caso de uso.
 
----
+O processo para ler e estruturar dados a partir de arquivos Markdown é bastante flexível, pois o formato markdown permite organizar informações em listas, tabelas e seções bem definidas. Ao usar o `UnstructuredMarkdownLoader`, cada seção, lista ou bloco de texto pode ser tratado como um documento separado, facilitando a recuperação de informações específicas durante o processo de RAG.
 
-#### 3.3 VectorStore: Memória Semântica
+Por exemplo, se você possui um arquivo markdown com uma tabela de dados ou listas de tópicos, o loader irá dividir automaticamente esses elementos em chunks lógicos. Isso permite que perguntas direcionadas sobre itens, tópicos ou valores específicos sejam respondidas com precisão, aproveitando a estrutura do markdown para melhorar a segmentação e a relevância das respostas.
 
-**Instalação dos pacotes:**
-```sh
-uv add langchain langchain-openai faiss-cpu
+Além disso, você pode personalizar o pré-processamento do markdown para extrair apenas certas seções ou tipos de conteúdo, tornando o pipeline ainda mais adaptado ao seu caso de uso. Dessa forma, o markdown não serve apenas como um formato de documentação, mas também como uma fonte estruturada de dados para aplicações de IA.
+
+**Estrutura de Pastas:**
+
+```
+exercicios/
+└── capitulo_07/
+    └── exercicio_2/
+        ├── main.py
+        ├── seu_documento.md
+        ├── pyproject.toml
+        └── .env
 ```
 
-**Exemplo de código:**
+**Código Completo (`main.py`):**
+
 ```python
-# capitulo_07/exercicio_3/main.py
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-from langchain_core.documents import Document
+# exercicios/capitulo_07/exercicio_2/main.py
+import os
+from dotenv import load_dotenv
 
-embeddings = OpenAIEmbeddings()
-vectorstore = FAISS.from_documents([
-    Document(page_content="O usuário gosta de pizza."),
-    Document(page_content="O usuário mora em Nova York."),
-], embeddings)
+# LangChain Imports
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.document_loaders import UnstructuredMarkdownLoader
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+from langchain_chroma import Chroma
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
-query = "Qual comida o usuário prefere?"
-results = vectorstore.similarity_search(query)
-for doc in results:
-    print(doc.page_content)
-```
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
 
-**Execução:**
-```sh
-python capitulo_07/exercicio_3/main.py
-```
-**Resultado esperado:**
-```
-O usuário gosta de pizza.
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Erros de importação: Confira se os pacotes estão instalados.
+# --- 1. FASE DE INDEXAÇÃO (INGESTÃO DE DADOS) ---
 
----
 
-#### 3.4 ChromaDB: Memória Vetorial AI-native
+# Carregar o conteúdo do arquivo Markdown
+print("Carregando Markdown...")
+with open("universo.md", "r", encoding="utf-8") as f:
+    markdown_text = f.read()
 
-**Instalação dos pacotes:**
-```sh
-uv add chromadb langchain langchain-openai
-```
-
-**Exemplo de código:**
-```python
-# capitulo_07/exercicio_4/main.py
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain_core.documents import Document
-
-embeddings = OpenAIEmbeddings()
-vectorstore = Chroma.from_documents([
-    Document(page_content="O usuário gosta de pizza."),
-    Document(page_content="O usuário mora em Nova York."),
-], embeddings)
-
-query = "Qual comida o usuário prefere?"
-results = vectorstore.similarity_search(query)
-for doc in results:
-    print(doc.page_content)
-```
-
-**Execução:**
-```sh
-python capitulo_07/exercicio_4/main.py
-```
-**Resultado esperado:**
-```
-O usuário gosta de pizza.
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Erros de importação: Confira se os pacotes estão instalados.
-
----
-
-#### 3.5 Knowledge Triples: Memória Estruturada
-
-**Exemplo de código:**
-```python
-# capitulo_07/exercicio_5/main.py
-from typing_extensions import TypedDict
-
-class KnowledgeTriple(TypedDict):
-    subject: str
-    predicate: str
-    object: str
-
-triples = [
-    KnowledgeTriple(subject="João", predicate="gosta de", object="pizza"),
-    KnowledgeTriple(subject="Maria", predicate="mora em", object="São Paulo"),
+# Definir os delimitadores de chunk para capturar seções inteiras por subtítulo
+headers_to_split_on = [
+    ("#", "Título"),
+    ("##", "Subtítulo"),
+    ("###", "Subsubtítulo"),
 ]
-for triple in triples:
-    print(f"{triple['subject']} {triple['predicate']} {triple['object']}")
+
+print("Dividindo documento em chunks por subtítulo...")
+text_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on,
+    strip_headers=True
+)
+
+# O método correto é split_text, que retorna uma lista de Document
+splits = text_splitter.split_text(markdown_text)
+
+# Inicializar o modelo de embeddings do Google
+print("Inicializando modelo de embeddings...")
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+
+# Criar o banco de dados vetorial ChromaDB com os chunks
+print("Criando e armazenando embeddings no ChromaDB...")
+vectorstore = Chroma.from_documents(documents=splits, embedding=embedding_model)
+
+# --- 2. FASE DE RECUPERAÇÃO E GERAÇÃO (RAG) ---
+
+# Criar o retriever a partir do vectorstore
+retriever = vectorstore.as_retriever()
+
+# Inicializar o LLM Gemini
+print("Inicializando LLM Gemini...")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+# Template do Prompt
+prompt_template = """
+Use o seguinte contexto para responder à pergunta.
+Se você não sabe a resposta, apenas diga que não sabe. Não tente inventar uma resposta.
+
+Contexto:
+{context}
+
+Pergunta:
+{question}
+
+Resposta útil:
+"""
+prompt = ChatPromptTemplate.from_template(prompt_template)
+
+# Função para formatar os documentos recuperados
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+# Construir a cadeia RAG usando LangChain Expression Language (LCEL)
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+
+# --- 3. INTERAÇÃO COM O USUÁRIO ---
+
+print("\nSetup completo! O chatbot está pronto.")
+print("Digite 'sair' para encerrar.")
+
+while True:
+    user_question = input("\nFaça sua pergunta: ")
+    if user_question.lower() == 'sair':
+        break
+    
+    print("\nGerando resposta...")
+    response = rag_chain.invoke(user_question)
+    print("--- Resposta ---")
+    print(response)
+    print("----------------")
+
+# Limpeza (opcional): remove o banco de dados vetorial ao sair
+vectorstore.delete_collection()
+print("\nChatbot encerrado.")
 ```
 
-**Execução:**
-```sh
-python capitulo_07/exercicio_5/main.py
-```
-**Resultado esperado:**
-```
-João gosta de pizza
-Maria mora em São Paulo
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
+**Como funciona a divisão por subtítulo:**  
+O `MarkdownHeaderTextSplitter` permite que cada chunk corresponda exatamente a uma seção do markdown, delimitada por títulos como `##` ou `###`. Assim, quando você faz uma pergunta, o sistema pode recuperar o chunk inteiro de um subtítulo relevante, garantindo que a resposta esteja contextualizada dentro daquela seção do documento.
 
----
 
-#### 3.6 Assistente de Suporte Evolutivo
+**Dependências Adicionais:**
 
-**Exemplo de código:**
+Adicione `unstructured` e `markdown` ao seu `pyproject.toml`:
+
+```toml
+[project]
+# ...
+dependencies = [
+    # ...
+    "unstructured",
+    "markdown",
+]
+```
+
+#### Lendo Arquivos CSV (.csv)
+
+Para arquivos CSV, usamos o `CSVLoader`. Ele trata cada linha do CSV como um documento separado.
+
+**Como funciona a leitura de CSV:**
+
+O formato CSV (Comma-Separated Values) é amplamente utilizado para armazenar dados tabulares, como planilhas ou exportações de bancos de dados. Cada linha do arquivo representa um registro (ou entrada), e cada coluna representa um campo desse registro.
+
+Ao usar o `CSVLoader` da LangChain, cada linha do CSV é carregada como um documento independente. Isso significa que, para cada registro, você terá um chunk separado no seu banco vetorial. Esse comportamento é útil para buscas precisas em dados estruturados, como perguntas sobre clientes, produtos, transações, etc.
+
+**Exemplo de uso:**
+
 ```python
-# capitulo_07/exercicio_6/main.py
-from langchain.memory import ConversationBufferMemory
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.tools import tool
+from langchain_community.document_loaders.csv_loader import CSVLoader
 
-model = ChatOpenAI(temperature=0)
+# Carregar o documento CSV
+loader = CSVLoader(file_path="seus_dados.csv")
+docs = loader.load()
 
-@tool
-def registrar_feedback(feedback: str) -> str:
-    """Registra feedback do usuário na memória."""
-    return f"Feedback registrado: {feedback}"
-
-tools = [registrar_feedback]
-prompt = ChatPromptTemplate.from_messages([
-    ("placeholder", "{chat_history}"),
-    ("human", "{input}"),
-    ("placeholder", "{agent_scratchpad}"),
-])
-
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-agent = create_tool_calling_agent(model, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, memory=memory)
-
-print(agent_executor.invoke({"input": "Preciso de ajuda com minha conta."}))
-print(agent_executor.invoke({"input": "O atendimento foi ótimo!"}))
-print(agent_executor.invoke({"input": "Qual foi meu feedback anterior?"}))
+# docs será uma lista de Document, cada um representando uma linha do CSV
 ```
 
-**Execução:**
-```sh
-python capitulo_07/exercicio_6/main.py
+Se o seu CSV for muito grande, você pode aplicar chunking adicional em campos de texto longos, mas normalmente cada linha já é um chunk lógico.
+
+**Dica:**
+Os objetos `Document` criados pelo loader incluem os dados de cada linha e também podem conter metadados, como o número da linha ou o nome das colunas. Isso facilita a recuperação de informações específicas e a exibição de resultados contextualizados.
+
+**Quando usar CSVLoader:**
+- Quando você tem dados tabulares e quer permitir buscas por registros específicos.
+- Quando precisa de granularidade por linha (ex: perguntas sobre um cliente ou transação específica).
+
+Se quiser personalizar o pré-processamento, pode manipular os dados antes de criar os embeddings, por exemplo, filtrando colunas ou combinando campos em um texto único para cada registro.
+
+
+
+**Estrutura de Pastas:**
+
 ```
-**Resultado esperado:**
+exercicios/
+└── capitulo_07/
+    └── exercicio_3/
+        ├── app_csv.py
+        ├── seus_dados.csv
+        ├── pyproject.toml
+        └── .env
 ```
-Feedback registrado: O atendimento foi ótimo!
-Qual foi meu feedback anterior? O atendimento foi ótimo!
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Problemas de permissão: Verifique se o arquivo está no diretório correto.
 
----
+**Código Completo (`main.py`):**
 
-### 4. Feedback e Aprendizado Contínuo
-
-A memória sozinha não basta: agentes avançados precisam refletir sobre suas ações, receber feedback e adaptar seu comportamento. Em LangChain, isso pode ser feito com mecanismos de reflexão (reflection_threshold), auto-resumo e atualização de memórias.
-
-**Fluxograma textual:**
-
-Usuário → [Agente] → [Memória] → [Reflexão/Feedback] → [Aprimoramento do agente]
-
----
-
-### 5. Estudo de Caso: Assistente de Suporte Evolutivo
-
-Imagine um assistente de suporte que aprende com cada interação, ajustando suas respostas e memórias conforme o feedback do usuário.
-
-**Exemplo de código:**
 ```python
-# capitulo_07/exercicio_6/main.py
-from langchain.memory import ConversationBufferMemory
-from langchain_openai import ChatOpenAI
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+# exercicios/capitulo_07/exercicio_3/main.py
+import os
+from dotenv import load_dotenv
+
+# LangChain Imports
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.tools import tool
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
-model = ChatOpenAI(temperature=0)
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
 
-@tool
-def registrar_feedback(feedback: str) -> str:
-    """Registra feedback do usuário na memória."""
-    return f"Feedback registrado: {feedback}"
+# --- 1. FASE DE INDEXAÇÃO (INGESTÃO DE DADOS) ---
 
-tools = [registrar_feedback]
-prompt = ChatPromptTemplate.from_messages([
-    ("placeholder", "{chat_history}"),
-    ("human", "{input}"),
-    ("placeholder", "{agent_scratchpad}"),
-])
+# Carregar o documento CSV
+print("Carregando CSV...")
+loader = CSVLoader(file_path="seus_dados.csv")
+docs = loader.load()
 
-memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-agent = create_tool_calling_agent(model, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, memory=memory)
+# Se necessário, aplicar chunking em campos de texto longos
+# Para a maioria dos casos, cada linha já é um chunk lógico
+# Exemplo de uso do splitter (opcional):
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+# splits = text_splitter.split_documents(docs)
+splits = docs  # normalmente, cada linha do CSV já é um chunk
 
-print(agent_executor.invoke({"input": "Preciso de ajuda com minha conta."}))
-print(agent_executor.invoke({"input": "O atendimento foi ótimo!"}))
-print(agent_executor.invoke({"input": "Qual foi meu feedback anterior?"}))
+# Inicializar o modelo de embeddings do Google
+print("Inicializando modelo de embeddings...")
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+
+# Criar o banco de dados vetorial ChromaDB com os chunks
+print("Criando e armazenando embeddings no ChromaDB...")
+vectorstore = Chroma.from_documents(documents=splits, embedding=embedding_model)
+
+# --- 2. FASE DE RECUPERAÇÃO E GERAÇÃO (RAG) ---
+
+# Criar o retriever a partir do vectorstore
+retriever = vectorstore.as_retriever()
+
+# Inicializar o LLM Gemini
+print("Inicializando LLM Gemini...")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+# Template do Prompt
+prompt_template = """
+Use o seguinte contexto para responder à pergunta.
+Se você não sabe a resposta, apenas diga que não sabe. Não tente inventar uma resposta.
+
+Contexto:
+{context}
+
+Pergunta:
+{question}
+
+Resposta útil:
+"""
+prompt = ChatPromptTemplate.from_template(prompt_template)
+
+# Função para formatar os documentos recuperados
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+# Construir a cadeia RAG usando LangChain Expression Language (LCEL)
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+
+# --- 3. INTERAÇÃO COM O USUÁRIO ---
+
+print("\nSetup completo! O chatbot está pronto.")
+print("Digite 'sair' para encerrar.")
+
+while True:
+    user_question = input("\nFaça sua pergunta: ")
+    if user_question.lower() == 'sair':
+        break
+    
+    print("\nGerando resposta...")
+    response = rag_chain.invoke(user_question)
+    print("--- Resposta ---")
+    print(response)
+    print("----------------")
+
+# Limpeza (opcional): remove o banco de dados vetorial ao sair
+vectorstore.delete_collection()
+print("\nChatbot encerrado.")
 ```
 
----
+**Sobre o delimitador e chunking em CSV:**  
+No caso de arquivos CSV, cada linha já funciona como um chunk lógico, pois representa um registro completo da tabela. Se algum campo do CSV contiver textos longos (por exemplo, descrições ou observações), você pode aplicar um splitter adicional nesses campos usando o `RecursiveCharacterTextSplitter` para garantir que o conteúdo não ultrapasse o limite de contexto do LLM. No entanto, para a maioria dos usos, cada linha do CSV é suficiente como unidade de recuperação, facilitando buscas precisas e contextualizadas.
 
-### Hands-on: Exercício — Memória em Agentes LangChain
-
-#### Exercício 1: ConversationBufferMemory
-* **Objetivo:** Demonstrar memória de conversação em agentes.
-* **Nome do Arquivo:** `capitulo_07/exercicio_1/main.py`
-* **Dependências:** `langchain`, `langchain-openai`, `python-dotenv`
-* **Comando de Instalação:**
-```sh
-uv add langchain langchain-openai python-dotenv
-```
-
----
-
-#### Exercício 2: GenerativeAgentMemory
-* **Objetivo:** Demonstrar memória reflexiva e auto-resumo.
-* **Nome do Arquivo:** `capitulo_07/exercicio_2/main.py`
-* **Dependências:** `langchain`
-* **Comando de Instalação:**
-```sh
-uv add langchain
-```
-
----
-
-#### Exercício 3: VectorStore (Memória Semântica)
-* **Objetivo:** Demonstrar busca semântica de memórias.
-* **Nome do Arquivo:** `capitulo_07/exercicio_3/main.py`
-* **Dependências:** `langchain`, `langchain-openai`, `faiss-cpu`
-* **Comando de Instalação:**
-```sh
-uv add langchain langchain-openai faiss-cpu
-```
-
----
-
-#### Exercício 4: ChromaDB (Memória Vetorial AI-native)
-* **Objetivo:** Demonstrar busca semântica usando ChromaDB.
-* **Nome do Arquivo:** `capitulo_07/exercicio_4/main.py`
-* **Dependências:** `chromadb`, `langchain`, `langchain-openai`
-* **Comando de Instalação:**
-```sh
-uv add chromadb langchain langchain-openai
-```
-**Comando de Execução (Linux/macOS):**
-```sh
-python capitulo_07/chromadb_memory.py
-```
-**Comando de Execução (Windows):**
-```bat
-python capitulo_07\chromadb_memory.py
-```
-**Saída Esperada (pode variar):**
-```
-O usuário gosta de pizza.
-```
-**Troubleshooting Comum:**
-* `ModuleNotFoundError`: Verifique se todas as dependências foram instaladas corretamente.
-* Erros de importação: Confira se os pacotes estão instalados.
-
----
-
-#### Exercício 5: Knowledge Triples
-* **Objetivo:** Demonstrar memória estruturada com triplas.
-* **Nome do Arquivo:** `capitulo_07/exercicio_5/main.py`
-* **Dependências:** `typing_extensions`
-* **Comando de Instalação:**
-```sh
-uv add typing_extensions
-```
-
----
-
-#### Exercício 6: Assistente de Suporte Evolutivo
-* **Objetivo:** Demonstrar agente que aprende com feedback do usuário.
-* **Nome do Arquivo:** `capitulo_07/exercicio_6/main.py`
-* **Dependências:** `langchain`, `langchain-openai`, `python-dotenv`
-* **Comando de Instalação:**
-```sh
-uv add langchain langchain-openai python-dotenv
-```
-
----
 
 ### Pontos Chave
-* Memória transforma agentes simples em assistentes inteligentes e adaptativos.
-* LangChain oferece múltiplos tipos de memória: buffer, semântica, reflexiva, estruturada e ChromaDB.
-* Feedback e reflexão permitem aprendizado contínuo dos agentes.
-* Exercícios práticos mostram como implementar e testar cada tipo de memória.
+
+*   RAG é uma técnica poderosa para estender o conhecimento de LLMs com dados privados ou atualizados.
+*   O processo de RAG consiste em Recuperar, Aumentar e Gerar.
+*   Ferramentas como ChromaDB para armazenamento vetorial e LCEL para construção de pipelines são essenciais para implementar RAG com LangChain.
+*   A combinação de LangChain com modelos como o Gemini permite criar aplicações de IA sofisticadas com relativa simplicidade.
 
 ---
 
 ### Resumo do Capítulo
-Neste capítulo, você explorou técnicas avançadas de memória, feedback e aprendizado contínuo em agentes de IA com LangChain. Aprendeu a implementar diferentes tipos de memória, testar agentes evolutivos e consolidar o conhecimento com exercícios práticos.
+
+Neste capítulo, você mergulhou no mundo da Geração Aumentada por Recuperação (RAG). Aprendeu os conceitos fundamentais que tornam essa técnica possível e construiu um chatbot funcional do zero, capaz de conversar sobre o conteúdo de um documento PDF. Este projeto prático demonstrou como LangChain, ChromaDB e os modelos Gemini do Google se unem para criar soluções de IA inteligentes e com conhecimento específico.
+
+Além do exemplo com PDF, você também aprendeu como aplicar RAG em outros formatos de documentos, como Markdown e CSV. Viu como o uso de delimitadores (como títulos em Markdown ou linhas em CSV) permite dividir o conteúdo em chunks lógicos, facilitando a recuperação de informações relevantes e mantendo o contexto necessário para respostas precisas.
+
+O capítulo detalhou a importância de ajustar o tamanho do chunk e o overlap para equilibrar contexto e eficiência, além de mostrar como cada tipo de documento pode exigir estratégias diferentes de chunking. Você viu exemplos práticos de como configurar o splitter para cada caso, garantindo que tanto textos longos quanto dados tabulares possam ser usados em pipelines de RAG.
+
+Também foram apresentadas dicas para produção, como persistir o banco vetorial em disco, trabalhar com múltiplos documentos e enriquecer as respostas do chatbot com metadados (por exemplo, indicando a página ou linha de origem da informação). Essas práticas tornam o sistema mais robusto, eficiente e pronto para aplicações reais.
+
+Com esse conhecimento, você está preparado para criar aplicações de IA que vão além do trivial, integrando dados próprios, estruturados ou não, e oferecendo respostas fundamentadas, seguras e contextualizadas para os usuários.
 
 ---
 
 ### Teste seu Conhecimento
 
-1. Qual tipo de memória permite busca semântica de informações?
-   a) ConversationBufferMemory
-   b) VectorStore
-   c) ChromaDB
-   d) Knowledge Triples
-2. O que o parâmetro reflection_threshold controla em GenerativeAgentMemory?
-   a) Quantidade de memória armazenada
-   b) Quando o agente reflete e aprende
-   c) O tipo de embedding usado
-   d) O número de ferramentas disponíveis
-3. Knowledge Triples são usadas para:
-   a) Armazenar histórico linear de conversa
-   b) Estruturar fatos em sujeito, predicado e objeto
-   c) Buscar contexto semântico
-   d) Gerar auto-resumo do agente
-4. Para registrar feedback do usuário em um agente, você deve:
-   a) Usar ConversationBufferMemory
-   b) Implementar uma ferramenta customizada
-   c) Utilizar VectorStore ou ChromaDB
-   d) Adicionar triplas manualmente
-5. Um trade-off entre memória buffer e semântica é:
-   a) Buffer é mais poderoso, semântica é mais simples
-   b) Buffer é simples e rápido, semântica é mais complexa e poderosa
-   c) Semântica não permite busca, buffer permite
-   d) Ambos são iguais em escalabilidade
+1. O que significa a sigla RAG?
+    a) Random Access Generation
+    b) Retrieval-Augmented Generation
+    c) Real-time Augmented Grammar
+    d) Recursive Agent Generation
+
+2. Qual é a principal função de um banco de dados vetorial como o ChromaDB em um pipeline RAG?
+    a) Armazenar o histórico da conversa.
+    b) Executar o modelo de linguagem.
+    c) Armazenar e buscar embeddings de texto por similaridade.
+    d) Dividir documentos em chunks.
+
+3. O que é "chunking" e por que é importante?
+    a) O processo de converter texto em embeddings.
+    b) O processo de quebrar textos longos em pedaços menores para facilitar a recuperação e respeitar o limite de contexto do LLM.
+    c) O processo de enviar um prompt para o LLM.
+    d) O processo de avaliar a qualidade da resposta do LLM.
+
+4. Qual o papel dos delimitadores em arquivos Markdown e CSV no contexto de RAG?
+    a) Servem apenas para estilizar o texto.
+    b) Permitem dividir o documento em chunks lógicos, facilitando a segmentação e a recuperação de informações.
+    c) São ignorados pelo pipeline.
+    d) Servem para criptografar o conteúdo.
+
+5. Para que serve a LangChain Expression Language (LCEL)?
+    a) Para treinar modelos de linguagem.
+    b) Para criar interfaces de usuário para chatbots.
+    c) Para compor cadeias (chains) de processamento de forma declarativa e enxuta.
+    d) Para definir o estilo de escrita do LLM.
+
+6. Qual das opções abaixo é uma boa prática para produção de pipelines RAG?
+    a) Manter o banco vetorial apenas em memória.
+    b) Persistir o banco vetorial em disco, trabalhar com múltiplos documentos e enriquecer as respostas com metadados.
+    c) Não usar chunking.
+    d) Ignorar o contexto do usuário.
 
 **Respostas:**
-1. b, c
-2. b
+1. b
+2. c
 3. b
 4. b
-5. b
+5. c
+6. b
 
 ---
 
-### Projeto Hands-on: Agente Evolutivo com Memória e Feedback
+### Projeto Hands-on: Expandindo o Chatbot RAG
 
-Coloque em prática os conceitos do capítulo criando um agente Python com LangChain que utiliza memória semântica (ChromaDB) e registra feedback do usuário. O agente deve adaptar suas respostas conforme o histórico e feedback recebido. Documente todos os comandos usados, proteja suas chaves de API com .env e compartilhe o repositório via SSH no GitHub. Experimente rodar o projeto em diferentes versões do Python usando pyenv.
+Agora é sua vez de aprimorar o projeto que construímos. Tente implementar as seguintes melhorias:
+
+*   **Múltiplos Documentos:** Modifique o código para carregar e processar múltiplos arquivos de uma pasta. (Dica: use um loop e a função `os.listdir()`).
+*   **Persistência:** O ChromaDB criado neste exemplo é "efêmero" (em memória). Pesquise na documentação do LangChain e do ChromaDB como torná-lo persistente, salvando os dados em disco para não precisar reprocessar o PDF toda vez. (Dica: use `persist_directory` ao criar o Chroma).
+*   **Adicionar Fontes:** Modifique a cadeia RAG para também retornar de qual página do documento a informação foi extraída. (Dica: o retriever retorna objetos `Document` que contêm metadados, incluindo a página).
 
 
+<!-- capitulos/capitulo_8.md -->
 ## Capítulo 8: Testes, Debugging e Otimização de Aplicações LangChain
 
 **Neste capítulo, você vai aprender:**
@@ -3174,6 +3375,7 @@ Neste capítulo, você aprendeu a testar, debugar, traçar e otimizar aplicaçõ
 Coloque em prática os conceitos do capítulo criando um projeto Python com LangChain que implementa um chatbot testável, com testes unitários e funcionais, debugging com logs detalhados e tracing via LangSmith. Documente todos os comandos usados, proteja suas chaves de API com .env e compartilhe o repositório via SSH no GitHub. Experimente rodar o projeto em diferentes versões do Python usando pyenv.
 
 
+<!-- capitulos/capitulo_9.md -->
 ## Capítulo 9: LangChain na Produção: Escalabilidade, Observabilidade e Segurança
 
 **Neste capítulo, você vai aprender:**
@@ -3525,7 +3727,9 @@ Coloque em prática os conceitos do capítulo criando um projeto Python com Lang
 - **Segurança:** Teste e monitore ataques de prompt injection e vazamento de dados sensíveis. Simule ataques e monitore logs/traces.
 - **Documentação:** Mantenha README atualizado com exemplos, comandos, troubleshooting e instruções de feedback/tracing.
 
+---
 
+<!-- capitulos/capitulo_10.md -->
 ## Capítulo 10: Projeto Final Integrador — Assistente de Viagem Inteligente
 
 **Neste capítulo, você vai aprender:**
@@ -3730,6 +3934,7 @@ Neste capítulo, você aplicou todos os conceitos aprendidos para construir um A
 Coloque em prática os conceitos do capítulo criando um projeto Python com LangChain para ser um assistente de viagem inteligente. Implemente pesquisa de destinos, clima, atrações, gerenciamento de orçamento e integração de múltiplas ferramentas. Documente todos os comandos usados, proteja suas chaves de API com .env e compartilhe o repositório via SSH no GitHub. Experimente rodar o projeto em diferentes versões do Python usando pyenv.
 
 
+<!-- capitulos/conclusao.md -->
 ## Conclusão
 
 Ao longo deste e-book, você percorreu uma jornada completa pelo universo do LangChain, desde a configuração do ambiente até a construção de agentes inteligentes prontos para produção. Explorou conceitos fundamentais de IA, engenharia de contexto, ferramentas, agentes, memória, feedback, testes, debugging, otimização, segurança e integração de múltiplas tecnologias.
@@ -3789,7 +3994,11 @@ Parabéns por chegar até aqui! O futuro da IA está em suas mãos. Que este mat
 
 Lembre-se: o aprendizado é contínuo, e cada projeto é uma oportunidade de inovar, aprimorar suas habilidades e impactar positivamente o mundo ao seu redor. Continue explorando, experimentando e compartilhando suas descobertas.
 
+---
 
+**Bons estudos e ótimos projetos!**
+
+<!-- capitulos/proximos_passos.md -->
 ## **Próximos Passos na sua Jornada**
 
 Parabéns! Você chegou ao final deste livro e, mais importante, deu um passo gigantesco na sua jornada com a Inteligência Artificial e o LangChain. Mas lembre-se, o aprendizado é contínuo. Aqui estão algumas sugestões para seus próximos passos:
@@ -3814,7 +4023,7 @@ A jornada do aprendizado não termina aqui. Na verdade, ela está apenas começa
 
 Obrigado por me acompanhar nesta jornada. Agora, vá e construa algo incrível!
 
-
+<!-- capitulos/sobre_autor.md -->
 ## **Sobre o Autor**
 
 A jornada de Igor Medeiros é movida por um propósito forjado no amor, na dor e na superação. Filho de um herói que, em suas palavras, “samba todo dia na cara do Alzheimer”, e pai da Melissa, “a luz de sua jornada”, ele carrega em sua história a força desses dois pilares. Sua trajetória profissional de mais de duas décadas foi profundamente ressignificada após um grave desafio de saúde em 2012, que incluiu um tumor gigante na cabeça e uma embolia pulmonar no pós-operatório. **A batalha pela vida deixou marcas permanentes: a paralisia facial e a surdez unilateral total, ambas do lado direito do rosto.**
@@ -3827,6 +4036,9 @@ Hoje, como especialista de IA Agents e evangelista de Inteligência Artificial, 
 
 Além de seu trabalho corporativo, Igor é um líder de comunidade nato, que acredita que o conhecimento só tem valor quando é compartilhado. Essa vocação para o humanismo tem raízes profundas: por 14 anos, dedicou-se como voluntário em uma ONG com a missão de resgatar pessoas em situação de rua. Em um marcante contraste com seu trabalho de ponta em Inteligência Artificial, essa experiência solidificou sua crença de que a tecnologia mais avançada deve sempre servir à empatia e à conexão humana. Seja em palestras, artigos ou como mentor, ele se dedica a capacitar outros desenvolvedores, fechando o ciclo de uma jornada extraordinária que transforma gratidão em legado. Este livro é mais um passo nesse caminho.
 
+
+
+<!-- capitulos/glossario.md -->
 ## **Glossário**
 
 *   **Agente (Agent):** Sistema que usa um LLM como "cérebro" para decidir ações, utilizando ferramentas e raciocínio dinâmico.
@@ -3851,7 +4063,7 @@ Além de seu trabalho corporativo, Igor é um líder de comunidade nato, que acr
 *   **LangGraph:** Biblioteca para orquestração de sistemas multiagentes via grafos, permitindo fluxos complexos e colaborativos entre agentes.
 
 
-
+<!-- capitulos/referencias.md -->
 ## **Referências Bibliográficas**
 
 ### **Documentação Oficial e Ferramentas**
@@ -3873,3 +4085,4 @@ Além de seu trabalho corporativo, Igor é um líder de comunidade nato, que acr
 *   **"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020):** Padrão RAG.
 *   **"ReAct: Synergizing Reasoning and Acting in Language Models" (Yao et al., 2022):** Padrão ReAct. [https://react-lm.github.io/](https://react-lm.github.io/)
 *   **"Building Effective Agents" (Schluntz & Zhang, Anthropic, 2024):** Design patterns, agentes vs workflows, orquestração baseada em grafos. [https://www.anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents)
+
