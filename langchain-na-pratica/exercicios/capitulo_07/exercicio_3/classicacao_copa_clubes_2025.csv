@@ -1,0 +1,33 @@
+Posicao,Clube,Status_Final,Jogos,Vitorias,Empates,Derrotas,Gols_Pro,Gols_Contra,Saldo_de_Gols
+1,Chelsea,Campeão,7,6,1,0,15,4,11
+2,Paris Saint-Germain,Vice-Campeão,7,5,1,1,13,6,7
+3,Real Madrid,Terceiro Lugar,7,5,0,2,16,8,8
+4,Fluminense,Disputou o 3º lugar,7,4,1,2,11,9,2
+5,Borussia Dortmund,Eliminado nas Quartas de Final,5,3,1,1,9,5,4
+6,Bayern de Munique,Eliminado nas Quartas de Final,5,3,1,1,10,6,4
+7,Al-Hilal,Eliminado nas Quartas de Final,5,3,0,2,8,7,1
+8,Palmeiras,Eliminado nas Quartas de Final,5,2,2,1,7,5,2
+9,Manchester City,Eliminado nas Oitavas de Final,4,2,1,1,8,3,5
+10,Benfica,Eliminado nas Oitavas de Final,4,2,1,1,6,4,2
+11,Flamengo,Eliminado nas Oitavas de Final,4,2,1,1,5,4,1
+12,Inter de Milao,Eliminado nas Oitavas de Final,4,2,1,1,5,5,0
+13,Juventus,Eliminado nas Oitavas de Final,4,2,0,2,7,6,1
+14,Botafogo,Eliminado nas Oitavas de Final,4,2,0,2,6,7,-1
+15,Monterrey,Eliminado nas Oitavas de Final,4,1,2,1,5,6,-1
+16,Inter Miami CF,Eliminado nas Oitavas de Final,4,1,1,2,4,8,-4
+17,Atletico de Madrid,Eliminado na Fase de Grupos,3,1,1,1,4,4,0
+18,Mamelodi Sundowns,Eliminado na Fase de Grupos,3,1,1,1,3,3,0
+19,River Plate,Eliminado na Fase de Grupos,3,1,1,1,3,4,-1
+20,RB Salzburg,Eliminado na Fase de Grupos,3,1,1,1,2,3,-1
+21,Esperance de Tunis,Eliminado na Fase de Grupos,3,1,1,1,2,5,-3
+22,Al Ain,Eliminado na Fase de Grupos,3,1,0,2,4,5,-1
+23,FC Porto,Eliminado na Fase de Grupos,3,1,0,2,3,4,-1
+24,Boca Juniors,Eliminado na Fase de Grupos,3,0,3,0,3,3,0
+25,Al Ahly,Eliminado na Fase de Grupos,3,0,2,1,2,3,-1
+26,Los Angeles FC,Eliminado na Fase de Grupos,3,0,2,1,2,4,-2
+27,Auckland City,Eliminado na Fase de Grupos,3,0,1,2,2,6,-4
+28,Ulsan HD,Eliminado na Fase de Grupos,3,0,1,2,1,5,-4
+29,Seattle Sounders,Eliminado na Fase de Grupos,3,0,1,2,2,7,-5
+30,Pachuca,Eliminado na Fase de Grupos,3,0,1,2,1,7,-6
+31,Wydad Casablanca,Eliminado na Fase de Grupos,3,0,0,3,2,6,-4
+32,Urawa Red Diamonds,Eliminado na Fase de Grupos,3,0,0,3,1,7,-6

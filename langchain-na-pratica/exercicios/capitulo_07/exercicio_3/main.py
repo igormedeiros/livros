@@ -1,15 +1,93 @@
-# capitulo_07/exercicio_3/main.py
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
-from langchain_core.documents import Document
+# exercicios/capitulo_07/exercicio_3/main.py
+import os
+from dotenv import load_dotenv
 
-embeddings = OpenAIEmbeddings()
-vectorstore = FAISS.from_documents([
-    Document(page_content="O usuário gosta de pizza."),
-    Document(page_content="O usuário mora em Nova York."),
-], embeddings)
+# LangChain Imports
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
-query = "Qual comida o usuário prefere?"
-results = vectorstore.similarity_search(query)
-for doc in results:
-    print(doc.page_content)
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
+
+# --- 1. FASE DE INDEXAÇÃO (INGESTÃO DE DADOS) ---
+
+# Carregar o documento CSV
+print("Carregando CSV...")
+loader = CSVLoader(file_path="classicacao_copa_clubes_2025.csv")
+docs = loader.load()
+
+# Se necessário, aplicar chunking em campos de texto longos
+# Para a maioria dos casos, cada linha já é um chunk lógico
+# Exemplo de uso do splitter (opcional):
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+# splits = text_splitter.split_documents(docs)
+splits = docs  # normalmente, cada linha do CSV já é um chunk
+
+# Inicializar o modelo de embeddings do Google
+print("Inicializando modelo de embeddings...")
+embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+
+# Criar o banco de dados vetorial ChromaDB com os chunks
+print("Criando e armazenando embeddings no ChromaDB...")
+vectorstore = Chroma.from_documents(documents=splits, embedding=embedding_model)
+
+# --- 2. FASE DE RECUPERAÇÃO E GERAÇÃO (RAG) ---
+
+# Criar o retriever a partir do vectorstore
+retriever = vectorstore.as_retriever()
+
+# Inicializar o LLM Gemini
+print("Inicializando LLM Gemini...")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+# Template do Prompt
+prompt_template = """
+Use o seguinte contexto para responder à pergunta.
+Se você não sabe a resposta, apenas diga que não sabe. Não tente inventar uma resposta.
+
+Contexto:
+{context}
+
+Pergunta:
+{question}
+
+Resposta útil:
+"""
+prompt = ChatPromptTemplate.from_template(prompt_template)
+
+# Função para formatar os documentos recuperados
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+# Construir a cadeia RAG usando LangChain Expression Language (LCEL)
+rag_chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
+
+# --- 3. INTERAÇÃO COM O USUÁRIO ---
+
+print("\nSetup completo! O chatbot está pronto.")
+print("Digite 'sair' para encerrar.")
+
+while True:
+    user_question = input("\nFaça sua pergunta: ")
+    if user_question.lower() == 'sair':
+        break
+    
+    print("\nGerando resposta...")
+    response = rag_chain.invoke(user_question)
+    print("--- Resposta ---")
+    print(response)
+    print("----------------")
+
+# Limpeza (opcional): remove o banco de dados vetorial ao sair
+vectorstore.delete_collection()
+print("\nChatbot encerrado.")
